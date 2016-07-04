@@ -75,6 +75,9 @@
         {
             include(HTML_DIR . 'example.html');
         }
-
+        static function getAvisos()
+        {
+            include(HTML_DIR . 'avisos.html');
+        }
     }
 ?>
