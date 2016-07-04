@@ -1,0 +1,64 @@
+<div id="menu-container" class="full center">
+    <div class="row">
+        <div class="col s12 m10 offset-m1">
+            <ul class=" tabs tab-profile z-depth-3 #0277bd light-blue" style="margin-top: 30px">
+                <li class="tab col s4">
+                    <a class="white-text waves-effect waves-light" href="#agregarinsidencia">
+                        <i class="material-icons">create</i> Insidencia
+                    </a>
+                </li>
+            </ul>
+
+            <!-- this is just for post a text problem or insidenia in spanish -->
+            <form id="agregarinsidencia" method="post" class="tab-content col s12  grey lighten-4 z-depth-3" enctype="multipart/form-data">
+                <div id="result">
+                </div>
+                <div class="row">
+                    <div class="col s3 profile-style responsive-img " style="background:url(<?php
+                    $usuario = Usuario::getUsuarioById($_SESSION['id_usuario']);
+                    echo(PROFILE_DIR . $usuario->getFoto());
+                  ?>)">
+                        <img src="" alt="" class="circle responsive-img">
+                    </div>
+                    <div class="input-field col s9" style="margin-top:30px">
+                        <textarea id="textarea" row="2" class="materialize-textarea" name="descripcion" required></textarea>
+                        <label for="textarea">
+                            Tiene alguna insidencia que compartir ?
+                        </label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s4 m2 share-icons left-align">
+                        <i class="material-icons blue-text">create</i>
+                        <i class="material-icons">content_paste</i>
+                    </div>
+                    <div class="col s12 m10 right-align">
+                        <div class="file-field input-field col s12 m6 offset-m3" style="margin-top:-1px">
+                            <div class="btn">
+                                <i class="material-icons">attach_file</i>
+                                <span>Adjuntar</span>
+                                <input type="file" id="file">
+                            </div>
+                            <div class="file-path-wrapper">
+                                <input class="file-path validate" type="text" name="fileToUpload" id="fileToUpload">
+                            </div>
+                        </div>
+                        <button class="waves-effect waves-light btn col s5 m3" type="submit">
+                            <i class="material-icons">send</i>Agregar
+                        </button>
+                    </div>
+                </div>
+            </form>
+            <!-- this is to post a document with a description -->
+        </div>
+    </div>
+
+    <div id="insidencias">
+        <?php include(GET_DIR . 'insidenciasGet.php') ?>
+    </div>
+
+    <div>
+
+        <script src="<?php echo(AJAX_DIR)?>insidencias.js">
+        </script>
+

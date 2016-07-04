@@ -1,0 +1,51 @@
+<div id="menu-container">
+
+    <form class="col s10 offset-s1 panelbackground" id="formUsuario">
+        <div class="row">
+            <hr>
+            <h3>Registro de Usuario</h3>
+            <hr>
+            <div id="submenus" class="col s5 m3" style="border:1px solid black !important; margin:20px !important;">
+                <div class="switch">
+                    <label>
+                        Agregar
+                        <input type="checkbox" name="editar">
+                        <span class="lever right-align"></span>Editar
+                    </label>
+                </div>
+            </div>
+            <div id="result"></div>
+        </div>
+        <div class="row">
+            <div class="input-field col s12 m6">
+                <input id="email" type="email" class="validate center" placeholder="correo" required>
+            </div>
+            <div class="input-field col s12 m6">
+                <input id="password" type="password" class="validate center" placeholder="Contrasena">
+            </div>
+        </div>
+        <div class="row center">
+            <button class="waves-effect waves-light btn">Realizar Accion</button>
+        </div>
+
+        <table id="empleados" class="responsive-table highlight scroll-y" style="margin: 20px auto;">
+            <thead>
+                <tr>
+                    <th data-field="id">N. Empleado</th>
+                    <th data-field="cedula">Numero Cedula</th>
+                    <th data-field="nombre">Nombre</th>
+                    <th data-field="correo">Correo</th>
+                    <th data-field="Contrasena">Contrasena</th>
+                </tr>
+            </thead>
+
+            <tbody id="table">
+                <?php include(GET_DIR.'usuariosGet.php')?>
+            </tbody>
+        </table>
+
+    </form>
+</div>
+
+</div>
+</div>

@@ -1,0 +1,24 @@
+<!-- Modal Structure -->
+<div id="modal-jefe" class="modal" role="dialog">
+    <!-- Modal COntent -->
+    <div class="modal-content">
+        <table id="empleados" class="responsive-table highlight" style="margin: 20px auto;">
+            <thead>
+                <tr>
+                    <th data-field="id">N. Empleado</th>
+                    <th data-field="cedula">Numero Cedula</th>
+                    <th data-field="nombre">Nombre</th>
+                    <th data-field="celular">Celular</th>
+                    <th data-field="fecha">Fecha Ingreso</th>
+                </tr>
+            </thead>
+
+            <tbody id="tabla-jefe">
+                <?php include(GET_DIR.'empleadosGet.php')?>
+            </tbody>
+        </table>
+    </div>
+    <div class="modal-footer">
+        <a class="modal-action modal-close waves-effect waves-green btn-flat">Aceptar</a>
+    </div>
+</div>

@@ -1,0 +1,61 @@
+<div id="menu-container">
+    <div class="col s10 m10 offset-m1 offset-s1 panelbackground">
+        <form id="formsitio" method="get" action="">
+            <input type="hidden" value="0" name="id_insidencia">
+            <h5 class="center black-text">Gestionar Sitios</h5>
+            <hr>
+            <div id="result">
+            </div>
+            <div class="input-field col s m3">
+                <input id="icon_prefix" type="text" class="validate center" name="nombre" required placeholder="Nombre">
+
+            </div>
+            <div class="input-field col s6 m3">
+                <input id="icon_prefix" type="text" class="validate center" name="pais" required placeholder="Pais">
+
+            </div>
+            <div class="input-field col s6 m3">
+                <input id="icon_prefix" type="text" class="validate center" name="ciudad" required placeholder="Ciudad">
+
+            </div>
+            <div class="input-field col s6 m3">
+                <input id="icon_prefix" type="text" class="validate center" pattern="[0-9]{8}" name="telefono" required placeholder="Telefono">
+
+            </div>
+            <div class="input-field col s12 m9">
+                <textarea id="textarea1" class="materialize-textarea center" name="direccion" placeholder="Direccion"></textarea>
+            </div>
+            <div class="col s6 m3">
+                <button style="margin-top:50px" class="btn-large waves-effect waves-light green tooltipped" type="submit" data-position="top" data-delay="50" data-tooltip="Agregar">Aceptar</button>
+
+            </div>
+            <div class="col s12 m12 offset-m3" style="margin-top:50px">
+                <i class="material-icons prefix">search</i>
+                <input id="searchtxt" type="text" class="validate center" placeholder="Buscar sitio">
+            </div>
+
+            <div class="row">
+        <table id="table" class="col s12 m12 centered bordered scroll-y">
+            <thead>
+                <tr>
+                    <th data-field="id">No. Sucursal</th>
+                    <th data-field="Nombre">Nombre</th>
+                    <th data-field="ciudad">Ciudad</th>
+                    <th data-field="Pais">Pais</th>
+                    <th data-field="Telefono">Telefono</th>
+                    <th data-field="Direccion">Direccion</th>
+                </tr>
+            </thead>
+            <tbody id="table ">
+                <?php include( GET_DIR . 'sitiosGet.php')?>
+            </tbody>
+        </table>
+    </div>
+
+        </form>
+    </div>
+
+</div>
+
+<script src="<?php echo(AJAX_DIR)?>sitios.js">
+</script>

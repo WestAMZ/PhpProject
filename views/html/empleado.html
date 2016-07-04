@@ -1,0 +1,171 @@
+<?php include(HTML_DIR . 'modal-seleccionar-jefe.html');?>
+    <div id="menu-container">
+        <form class="col s10 offset-s1 panelbackground" id="formEmpleado">
+            <input type="hidden" name='id_empleado' form="formEmpleado">
+            <input type="hidden" name='id_jefe' form="formEmpleado" id="id_jefe">
+            <div class="row">
+
+                <hr>
+                <h3>Registro de empleados</h3>
+                <hr>
+
+                <div id="submenus" class="col s5 m3" style="border:1px solid black !important; margin:20px !important;">
+                    <div class="switch">
+                        <label>
+                            Agregar
+                            <input type="checkbox" name="editar">
+                            <span class="lever right-align"></span>Editar
+                        </label>
+                    </div>
+                </div>
+                <div id="result"></div>
+            </div>
+            <div class="row">
+                <div class="input-field col s6 m3">
+                    <input id="icon_prefix cedula" type="text" class="validate center" name="cedula" pattern="[0-9]{3}-[0-9]{6}-[0-9]{4}[A-Z]{1}" required placeholder="Cedula">
+
+                </div>
+                <div class="input-field col s6 m3">
+                    <input id="icon_prefix" type="text" class="validate center" name="nombre1" required placeholder="Primer Nombre">
+                </div>
+                <div class="input-field col s6 m3">
+                    <input id="icon_prefix" type="text" class="validate center" name="nombre2" placeholder="Segundo Nombre">
+                </div>
+                <div class="input-field col s6 m3">
+                    <input id="icon_prefix" type="text" class="validate center" name="apellido1" required placeholder="Primer Apellido">
+                </div>
+                <div class="input-field col s6 m3">
+                    <input id="icon_prefix" type="text" class="validate center" name="apellido2" placeholder="Segundo Apellido">
+                </div>
+                <div class="input-field col s6 m3">
+                    <input id="icon_prefix" type="text" class="validate center" name="telefono" pattern="[0-9]{8}" placeholder="Telefono">
+                </div>
+
+                <div class="input-field col s6 m3">
+                    <input id="icon_prefix" type="text" class="validate center" name="inss" pattern="[0-9]{7}-[0-9]{1}" placeholder="Numero INSS">
+                </div>
+            </div>
+
+
+            <div class="row">
+
+
+
+                <div class="input-field col s6 m2">
+
+                    <div class="input-field col s6 m2">
+                        <a id="select-jefe" class="waves-effect waves-light btn">jefe</a>
+                    </div>
+
+                </div>
+
+                <div class="input-field col s6 m4">
+                    <input id="email" type="email" class="validate" name="correo">
+                    <label for="email" data-error="email incorrecto" data-success="Correcto">Email</label>
+                </div>
+
+                <div class="input-field col s6 m2">
+                    <select class="browser-default" name="id_role">
+                        <option value="" selected>Rol</option>
+                        <option value="1">Gerente General</option>
+                        <option value="2">Gerente de sitio</option>
+                        <option value="3">Empleado</option>
+                        <option value="4">Cliente</option>
+
+                    </select>
+                </div>
+
+                <div class="input-field col s6 m2">
+                    <select class="browser-default" name="id_puesto">
+                        <option value="" selected>Cargo</option>
+                        <?php
+                 include_once(MODELS_DIR . 'puesto.php');
+                  $puestos = Puesto::getPuesto();
+                  foreach ($puestos as &$puesto)
+                  {
+              ?>
+                            <option value="<?php echo($puesto->getId_Puesto())?>" selected>
+                                <?php echo($puesto->getNombre())?>
+                            </option>
+                            <?php
+                  }
+            ?>
+                    </select>
+                </div>
+
+                <div class="input-field col s6 m2">
+                    <a id="btncargo" class="waves-effect waves-light btn">...</a>
+                </div>
+
+            </div>
+
+            <div class="row">
+                <div class="file-field input-field col s12 m6">
+                    <div class="btn">
+                        <i class="material-icons">attach_file</i>
+                        <span>Adjuntar</span>
+                        <input type="file">
+                    </div>
+                    <div class="file-path-wrapper">
+                        <input class="file-path validate" type="text" name="fileToUpload" id="fileToUpload">
+                    </div>
+                </div>
+
+                <div class="input-field col s12 m4">
+                    <select class="browser-default" name="id_sitio">
+                        <option value="" selected>Sitio</option>
+                        <?php
+                 include_once(MODELS_DIR . 'sitio.php');
+                  $sitios = Sitio::getSitios();
+                  foreach ($sitios as &$sitio)
+                  {
+              ?>
+                            <option value="<?php echo($sitio->getIdSitio())?>" selected>
+                                <?php echo($sitio->getName())?>
+                            </option>
+                            <?php
+                  }
+            ?>
+                    </select>
+                </div>
+            </div>
+
+
+            <div class="center">
+                <button type="submit" class="waves-effect waves-light btn" style="margin-top: 50px; margin-bottom: 50px; margin-right:250px">Realizar acción</button>
+            </div>
+
+            <hr>
+            <h3>Control de empleados</h3>
+            <hr>
+
+
+            <div class="center" style="margin-top: 35px;">
+                <i class="material-icons prefix">search</i>
+                <input id="searchtxt" type="text" class="validate center" placeholder="Buscar empleado">
+            </div>
+
+
+            <table id="empleados" class="responsive-table highlight scroll-y" style="margin: 20px auto;">
+                <thead>
+                    <tr>
+                        <th data-field="id">N. Empleado</th>
+                        <th data-field="cedula">Numero Cedula</th>
+                        <th data-field="nombre">Nombre</th>
+                        <th data-field="celular">Celular</th>
+                        <th data-field="fecha">Fecha Ingreso</th>
+                    </tr>
+                </thead>
+
+                <tbody id="table">
+                    <?php include(GET_DIR.'empleadosGet.php')?>
+                </tbody>
+            </table>
+
+        </form>
+
+        <script src="<?php echo(AJAX_DIR)?>empleado.js"></script>
+
+    </div>
+    </div>
+    </div>

@@ -1,0 +1,20 @@
+<div id="modal-modificar-comentario" class="modal" role="dialog">
+    <div class="modal-content">
+        <h4>Modificar Comentario</h4>
+        <hr>
+        <form class="col s12" id="formmodificar" method="get">
+            <div class="input-field col s12">
+                <textarea id="textarea1" class="materialize-textarea" name="contenido" required></textarea>
+                <label for="textarea1">Actualizar Comentario</label>
+            </div>
+            <div class="row center">
+                <button type="submit" class="modal-action modal-close waves-effect waves-green btn">Modificar</a>
+            </div>
+            <input type="hidden" value="" name="id_comentario" id="id_comentario">
+        </form>
+    </div>
+</div>
+<script src="<?php echo(AJAX_DIR)?>comentarios.js">
+        </script>
+
+

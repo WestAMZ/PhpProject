@@ -1,0 +1,26 @@
+<?php
+    require(MODELS_DIR . 'empleado.php' );
+    include(MODELS_DIR . 'usuario.php');
+?>
+<div id="left-main" class="col s3 full max-height">
+    <div id="welcome" class="full">
+        <img src="<?php echo(IMG_DIR)?>logo.png" alt="" id="logo">
+    </div>
+    <div id="profile-preview" style="background:url(<?php
+                    $usuario = Usuario::getUsuarioById($_SESSION['id_usuario']);
+                    echo(PROFILE_DIR . $usuario->getFoto());
+                  ?>)">
+
+    <img src="" alt="" class="circle responsive-img">
+    </div>
+    <div class="center"><span id='user-name'><?php echo (Empleado::getEmpleadoById($_SESSION['id_empleado'])->getFullName())?></span></div>
+    <div id="notification-title" class="col s12">
+        <h5><i class="fa fa-bell-o" aria-hidden="true"></i>
+ Notificaciones</h5>
+    </div>
+    <div id="notifications-container" class="col s12">
+        <a href="#" class="notification"><i class='fa fa-bell' aria-hidden='true'></i> Ha recibido una nueva solicitud de Sucursal de Salvador-San Salvador.</a>
+        <a href="#" class="notification"><i class='fa fa-bell' aria-hidden='true'></i> Ha recibido una nueva solicitud de Sucursal de Nicaragua-Masaya.</a>
+        <a href="#" class="notification"><i class='fa fa-bell' aria-hidden='true'></i> Ha recibido una nueva solicitud de Sucursal de Nicaragua-Chinandega.</a>
+    </div>
+</div>

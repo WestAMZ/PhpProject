@@ -1,0 +1,44 @@
+  <!-- Modal Structure -->
+  <div id="modalPuesto" class="modal" role="dialog">
+   <!-- Modal COntent -->
+    <div class="modal-content">
+      <h4>Ingreso de Cargo</h4>
+     <div class="row">
+      <form class="col s12" id="formCargo" method="get">
+          <div class="input-field col s12">
+          <input id="nombre" type="text" class="validate">
+          <label for="last_name">Nombre del cargo</label>
+        </div>
+          <div class="center" style="margin-bottom:40px">
+            <button class="btn waves-effect waves-light col s12 m2 offset-m1 margin" style="margin-top:30px" type="submit" name="action">Agregar</button>
+             <button class="btn waves-effect waves-light col s12 m2 offset-m1" style="margin-top:30px" type="submit" name="action">Modificar</button>
+
+              <button class="btn waves-effect waves-light col s12 m2 offset-m1" style="margin-top:30px" type="submit" name="action">salir</button>
+        </div>
+
+         <div class="row center col s12" style="margin-top:40px">
+            <i class="material-icons prefix">search</i>
+            <input id="searchtxt" type="text" class="validate center" placeholder="Buscar cargo">
+        </div>
+
+        <table id="cargos" class="highlight scroll-y" style="margin: 20px auto;">
+    <thead>
+        <tr>
+            <th data-field="id">N. Empleado</th>
+            <th data-field="cedula">Cargo</th>
+        </tr>
+    </thead>
+
+    <tbody id="table">
+        <?php include(GET_DIR.'cargoGet.php')?>
+    </tbody>
+</table>
+
+      </form>
+     </div>
+    </div>
+
+  </div>
+<script src="<?php echo(AJAX_DIR)?>puesto.js">
+
+</script>
