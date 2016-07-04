@@ -54,6 +54,14 @@ $("#formEmpleado").submit(function ()
 {
 
         var data = $("#formEmpleado").serialize();
+        var archivo = new FormData();
+        if($('#file')[0].files.length > 0)
+        {
+            archivo.append('archivo', $('#file')[0].files[0]);
+            var nombre_archivo = $('#file')[0].files[0].name;
+            nombre_archivo = nombre_archivo.substring(0,nombre_archivo.indexOf('.'));
+            archivo.append('nombre_archivo', nombre_archivo);
+        }
         var result = $('#result');
         var table = $('#table');
         var modal = $('#myModal');
@@ -61,7 +69,7 @@ $("#formEmpleado").submit(function ()
         var id = $('[name= "id_empleado"]').val();
         if($('[name = "editar"]').prop('checked') == false)
         {
-            agregarEmpleado(data, result, modal, ms);
+            agregarEmpleado(archivo,data, result, modal, ms);
 
         }
         else
@@ -90,9 +98,44 @@ $("#formEmpleado").submit(function ()
   /*=======================================================
                       AJAX PART
   =========================================================*/
-function agregarEmpleado(data,result,modal,message_area_modal)
+function agregarEmpleado(archivo,data,result,modal,message_area_modal)
 {
     http = Connect();
+    $.ajax(
+    {
+        url: '?post=empleado&'+data,
+        type: 'POST',
+        data: archivo,
+        dataType: "html",
+        cache: false,
+        contentType: false,
+        processData: false,
+        complete: function(res)
+                    {
+                        var json;
+                        try
+                        {
+                            if(res.responseText==1)
+                            {
+                                message_area_modal.html("<img src='views/img/success.png'></img> El empleado ha sido agregado");
+                                modal.openModal();
+                                result.html('');
+                            }
+                            else
+                            {
+                                text = '<div class="alert alert-dismissible alert-danger">' +
+                                '<button type="button" class="close" data-dismiss="alert">&times;</button>' + http.responseText + '</div>';
+                                result.html(http.responseText);
+                            }
+                        }
+                        catch (e)
+                        {
+                            $('result').html(res.responseText);
+                        }
+                    }
+    });
+}
+    /*
     http.onreadystatechange = function ()
     {
          if (http.readyState == 4 && http.status == 200)
@@ -122,7 +165,7 @@ function agregarEmpleado(data,result,modal,message_area_modal)
     http.open('POST','?post=empleado');
     http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     http.send(data);
-}
+}*/
 
 
 /*
@@ -197,9 +240,9 @@ function updateEmpleado(data,id,result,modal,message_area_modal)
             result.html(text);
         }
     }
-    http.open('POST','?post=empleado&mod=1&id='+id);
+    http.open('POST','?post=empleado&mod=1&id='+id+'&'+data);
     http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    http.send(data);
+    http.send(null);
 }
 
 /*--------

@@ -3,18 +3,18 @@
     include(MODELS_DIR . 'empleado.php');
     include(PHP_DIR . 'mail_sender.php');
 
-    if($_POST)
-    {
+    /*if($_POST)
+    {*/
         //$id_empleado,$nombre1,$nombre2,$apellido1,$apellido2,$cedula,$telefono,$firma,$id_puesto,$id_sitio,$id_jefe,$inss,$fecha_ingreso,$estado
         if(!isset($_GET['mod']))
         {   //$_POST['firma']
-            $empleado = new Empleado                                                         (null,$_POST['nombre1'],$_POST['nombre2'],$_POST['apellido1'],$_POST['apellido2'],$_POST['cedula'],$_POST['telefono'],null,$_POST['id_puesto'],$_POST['id_sitio'],$_POST['id_jefe'],$_POST['inss'],null,1);
+            $empleado = new Empleado                                                         (null,$_GET['nombre1'],$_GET['nombre2'],$_GET['apellido1'],$_GET['apellido2'],$_GET['cedula'],$_GET['telefono'],null,$_GET['id_puesto'],$_GET['id_sitio'],$_GET['id_jefe'],$_GET['inss'],null,1);
             $password = Connection::generarCodigo(10);
 
-            if($empleado->saveEmpleado($_POST['correo'],$_POST['id_role'],null,$password))
+            if($empleado->saveEmpleado($_GET['correo'],$_GET['id_role'],null,$password))
             {
 
-                MailSender::sendCountInfo($_POST['correo'],$_POST['correo'],$password);
+                MailSender::sendCountInfo($_GET['correo'],$_GET['correo'],$password);
 
                 echo('1');
             }
@@ -29,9 +29,9 @@
         {
             //firma esta en null
             $id_mod = $_GET['id'];
-            $empleado = new Empleado ($id_mod,$_POST['nombre1'],$_POST['nombre2'],$_POST['apellido1'],$_POST['apellido2'],$_POST['cedula'],$_POST['telefono'],null,$_POST['id_puesto'],$_POST['id_sitio'],$_POST['id_jefe'],$_POST['inss'],null,1);
+            $empleado = new Empleado ($id_mod,$_GET['nombre1'],$_GET['nombre2'],$_GET['apellido1'],$_GET['apellido2'],$_GET['cedula'],$_GET['telefono'],null,$_GET['id_puesto'],$_GET['id_sitio'],$_GET['id_jefe'],$_GET['inss'],null,1);
             $empleado->update();
             echo(1);
         }
-    }
+    /*}*/
 ?>

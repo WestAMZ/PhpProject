@@ -2,7 +2,7 @@
     <div id="menu-container">
         <form class="col s10 offset-s1 panelbackground" id="formEmpleado">
             <input type="hidden" name='id_empleado' form="formEmpleado">
-            <input type="hidden" name='id_jefe' form="formEmpleado" id="id_jefe">
+            <input type="hidden" name='id_jefe' form="formEmpleado" id="id_jefe" required>
             <div class="row">
 
                 <hr>
@@ -22,7 +22,7 @@
             </div>
             <div class="row">
                 <div class="input-field col s6 m3">
-                    <input id="icon_prefix cedula" type="text" class="validate center" name="cedula" pattern="[0-9]{3}-[0-9]{6}-[0-9]{4}[A-Z]{1}" required placeholder="Cedula">
+                    <input id="icon_prefix cedula" type="text" class="validate center" name="cedula" pattern="[0-9]{3}-[0-9]{6}-[0-9]{4}[A-Z]{1}" required placeholder="Cedula" >
 
                 </div>
                 <div class="input-field col s6 m3">
@@ -42,7 +42,7 @@
                 </div>
 
                 <div class="input-field col s6 m3">
-                    <input id="icon_prefix" type="text" class="validate center" name="inss" pattern="[0-9]{7}-[0-9]{1}" placeholder="Numero INSS">
+                    <input id="icon_prefix" type="text" class="validate center" name="inss" pattern="[0-9]{7}-[0-9]{1}" placeholder="Numero INSS" required>
                 </div>
             </div>
 
@@ -60,12 +60,12 @@
                 </div>
 
                 <div class="input-field col s6 m4">
-                    <input id="email" type="email" class="validate" name="correo">
+                    <input id="email" type="email" class="validate" name="correo" required>
                     <label for="email" data-error="email incorrecto" data-success="Correcto">Email</label>
                 </div>
 
                 <div class="input-field col s6 m2">
-                    <select class="browser-default" name="id_role">
+                    <select class="browser-default" name="id_role" required>
                         <option value="" selected>Rol</option>
                         <option value="1">Gerente General</option>
                         <option value="2">Gerente de sitio</option>
@@ -76,7 +76,7 @@
                 </div>
 
                 <div class="input-field col s6 m2">
-                    <select class="browser-default" name="id_puesto">
+                    <select class="browser-default" name="id_puesto" required>
                         <option value="" selected>Cargo</option>
                         <?php
                  include_once(MODELS_DIR . 'puesto.php');
@@ -104,7 +104,7 @@
                     <div class="btn">
                         <i class="material-icons">attach_file</i>
                         <span>Adjuntar</span>
-                        <input type="file">
+                        <input type="file" id="file">
                     </div>
                     <div class="file-path-wrapper">
                         <input class="file-path validate" type="text" name="fileToUpload" id="fileToUpload">
