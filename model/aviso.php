@@ -137,7 +137,7 @@ static function getAvisos($id_empleado)
         Connection ::close();
         return $avisos;
 }
-static function saveAvisos()
+ function saveAvisos()
 {
     $added = false;
     Connection :: connect();
