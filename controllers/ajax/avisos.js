@@ -1,7 +1,7 @@
 $('.datepicker').pickadate({
     selectMonths: true, // Creates a dropdown to control month
     selectYears: 15,
-    format: 'dd-mm-yyyy' });
+    format: 'yyyy-mm-dd' });
 $(document).ready(function()
 {
    $('#table').on('click','.aviso',function()
