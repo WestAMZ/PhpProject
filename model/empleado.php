@@ -305,6 +305,12 @@
                     WHERE
                       id_empleado = '$this->id_empleado' ";
             Connection::getConnection()->query($query);
+            echo($query);
+            var_dump($this);
+            if(Connection::getConnection()->affected_rows > 0)
+            {
+                echo('todo bien');
+            }
             Connection ::close();
 
 
