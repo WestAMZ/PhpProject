@@ -1,7 +1,7 @@
 $('.datepicker').pickadate({
     selectMonths: true, // Creates a dropdown to control month
-    selectYears: 15 // Creates a dropdown of 15 years to control year
-  });
+    selectYears: 15,
+    format: 'dd-mm-yyyy' });
 $(document).ready(function()
 {
    $('#table').on('click','.aviso',function()
@@ -34,7 +34,10 @@ $(document).ready(function()
         });
 
 });
+$("#formsitio").submit(function ()
+{
 
+});
 
 /*
 ==================================================
