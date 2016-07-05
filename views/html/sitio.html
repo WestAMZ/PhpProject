@@ -6,6 +6,17 @@
             <hr>
             <div id="result">
             </div>
+            <div class="row">
+                <div id="submenus" class="col s5 m3" style="border:1px solid black !important; margin:20px !important;">
+                    <div class="switch">
+                        <label>
+                            Agregar
+                            <input type="checkbox" name="editar">
+                            <span class="lever right-align"></span>Editar
+                        </label>
+                    </div>
+                </div>
+            </div>
             <div class="input-field col s m3">
                 <input id="icon_prefix" type="text" class="validate center" name="nombre" required placeholder="Nombre">
 
@@ -35,22 +46,22 @@
             </div>
 
             <div class="row">
-        <table id="table" class="col s12 m12 centered bordered scroll-y">
-            <thead>
-                <tr>
-                    <th data-field="id">No. Sucursal</th>
-                    <th data-field="Nombre">Nombre</th>
-                    <th data-field="ciudad">Ciudad</th>
-                    <th data-field="Pais">Pais</th>
-                    <th data-field="Telefono">Telefono</th>
-                    <th data-field="Direccion">Direccion</th>
-                </tr>
-            </thead>
-            <tbody id="table ">
-                <?php include( GET_DIR . 'sitiosGet.php')?>
-            </tbody>
-        </table>
-    </div>
+                <table id="table" class="col s12 m12 centered bordered scroll-y">
+                    <thead>
+                        <tr>
+                            <th data-field="id">No. Sucursal</th>
+                            <th data-field="Nombre">Nombre</th>
+                            <th data-field="ciudad">Ciudad</th>
+                            <th data-field="Pais">Pais</th>
+                            <th data-field="Telefono">Telefono</th>
+                            <th data-field="Direccion">Direccion</th>
+                        </tr>
+                    </thead>
+                    <tbody id="table ">
+                        <?php include( GET_DIR . 'sitiosGet.php')?>
+                    </tbody>
+                </table>
+            </div>
 
         </form>
     </div>
