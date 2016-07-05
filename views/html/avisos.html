@@ -1,28 +1,62 @@
 <div id="menu-container">
-    <div class="col s10 m10 offset-m1 offset-s1 panelbackground">
+    <form id="formaviso" class="col s10 m10 offset-m1 offset-s1 panelbackground">
         <h5 class="center black-text">Gestionar Avisos</h5>
         <hr>
-        <div id="submenus" class="col s5 m3" style="border:1px solid black !important; margin:20px !important;">
-            <div class="switch">
-                <label>
-                    Agregar
-                    <input type="checkbox" name="editar">
-                    <span class="lever right-align"></span>Editar
-                </label>
+        <div class="row">
+            <div id="submenus" class="col s5 m3" style="border:1px solid black !important; margin:20px !important;">
+                <div class="switch">
+                    <label>
+                        Agregar
+                        <input type="checkbox" name="editar">
+                        <span class="lever right-align"></span>Editar
+                    </label>
+                </div>
             </div>
         </div>
         <br>
-        <di class="row">
+        <div class="row">
             <div class="input-field col s6 m4">
                 <input type="text" class="validate center" name="titulo" required placeholder="Titulo">
             </div>
             <div class="input-field col s6 m4">
-                <input type="date" class="validate center" name="fecha_inicio" required placeholder="Fecha Inicio">
+                <input type="date" class="datepicker center" placeholder="Fecha Incio">
             </div>
-        </di>
-    </div>
+            <div class="input-field col s6 m4">
+                <input type="date" class="datepicker center" placeholder="Fecha Fin">
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s12 m8">
+                <textarea id="textarea1" class="materialize-textarea" placeholder="Contenido"></textarea>
+            </div>
+            <div class="input-field col s6 m4 offset-s2">
+                <button type="submit" class="waves-effect waves-light btn green" style="margin-top: 50px; margin-bottom: 50px; margin-right:250px">Realizar</button>
+            </div>
+        </div>
 
+        <div class="center" style="margin-top: 35px;">
+            <i class="material-icons prefix">search</i>
+            <input id="searchtxt" type="text" class="validate center" placeholder="Buscar avisos">
+        </div>
 
-</div>
+        <table id="sitios" class="responsive-table highlight scroll-y" style="margin: 20px auto;">
+            <thead>
+                <tr>
+                    <th data-field="id">N. Aviso</th>
+                    <th data-field="titulo">Titulo</th>
+                    <th data-field="fecha_inicio">Fecha Inicio</th>
+                    <th data-field="fecha_fin">Fecha Fin</th>
+                    <th data-field="contenido">Contenido</th>
+                </tr>
+            </thead>
+            <tbody id="table">
+                    <?php include( GET_DIR . 'avisosGet.php')?>
+            </tbody>
+        </table>
+
+        <script src="<?php echo(AJAX_DIR)?>avisos.js">
+        </script>
+
+    </form>
 
 </div>
