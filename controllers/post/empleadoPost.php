@@ -45,7 +45,6 @@
             $id_mod = $_GET['id'];
             $empleado = new Empleado ($id_mod,$_GET['nombre1'],$_GET['nombre2'],$_GET['apellido1'],$_GET['apellido2'],$_GET['cedula'],$_GET['telefono'],null,$_GET['id_puesto'],$_GET['id_sitio'],$_GET['id_jefe'],$_GET['inss'],null,1);
             $empleado->update();
-            echo(1);
         }
     /*}*/
 ?>
