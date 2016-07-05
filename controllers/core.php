@@ -24,6 +24,8 @@
     define('PROFILE_DIR','sources/public/profile/');
     define('FILE_DIR','sources/public/files/');
     define('INSIDENCIAS_DIR','sources/public/insidencias/');
+    define('EMPLEADOS_DIR','sources/private/empleados/');
+
     /*
         Información de correo
     */
