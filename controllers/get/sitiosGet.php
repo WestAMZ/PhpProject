@@ -13,8 +13,8 @@
         <td><?php echo($sitio->getCountry())?></td>
         <td><?php echo($sitio->getPhone())?></td>
         <td><?php echo($sitio->getAddress())?></td>
-        <td><a href="?post=sitio&mod=2&id=<?php echo($sitio->getIdSitio())?>">
-            <button class="btn">
+        <td>
+            <button class="btn cambiar-estado" id="<?php echo($sitio->getIdSitio())?>" estado="<?php echo($sitio->getStatus())?>">
                 <?php
                     if($sitio->getStatus()==1)
                     {
@@ -25,7 +25,7 @@
                         echo('Habilitar');
                     }
                 ?>
-            </button></a></td>
+            </button></td>
     </tr>
 <?php
     }
@@ -45,8 +45,8 @@ else
         <td><?php echo($sitio->getCountry())?></td>
         <td><?php echo($sitio->getPhone())?></td>
         <td><?php echo($sitio->getAddress())?></td>
-        <td><a href="?post=sitio&mod=2&id=<?php echo($sitio->getIdSitio())?>">
-            <button class="btn">
+        <td>
+            <button class="btn cambiar-estado" id="<?php echo($sitio->getIdSitio())?>" estado="<?php echo($sitio->getStatus())?>">
                 <?php
                     if($sitio->getStatus()==1)
                     {
@@ -57,7 +57,7 @@ else
                         echo('Habilitar');
                     }
                 ?>
-            </button></a></td>
+            </button></td>
     </tr>
 
 <?php

@@ -1,8 +1,7 @@
 <?php
 
     include(MODELS_DIR . 'sitio.php');
-    if($_POST)
-    {
+
         //$idSitio, $nombre, $pais, $ciudad, $direccion, $telefono, $latitud, $longitud, $estado
         if(!isset($_GET['mod']))
         {
@@ -28,9 +27,9 @@
         //mode 2: cambio de estado
         else if($_GET['mod']==2)
         {
-            //Sitio::cambiarEstado($_GET['id']);
-            var_dump(Sitio::getSitioById($_GET['id']));
+            Sitio::cambiarEstado($_GET['id'],$_GET['estado']);
+            echo('1');
         }
 
-    }
+
 ?>

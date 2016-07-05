@@ -21,6 +21,14 @@ $(document).ready(function ()
             var search = $(this).val()+ pressed;
             searchSitios(search,$('#table'));
         });
+    $('#table').on('click','.cambiar-estado',function()
+    {
+        //invertimos el estado
+        estado = ($(this).attr('estado') == 0 )? '1' : '0';
+        id = $(this).attr('id');
+
+        cambiarEstado(id,estado);
+    });
 });
 /*-----------
                 ------------------ON submit
@@ -211,4 +219,41 @@ function searchSitios(search,table)
     httpL.open('GET','?get=sitios&search='+search);
     httpL.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     httpL.send(null);
+}
+function cambiarEstado(id,estado)
+{
+    data = '&mod=2&'+'id='+id+'&estado='+estado;
+
+    $.ajax(
+    {
+        url: '?post=sitio'+data,
+        type: 'POST',
+        data: null,
+        dataType: "html",
+        cache: false,
+        contentType: false,
+        processData: false,
+        complete: function(res)
+                    {
+
+                        try
+                        {
+                            if(res.responseText==1)
+                            {
+                                $('#message').html('Se ha cambiado el estado del sitio');
+                                $('#myModal').openModal();
+                            }
+                            else
+                            {
+                                $('#message').html('Se ha ocurrido un error');
+                                $('#myModal').openModal();
+                            }
+                        }
+                        catch (e)
+                        {
+                            $('#message').html(res.responseText);
+                                $('#myModal').openModal();
+                        }
+                    }
+    });
 }
