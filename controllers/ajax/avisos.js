@@ -34,8 +34,30 @@ $(document).ready(function()
         });
 
 });
-$("#formsitio").submit(function ()
+$("#formaviso").submit(function ()
 {
+    var data = $("#formaviso").serialize();
+        var result = $('#result');
+        var table = $('#table');
+        var modal = $('#myModal');
+        var ms = $('#message');
+
+        if($('[name = "editar"]').prop('checked') == false)
+        {
+            addaviso(data, result, modal, ms);
+        }
+        else
+        {
+            if($('.selected').size() == 0)
+            {
+                alert('debe seleccionar el sitio a modificar!');
+            }
+            else
+            {
+                updateSitio(data, result, modal, ms);
+            }
+        }
+        return false;
 
 });
 
@@ -94,4 +116,38 @@ function searchaviso(search,table)
     httpL.open('GET','?get=avisos&search='+search);
     httpL.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     httpL.send(null);
+}
+function addaviso(data,result,modal,message_area_modal)
+{
+    http = Connect();
+    http.onreadystatechange = function ()
+    {
+         if (http.readyState == 4 && http.status == 200)
+         {
+
+            if (http.responseText == 1)
+            {
+                message_area_modal.html("<img src='views/img/success.png'></img> EL aviso ha sido agregado Satisfactoriamente !!");
+                modal.openModal();
+                result.html('');
+            }
+            else
+            {
+                text = '<div class="alert alert-dismissible alert-danger">' +
+                    '<button type="button" class="close" data-dismiss="alert">&times;</button>' + http.responseText + '</div>';
+                    result.html(http.responseText);
+            }
+
+        }
+        else if (http.readyState != 4)
+        {
+            text = '<div class="alert alert-dismissible alert-info">' +
+                '<button type="button" class="close" data-dismiss="alert">&times;</button>' +
+                '<img src="views/img/load.gif"></img> Procesando acción...</div>';
+            result.html(text);
+        }
+    }
+    http.open('POST','?post=aviso');
+    http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    http.send(data);
 }

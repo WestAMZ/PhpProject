@@ -132,13 +132,33 @@ static function getAvisos($id_empleado)
             $aviso->setEstado($row['estado']);
             $aviso->setIdEmpleado($row['id_empleado']);
             array_push($avisos,$aviso);
-                /*
-            $aviso = new Aviso( $row['idaviso'],$row['titulo'],$row['contenido'],$row['fecha_publicacion'],$row['fecha_finalizacion'], $row['estado'],$row['id_empleado']);
-            array_push($avisos,$aviso);
-            */
+
         }
         Connection ::close();
         return $avisos;
+}
+static function saveAvisos()
+{
+    $added = false;
+    Connection :: connect();
+
+    try
+    {
+        $query = "INSERT INTO aviso(`titulo`,`contenido`,`fecha_publicacion`,`fecha_finalizacion`,`estado`,`id_empleado`) VALUES('$this->titulo','$this->contenido','$this->fecha_publicacion','$this->fecha_finalizacion','1','$this->id_empleado')";
+        $result = Connection :: getConnection() -> query($query);
+        $added = true;
+
+    }catch(Exception $e)
+    {
+        $added = false;
+        $this->add_error = '<div class="alert alert-dismissible alert-danger">
+                     <button type="button" class="close" data-dismiss="alert">&times;</button>
+                     ha ocurrido un error </div>';
+    }
+
+    Connection :: close();
+
+    return $added;
 }
 }
 ?>
