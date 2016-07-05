@@ -125,7 +125,7 @@ function agregarEmpleado(archivo,data,result,modal,message_area_modal)
                             {
                                 text = '<div class="alert alert-dismissible alert-danger">' +
                                 '<button type="button" class="close" data-dismiss="alert">&times;</button>' + http.responseText + '</div>';
-                                result.html(http.responseText);
+                                result.html(res.responseText);
                             }
                         }
                         catch (e)
