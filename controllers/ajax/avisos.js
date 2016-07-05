@@ -13,6 +13,14 @@ $(document).ready(function()
         getAvisos(id_mod);
     });
 
+    $('#searchtxt').keypress(
+        function(e)
+        {
+            //condicion para linpiar de caracteres especiales (no alfa nunmericos)
+            var pressed = (e.key.toString().length == 1)? e.key :'';
+            var search = $(this).val()+ pressed;
+            searchaviso(search,$('#table'));
+        });
 
 });
 
@@ -55,4 +63,26 @@ function getAvisos(id)
     http.open('GET','?get=aviso&id='+id);
     http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     http.send(null);
+}
+
+function searchaviso(search,table)
+{
+    httpL = Connect();
+    httpL.onreadystatechange = function()
+    {
+        if(httpL.readyState == 4 && httpL.status ==200)
+        {
+            table.html(httpL.responseText);
+        }
+        else if(httpL.readyState != 4)
+        {
+            text = '<div class="alert alert-dismissible alert-info center s12 m12">' +
+                '<button type="button" class="close" data-dismiss="alert">&times;</button>' +
+                '<img src="views/img/load2.gif"></img> Cargando...</div>';
+            table.html(text);
+        }
+    }
+    httpL.open('GET','?get=avisos&search='+search);
+    httpL.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    httpL.send(null);
 }
