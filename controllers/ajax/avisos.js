@@ -10,7 +10,18 @@ $(document).ready(function()
         $(this).toggleClass('selected');
         var id_mod = $(this).children(0).html();
         var form = $('#formaviso');
-        getAvisos(id_mod);
+
+        if($('[name = "editar"]').prop('checked') == true)
+        {
+            getAvisos(id_mod);
+        }
+       else
+           {
+                $('[name= "titulo"]').val("");
+                $('[name= "fecha_publicacion"]').val("");
+                $('[name= "fecha_finalizacion"]').val("");
+                $('[name= "contenido"]').val("");
+           }
     });
 
     $('#searchtxt').keypress(
@@ -43,15 +54,10 @@ function getAvisos(id)
 
             if(aviso != null)
             {
-                $('[name= "nombre1"]').val(empleado.nombre1);
-                $('[name= "nombre2"]').val(empleado.nombre2);
-                $('[name= "apellido1"]').val(empleado.apellido1);
-                $('[name= "apellido2"]').val(empleado.apellido2);
-                $('[name= "cedula"]').val(empleado.cedula);
-                $('[name= "id_empleado"]').val(empleado.id_empleado);
-                $('[name= "telefono"]').val(empleado.telefono);
-                $('[name= "inss"]').val(empleado.inss);
-                $('[name= "correo"]').val(empleado.correo);
+                $('[name= "titulo"]').val(aviso.titulo);
+                $('[name= "fecha_publicacion"]').val(aviso.fecha_publicacion);
+                $('[name= "fecha_finalizacion"]').val(aviso.fecha_finalizacion);
+                $('[name= "contenido"]').val(aviso.contenido);
             }
 
         }

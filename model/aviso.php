@@ -83,12 +83,14 @@ static function getAvisoById($id)
         $result = Connection::getConnection()->query($query);
 
         $row = $result ->fetch_assoc();
-
-        //$idSitio, $nombre, $pais, $ciudad, $direccion, $telefono, $latitud, $longitud, $estado
-        $aviso = new Aviso( $row['idaviso'] ,$row['titulo'] , $row['contenido'] ,
-        $row['fecha_publicacion'],$row['fecha_finalizacion'] , $row['estado'] ,$row['id_empleado']);
-
-
+        $aviso = new Aviso();
+        $aviso->setIdAviso($row['idaviso']);
+        $aviso->setTitulo($row['titulo']);
+        $aviso->setContenido($row['contenido']);
+        $aviso->setFechaPublicacion($row['fecha_publicacion']);
+        $aviso->setFechaFinalizacion($row['fecha_finalizacion']);
+        $aviso->setEstado($row['estado']);
+        $aviso->setIdEmpleado($row['id_empleado']);
         Connection ::close();
         return $aviso;
 }
