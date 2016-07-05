@@ -9,6 +9,7 @@ class Aviso
     var $estado;
     var $id_empleado;
 
+    public function __construct(){}
     function __contruct($id_aviso, $titulo, $contenido, $fecha_publicacion, $fecha_finalizacion, $estado, $id_empleado)
 {
     $this->id_aviso = $id_aviso;
@@ -105,16 +106,27 @@ static function SearchinAvisos($search)
         Connection ::close();
         return $avisos;
     }
-static function getAvisos()
+static function getAvisos($id_empleado)
 {
         Connection :: connect();
-        $query = "SELECT `idaviso`, `titulo`, `contenido`, `fecha_publicacion`, `fecha_finalizacion`, `estado`, `id_empleado` FROM `aviso`";
+        $query = "SELECT `idaviso`, `titulo`, `contenido`, `fecha_publicacion`, `fecha_finalizacion`, `estado`, `id_empleado` FROM `aviso` WHERE `id_empleado` = '$id_empleado'";
         $result = Connection::getConnection()->query($query);
         $avisos = array();
         while( $row = $result ->fetch_assoc())
         {
+            $aviso = new Aviso();
+            $aviso->setIdAviso($row['idaviso']);
+            $aviso->setTitulo($row['titulo']);
+            $aviso->setContenido($row['contenido']);
+            $aviso->setFechaPublicacion($row['fecha_publicacion']);
+            $aviso->setFechaFinalizacion($row['fecha_finalizacion']);
+            $aviso->setEstado($row['estado']);
+            $aviso->setIdEmpleado($row['id_empleado']);
+            array_push($avisos,$aviso);
+                /*
             $aviso = new Aviso( $row['idaviso'],$row['titulo'],$row['contenido'],$row['fecha_publicacion'],$row['fecha_finalizacion'], $row['estado'],$row['id_empleado']);
             array_push($avisos,$aviso);
+            */
         }
         Connection ::close();
         return $avisos;

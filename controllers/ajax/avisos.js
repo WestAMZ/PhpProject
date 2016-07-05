@@ -12,6 +12,8 @@ $(document).ready(function()
         var form = $('#formaviso');
         getAvisos(id_mod);
     });
+
+
 });
 
 

@@ -44,7 +44,7 @@
 }
 else
 {
-    $avisos = Aviso::getAvisos();
+    $avisos = Aviso::getAvisos($_SESSION['id_empleado']);
     foreach ($avisos as &$aviso)
     {
 
@@ -81,6 +81,7 @@ else
                     <?php
                     }
                     ?>
+
            </a> </td>
     </tr>
 
