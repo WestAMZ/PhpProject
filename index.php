@@ -17,7 +17,7 @@
             {
                 if(isset($_SESSION['session']))
                 {
-                    echo("<script>window.location = '?view=home'</script>");
+                    echo("<script>window.location = 'index.php?view=home'</script>");
                 }
                 include(PHP_DIR . strtolower($_GET['view']) . 'Controller.php');
             }
@@ -56,7 +56,7 @@
     {
         if(isset($_SESSION['session']))
         {
-            echo("<script>window.location = '?view=home'</script>");
+            echo("<script>window.location = 'index.php?view=home'</script>");
         }
         include(PHP_DIR . 'indexController.php');
     }
