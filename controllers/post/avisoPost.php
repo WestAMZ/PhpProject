@@ -25,8 +25,15 @@
         //mode 1 : update
         else if($_GET['mod']==1)
         {
-            $sitio = new Sitio($_POST['id_insidencia'],$_POST['nombre'],$_POST['pais'],$_POST['ciudad'],$_POST['direccion'],$_POST['telefono'],null,null,1);
-            $sitio->updateSitio();
+           $aviso = new Aviso();
+           $aviso->setIdAviso($_POST['id_aviso']);
+           $aviso->setTitulo($_POST['titulo']);
+           $aviso->setContenido($_POST['contenido']);
+           $aviso->setFechaPublicacion($_POST['fecha_publicacion']);
+           $aviso->setFechaFinalizacion($_POST['fecha_finalizacion']);
+           $aviso->setEstado(null);
+           $aviso->setIdEmpleado($_SESSION['id_empleado']);
+           $aviso->updateAviso();
             echo ('1');
         }
         //mode 2: cambio de estado
