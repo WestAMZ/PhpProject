@@ -119,6 +119,13 @@ function agregarEmpleado(archivo,data,result,modal,message_area_modal)
         cache: false,
         contentType: false,
         processData: false,
+        beforeSend:function()
+                    {
+                        text = '<div class="alert alert-dismissible alert-info">' +
+                        '<button type="button" class="close" data-dismiss="alert">&times;</button>' +
+                        '<img src="views/img/load.gif"></img> Agragando empleado</div>';
+                        $('#result').html(text);
+                    },
         complete: function(res)
                     {
                         var json;

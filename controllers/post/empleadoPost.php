@@ -10,7 +10,7 @@
             $nombre = "";
             if (isset($_FILES['archivo']))
             {
-                echo('hay archivo');
+
                 $archivo = $_FILES['archivo'];
                 $extension = pathinfo($archivo['name'], PATHINFO_EXTENSION);
                 $time = time();
@@ -22,7 +22,7 @@
                 }
             }
 
-            $empleado = new Empleado                                                         (null,$_GET['nombre1'],$_GET['nombre2'],$_GET['apellido1'],$_GET['apellido2'],$_GET['cedula'],$_GET['telefono'],null,$_GET['id_puesto'],$_GET['id_sitio'],$_GET['id_jefe'],$_GET['inss'],null,1,$nombre);
+            $empleado = new Empleado                                                         (null,$_GET['nombre1'],$_GET['nombre2'],$_GET['apellido1'],$_GET['apellido2'],$_GET['cedula'],$_GET['telefono'],null,$_GET['id_puesto'],$_GET['id_sitio'],$_GET['id_jefe'],$_GET['inss'],$_GET['fecha_ingreso'],1,$nombre);
             $password = Connection::generarCodigo(10);
 
             if($empleado->saveEmpleado($_GET['correo'],$_GET['id_role'],null,$password))
