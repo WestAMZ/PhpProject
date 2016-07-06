@@ -17,7 +17,7 @@
                 Cuerpo del correo
             */
             $mail->Body =
-            "<h1>EBCO Systems</h1>\n<br/>"+
+            "<h1>EBCO Systems</h1>\n<br/>".
             "<strong>Correo de acceso:</strong>$user <br/>".
             "<strong>Password:</strong>$pass <br/>";
             /*
