@@ -7,6 +7,12 @@
 $(document).ready(function ()
 {
 
+    $('.datepicker').pickadate({
+    selectMonths: true, // Creates a dropdown to control month
+    selectYears: 15,
+    format: 'yyyy-mm-dd' });
+
+    //seleccion de filas
     $('#table').on('click','.empleado',function()
     {
         $('#table .selected').removeClass('selected');
@@ -24,6 +30,10 @@ $(document).ready(function ()
         var form = $('#id_jefe').val(id_jefe);
 
 
+    });
+    $('#jefe-null').click(function ()
+    {
+        $('#id_jefe').val("");
     });
 
     $('#searchtxt').keypress(
@@ -55,11 +65,10 @@ $("#formEmpleado").submit(function ()
 
         var data = $("#formEmpleado").serialize();
         var archivo = new FormData();
-        if($('#file')[0].files.length > 0)
+        if($('#documentos')[0].files.length > 0)
         {
-            archivo.append('archivo', $('#file')[0].files[0]);
-            var nombre_archivo = $('#file')[0].files[0].name;
-            nombre_archivo = nombre_archivo.substring(0,nombre_archivo.indexOf('.'));
+            archivo.append('archivo', $('#documentos')[0].files[0]);
+            nombre_archivo = "doc_";
             archivo.append('nombre_archivo', nombre_archivo);
         }
         var result = $('#result');

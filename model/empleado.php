@@ -18,10 +18,11 @@
         var $fecha_retiro;
         var $estado;
         var $add_error;
+        var $documentos;
         /*
         constructor por defecto
         */
-        function __construct($id_empleado,$nombre1,$nombre2,$apellido1,$apellido2,$cedula,$telefono,$firma,$id_puesto,$id_sitio,$id_jefe,$inss,$fecha_ingreso,$estado)
+        function __construct($id_empleado,$nombre1,$nombre2,$apellido1,$apellido2,$cedula,$telefono,$firma,$id_puesto,$id_sitio,$id_jefe,$inss,$fecha_ingreso,$estado,$documentos)
         {
             //quité la fecha de retiro
             $this->id_empleado = $id_empleado;
@@ -37,14 +38,23 @@
             $this->id_jefe = $id_jefe;
             $this->inss = $inss;
             $this->fecha_ingreso = $fecha_ingreso;
-            //$this->fecha_retiro = $fecha_retiro;
+           // $this->fecha_retiro = $fecha_retiro;
             $this->estado = $estado;
+            $this->documentos = $documentos;
         }
 
 
         /*
          Metodos setters
         */
+        function setDocumentos($documentos)
+        {
+            $this->documentos = $documentos;
+        }
+        function getDocumentos()
+        {
+            return $this->documentos;
+        }
         function add_error()
 		{
 			return $this->add_error;
@@ -179,13 +189,13 @@
         static function getEmpleados()
         {
              Connection :: connect();
-             $query = "SELECT `id_empleado`, `nombre1`, `nombre2`, `apellido1`, `apellido2`, `cedula`, `telefono`, `firma`, `id_puesto`, `id_sitio`, `id_jefe`, `inss`, `fecha_ingreso`, `estado` FROM `empleado` ";
+             $query = "SELECT `id_empleado`, `nombre1`, `nombre2`, `apellido1`, `apellido2`, `cedula`, `telefono`, `firma`, `id_puesto`, `id_sitio`, `id_jefe`, `inss`, `fecha_ingreso`, `estado` , 'documentos' FROM `empleado` ";
              $result = Connection::getConnection()->query($query);
              $empleados = array();
              while( $row = $result ->fetch_assoc())
              {
                 //$id_empleado,$nombre1,$nombre2,$apellido1,$apellido2,$cedula,$telefono,$firma,$id_puesto,$id_sitio,$id_jefe,$inss,$fecha_ingreso,$estado
-                 $empleado = new Empleado($row['id_empleado'],$row['nombre1'],$row['nombre2'],$row['apellido1'],$row['apellido2'],$row['cedula'],$row['telefono'],$row['firma'],$row['id_puesto'],$row['id_sitio'],$row['id_jefe'],$row['inss'],$row['fecha_ingreso'],$row['estado']);
+                 $empleado = new Empleado($row['id_empleado'],$row['nombre1'],$row['nombre2'],$row['apellido1'],$row['apellido2'],$row['cedula'],$row['telefono'],$row['firma'],$row['id_puesto'],$row['id_sitio'],$row['id_jefe'],$row['inss'],$row['fecha_ingreso'],$row['estado'],$row['documentos']);
                 array_push($empleados,$empleado);
              }
             Connection ::close();
@@ -203,7 +213,7 @@
             {
                 try
                 {
-                    $query = "INSERT INTO `empleado`(`id_empleado`,`nombre1`,`nombre2`,`apellido1`,`apellido2`,`cedula`,`telefono`,`firma`,`id_puesto`,`id_sitio`,`id_jefe`,`inss`,`fecha_ingreso`,`estado`) VALUES('$this->id_empleado','$this->nombre1','$this->nombre2','$this->apellido1','$this->apellido2','$this->cedula','$this->telefono','$this->firma','$this->id_puesto','$this->id_sitio','$this->id_jefe','$this->inss','$this->fecha_ingreso',1)";
+                    $query = "INSERT INTO `empleado`(`id_empleado`,`nombre1`,`nombre2`,`apellido1`,`apellido2`,`cedula`,`telefono`,`firma`,`id_puesto`,`id_sitio`,`id_jefe`,`inss`,`fecha_ingreso`,`estado`,`documentos`) VALUES('$this->id_empleado','$this->nombre1','$this->nombre2','$this->apellido1','$this->apellido2','$this->cedula','$this->telefono','$this->firma','$this->id_puesto','$this->id_sitio','$this->id_jefe','$this->inss','$this->fecha_ingreso',1,'$this->documentos')";
                     $result = Connection :: getConnection() -> query($query);
                     $added = true;
                 }catch(Exception $e)
@@ -255,26 +265,26 @@
         static function getEmpleadoById($id)
         {
             Connection::connect();
-            $query = "SELECT `id_empleado`, `nombre1`, `nombre2`, `apellido1`, `apellido2`, `cedula`, `telefono`, `firma`, `id_puesto`, `id_sitio`, `id_jefe`, `inss`, `fecha_ingreso`, `estado` FROM `empleado` WHERE id_empleado = '$id' ";
+            $query = "SELECT `id_empleado`, `nombre1`, `nombre2`, `apellido1`, `apellido2`, `cedula`, `telefono`, `firma`, `id_puesto`, `id_sitio`, `id_jefe`, `inss`, `fecha_ingreso`, `estado`, `documentos` FROM `empleado` WHERE id_empleado = '$id' ";
             //$id_empleado,$nombre1,$nombre2,$apellido1,$apellido2,$cedula,$telefono,$firma,$id_puesto,$id_sitio,$id_jefe,$inss,$fecha_ingreso,$fecha_retiro,$estado
             $result = Connection::getConnection()->query($query);
             $row=$result->fetch_assoc();
             $empleado =  new Empleado($row['id_empleado'],$row['nombre1'],$row['nombre2'],$row['apellido1'],
                 $row['apellido2'],$row['cedula'],$row['telefono'],$row['firma'],$row['id_puesto'],
-                $row['id_sitio'],$row['id_jefe'],$row['inss'],$row['fecha_ingreso'],$row['estado']);
+                $row['id_sitio'],$row['id_jefe'],$row['inss'],$row['fecha_ingreso'],$row['estado'],$row['documentos']);
             Connection::close();
             return $empleado;
         }
         static function searchInEmpleado($search)
         {
             Connection :: connect();
-             $query = "SELECT `id_empleado`, `nombre1`, `nombre2`, `apellido1`, `apellido2`, `cedula`, `telefono`, `firma`, `id_puesto`, `id_sitio`, `id_jefe`, `inss`, `fecha_ingreso`, `estado` FROM empleado HAVING CONCAT(`nombre1`,' ', `nombre2`,' ', `apellido1`,' ',`apellido2`) LIKE  '%$search%' or `inss` LIKE '%$search%'  or `cedula` LIKE '%$search%'";
+             $query = "SELECT `id_empleado`, `nombre1`, `nombre2`, `apellido1`, `apellido2`, `cedula`, `telefono`, `firma`, `id_puesto`, `id_sitio`, `id_jefe`, `inss`, `fecha_ingreso`, `estado`,`documentos` FROM empleado HAVING CONCAT(`nombre1`,' ', `nombre2`,' ', `apellido1`,' ',`apellido2`) LIKE  '%$search%' or `inss` LIKE '%$search%'  or `cedula` LIKE '%$search%'";
              $result = Connection::getConnection()->query($query);
              $empleados = array();
              while($row = $result ->fetch_assoc())
              {
                 //$id_empleado,$nombre1,$nombre2,$apellido1,$apellido2,$cedula,$telefono,$firma,$id_puesto,$id_sitio,$id_jefe,$inss,$fecha_ingreso,$estado
-                 $empleado = new Empleado($row['id_empleado'],$row['nombre1'],$row['nombre2'],$row['apellido1'],$row['apellido2'],$row['cedula'],$row['telefono'],$row['firma'],$row['id_puesto'],$row['id_sitio'],$row['id_jefe'],$row['inss'],$row['fecha_ingreso'],$row['estado']);
+                 $empleado = new Empleado($row['id_empleado'],$row['nombre1'],$row['nombre2'],$row['apellido1'],$row['apellido2'],$row['cedula'],$row['telefono'],$row['firma'],$row['id_puesto'],$row['id_sitio'],$row['id_jefe'],$row['inss'],$row['fecha_ingreso'],$row['estado'],$row['documentos']);
                 array_push($empleados,$empleado);
              }
             Connection ::close();
@@ -303,7 +313,8 @@
                       `id_jefe` = '$this->id_jefe',
                       `inss` = '$this->inss',
                       `fecha_ingreso` = '$this->fecha_ingreso',
-                      `estado` = '$this->estado'
+                      `estado` = '$this->estado',
+                      `documentos` = '$this->documentos'
                     WHERE
                       id_empleado = '$this->id_empleado' ";
             Connection::getConnection()->query($query);
