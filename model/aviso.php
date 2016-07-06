@@ -174,5 +174,24 @@ static function cambiarEstado($id_aviso,$estado)
     $result = Connection::getConnection()->query($query);
     Connection :: close();
 }
+
+static function getAvisosDelDia()
+{
+    Connection :: connect();
+        $query = "SELECT `idaviso`, `titulo`, `contenido`, `fecha_publicacion`, `fecha_finalizacion`, `estado`, `id_empleado` FROM `aviso` WHERE `id_empleado` = '$id_empleado'";
+        $result = Connection::getConnection()->query($query);
+        $avisos = array();
+        while( $row = $result ->fetch_assoc())
+        {
+            $aviso = new Aviso();
+            $aviso->setIdAviso($row['idaviso']);
+            $aviso->setTitulo($row['titulo']);
+            $aviso->setContenido($row['contenido']);
+            $aviso->setFechaPublicacion($row['fecha_publicacion']);
+            $aviso->setFechaFinalizacion($row['fecha_finalizacion']);
+            $aviso->setEstado($row['estado']);
+            $aviso->setIdEmpleado($row['id_empleado']);
+            array_push($avisos,$aviso);
+}
 }
 ?>
