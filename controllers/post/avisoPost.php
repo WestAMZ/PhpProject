@@ -39,7 +39,7 @@
         //mode 2: cambio de estado
         else if($_GET['mod']==2)
         {
-            Sitio::cambiarEstado($_GET['id'],$_GET['estado']);
+            Aviso::cambiarEstado($_GET['id'],$_GET['estado']);
             echo('1');
         }
 

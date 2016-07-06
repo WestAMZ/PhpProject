@@ -1,9 +1,11 @@
-$('.datepicker').pickadate({
+
+$(document).ready(function()
+{
+    $('.datepicker').pickadate({
     selectMonths: true, // Creates a dropdown to control month
     selectYears: 15,
     format: 'yyyy-mm-dd' });
-$(document).ready(function()
-{
+
    $('#table').on('click','.aviso',function()
     {
         $('#table .selected').removeClass('selected');
@@ -33,6 +35,15 @@ $(document).ready(function()
             var search = $(this).val()+ pressed;
             searchaviso(search,$('#table'));
         });
+
+    $('#sitios').on('click','.cambiar-estado',function()
+    {
+        //invertimos el estado
+        estado = ($(this).attr('estado') == 0 )? '1' : '0';
+        id = $(this).attr('id');
+
+        cambiarEstado(id,estado);
+    });
 
 });
 $("#formaviso").submit(function ()
@@ -187,4 +198,43 @@ function updateAviso(data,result,modal,message_area_modal)
     http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     http.send(data);
 }
+
+function cambiarEstado(id,estado)
+{
+    data = '&mod=2&'+'id='+id+'&estado='+estado;
+
+    $.ajax(
+    {
+        url: '?post=aviso'+data,
+        type: 'POST',
+        data: null,
+        dataType: "html",
+        cache: false,
+        contentType: false,
+        processData: false,
+        complete: function(res)
+                    {
+
+                        try
+                        {
+                            if(res.responseText==1)
+                            {
+                                $('#message').html('Se ha cambiado el estado del aviso');
+                                $('#myModal').openModal();
+                            }
+                            else
+                            {
+                                $('#message').html(' ha ocurrido un error');
+                                $('#myModal').openModal();
+                            }
+                        }
+                        catch (e)
+                        {
+                            $('#message').html(res.responseText);
+                                $('#myModal').openModal();
+                        }
+                    }
+    });
+}
+
 
