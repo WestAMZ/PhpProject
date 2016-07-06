@@ -292,7 +292,7 @@
         }
 
 
-        function update()
+        function update($correo)
         {
             Connection :: connect();
             //activamos la modificación de llaves foraneas
@@ -300,7 +300,6 @@
             $query = " UPDATE
                       `empleado`
                     SET
-                      `id_empleado` = '$this->id_empleado',
                       `nombre1` = '$this->nombre1',
                       `nombre2` = '$this->nombre2',
                       `apellido1` = '$this->apellido1',
@@ -317,10 +316,9 @@
                       `documentos` = '$this->documentos'
                     WHERE
                       id_empleado = '$this->id_empleado' ";
-            Connection::getConnection()->query($query);
-            if(Connection::getConnection()->affected_rows > 0)
+            if(Connection::getConnection()->query($query))
             {
-                echo('todo bien');
+                echo('1');
             }
             else
             {
@@ -328,6 +326,7 @@
             }
             //desactivamos  la modificación de llaves foraneas
             Connection::getConnection()->query('SET FOREIGN_KEY_CHECKS=1');
+            Connection::getConnection()->query("UPDATE usuario SET correo = '$correo' WHERE id_empleado = '$this->id_empleado' ");
             Connection ::close();
 
 
