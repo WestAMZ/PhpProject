@@ -286,6 +286,7 @@ function searchEmpleado(search,table)
     httpL.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     httpL.send(null);
 }
+//limpiar campos
 
 /*
     Subida de archivo
