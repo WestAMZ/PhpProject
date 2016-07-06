@@ -209,6 +209,8 @@ function getEmpleado(id)
                 $('[name= "telefono"]').val(empleado.telefono);
                 $('[name= "inss"]').val(empleado.inss);
                 $('[name= "correo"]').val(empleado.correo);
+                $('[name= "fecha_ingreso"]').val(empleado.fecha_ingreso);
+                $('[name= "estado"]').val(empleado.estado);
             }
 
         }
