@@ -178,7 +178,7 @@ static function cambiarEstado($id_aviso,$estado)
 static function getAvisosDelDia()
 {
     Connection :: connect();
-        $query = "SELECT `idaviso`, `titulo`, `contenido`, `fecha_publicacion`, `fecha_finalizacion`, `estado`, `id_empleado` FROM `aviso` WHERE `id_empleado` = '$id_empleado'";
+        $query = "SELECT a.idaviso, a.titulo,a.contenido,a.fecha_publicacion,a.fecha_finalizacion,a.estado,a.id_empleado FROM aviso a INNER JOIN empleado e on a.id_empleado = e.id_empleado INNER JOIN sitio s on e.id_sitio = s.id_sitio";
         $result = Connection::getConnection()->query($query);
         $avisos = array();
         while( $row = $result ->fetch_assoc())
@@ -192,6 +192,9 @@ static function getAvisosDelDia()
             $aviso->setEstado($row['estado']);
             $aviso->setIdEmpleado($row['id_empleado']);
             array_push($avisos,$aviso);
+        }
+        Connection :: close();
+        return $avisos;
 }
 }
 ?>
