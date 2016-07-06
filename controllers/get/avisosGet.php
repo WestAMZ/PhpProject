@@ -17,7 +17,7 @@
                     if($aviso->getEstado()==1)
                     {
                 ?>
-                     <button class="btn green">
+                     <button class="btn green" id="<?php echo($aviso->getIdAviso())?>" estado="<?php echo($aviso->getEstado())?>">
                     <?php
                             echo('Desabilidar');
                     ?>
@@ -29,7 +29,7 @@
                     {
                     ?>
 
-                         <button class="btn red">
+                         <button class="btn red" id="<?php echo($aviso->getIdAviso())?>" estado="<?php echo($aviso->getEstado())?>">
                     <?php
                             echo('Abilidar');
                     ?>
@@ -60,7 +60,7 @@ else
                     if($aviso->getEstado()== 1)
                     {
                 ?>
-                     <button class="btn green">
+                     <button class="btn green" id="<?php echo($aviso->getIdAviso())?>" estado="<?php echo($aviso->getEstado())?>">
                     <?php
                             echo('Desabilidar');
                     ?>
@@ -72,7 +72,7 @@ else
                     {
                     ?>
 
-                         <button class="btn red">
+                         <button class="btn red" id="<?php echo($aviso->getIdAviso())?>" estado="<?php echo($aviso->getEstado())?>">
                     <?php
                             echo('Abilidar');
                     ?>

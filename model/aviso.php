@@ -160,5 +160,19 @@ static function getAvisos($id_empleado)
 
     return $added;
 }
+function updateAviso()
+{
+    Connection :: connect();
+    $query = "UPDATE aviso set `titulo` = '$this->titulo',`contenido` = '$this->contenido',`fecha_publicacion` = '$this->fecha_publicacion', `fecha_finalizacion` = '$this->fecha_finalizacion' WHERE `idaviso` = '$this->id_aviso'";
+    $result = Connection::getConnection()->query($query);
+    Connection :: close();
+}
+static function cambiarEstado($id_aviso,$estado)
+{
+    Connection :: connect();
+    $query = "UPDATE aviso set `estado` = '$estado' WHERE `idaviso` = '$this->id_aviso'";
+    $result = Connection::getConnection()->query($query);
+    Connection :: close();
+}
 }
 ?>

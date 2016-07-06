@@ -1,9 +1,11 @@
-$('.datepicker').pickadate({
+
+$(document).ready(function()
+{
+    $('.datepicker').pickadate({
     selectMonths: true, // Creates a dropdown to control month
     selectYears: 15,
     format: 'yyyy-mm-dd' });
-$(document).ready(function()
-{
+
    $('#table').on('click','.aviso',function()
     {
         $('#table .selected').removeClass('selected');
@@ -17,6 +19,7 @@ $(document).ready(function()
         }
        else
            {
+                $('[name= "id_aviso"]').val(0);
                 $('[name= "titulo"]').val("");
                 $('[name= "fecha_publicacion"]').val("");
                 $('[name= "fecha_finalizacion"]').val("");
@@ -32,6 +35,15 @@ $(document).ready(function()
             var search = $(this).val()+ pressed;
             searchaviso(search,$('#table'));
         });
+
+    $('#sitios').on('click','.cambiar-estado',function()
+    {
+        //invertimos el estado
+        estado = ($(this).attr('estado') == 0 )? '1' : '0';
+        id = $(this).attr('id');
+
+        cambiarEstado(id,estado);
+    });
 
 });
 $("#formaviso").submit(function ()
@@ -50,11 +62,11 @@ $("#formaviso").submit(function ()
         {
             if($('.selected').size() == 0)
             {
-                alert('debe seleccionar el sitio a modificar!');
+                alert('seleccione un aviso a modificar ');
             }
             else
             {
-                updateSitio(data, result, modal, ms);
+                updateAviso(data, result, modal, ms);
             }
         }
         return false;
@@ -79,6 +91,7 @@ function getAvisos(id)
 
             if(aviso != null)
             {
+                $('[name= "id_aviso"]').val(aviso.id_aviso);
                 $('[name= "titulo"]').val(aviso.titulo);
                 $('[name= "fecha_publicacion"]').val(aviso.fecha_publicacion);
                 $('[name= "fecha_finalizacion"]').val(aviso.fecha_finalizacion);
@@ -151,3 +164,77 @@ function addaviso(data,result,modal,message_area_modal)
     http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     http.send(data);
 }
+function updateAviso(data,result,modal,message_area_modal)
+{
+    http = Connect();
+    http.onreadystatechange = function ()
+    {
+         if (http.readyState == 4 && http.status == 200)
+         {
+
+            if (http.responseText == 1)
+            {
+                message_area_modal.html("<img src='views/img/success.png'></img> El aviso ha sido modificado con exíto");
+                modal.openModal();
+                result.html('');
+            }
+            else
+            {
+                text = '<div class="alert alert-dismissible alert-danger">' +
+                    '<button type="button" class="close" data-dismiss="alert">&times;</button>' + http.responseText + '</div>';
+                    result.html(http.responseText);
+            }
+
+        }
+        else if (http.readyState != 4)
+        {
+            text = '<div class="alert alert-dismissible alert-info">' +
+                '<button type="button" class="close" data-dismiss="alert">&times;</button>' +
+                '<img src="views/img/load.gif"></img> Procesando acción...</div>';
+            result.html(text);
+        }
+    }
+    http.open('POST','?post=aviso&mod=1');
+    http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    http.send(data);
+}
+
+function cambiarEstado(id,estado)
+{
+    data = '&mod=2&'+'id='+id+'&estado='+estado;
+
+    $.ajax(
+    {
+        url: '?post=aviso'+data,
+        type: 'POST',
+        data: null,
+        dataType: "html",
+        cache: false,
+        contentType: false,
+        processData: false,
+        complete: function(res)
+                    {
+
+                        try
+                        {
+                            if(res.responseText==1)
+                            {
+                                $('#message').html('Se ha cambiado el estado del aviso');
+                                $('#myModal').openModal();
+                            }
+                            else
+                            {
+                                $('#message').html(' ha ocurrido un error');
+                                $('#myModal').openModal();
+                            }
+                        }
+                        catch (e)
+                        {
+                            $('#message').html(res.responseText);
+                                $('#myModal').openModal();
+                        }
+                    }
+    });
+}
+
+
