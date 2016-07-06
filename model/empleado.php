@@ -285,7 +285,9 @@
         function update()
         {
             Connection :: connect();
-            $query = "UPDATE
+            //activamos la modificación de llaves foraneas
+            Connection::getConnection()->query('SET FOREIGN_KEY_CHECKS=0');
+            $query = " UPDATE
                       `empleado`
                     SET
                       `id_empleado` = '$this->id_empleado',
@@ -305,12 +307,16 @@
                     WHERE
                       id_empleado = '$this->id_empleado' ";
             Connection::getConnection()->query($query);
-            echo($query);
-            var_dump($this);
             if(Connection::getConnection()->affected_rows > 0)
             {
                 echo('todo bien');
             }
+            else
+            {
+                echo(Connection::getConnection()->error);
+            }
+            //desactivamos  la modificación de llaves foraneas
+            Connection::getConnection()->query('SET FOREIGN_KEY_CHECKS=1');
             Connection ::close();
 
 
