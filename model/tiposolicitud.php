@@ -54,6 +54,20 @@
         {
             return $this->estado;
         }
+        static function getTipoSolicitud()
+        {
+            Connection :: connect();
+            $query = 'SELECT idTipo_Solicitud, nombre, descripcion, estado FROM tipo_solicitud';
+            $result = Connection :: getConnection()->query($query);
+            $tipos_solicitudes = array();
+            while($row = $result ->fetch_assoc())
+            {
+                $tipo_solicitud = new TipoSolicitud($row['idTipo_Solicitud'], $row['nombre'], $row['descripcion'], $row['estado']);
+                array_push($tipos_solicitudes, $tipo_solicitud);
+            }
+            Connection :: close();
+            return $tipos_solicitudes;
+        }
     }
 
 ?>

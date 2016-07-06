@@ -79,5 +79,9 @@
         {
             include(HTML_DIR . 'avisos.html');
         }
+        static function getGestionSolicud()
+        {
+            include(HTML_DIR . 'gestion-solicitud.html');
+        }
     }
 ?>
