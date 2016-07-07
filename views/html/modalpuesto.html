@@ -1,13 +1,18 @@
   <!-- Modal Structure -->
   <div id="modalPuesto" class="modal" role="dialog">
-   <!-- Modal COntent -->
+   <!-- Modal Content -->
     <div class="modal-content">
       <h4>Ingreso de Cargo</h4>
+      <div id="result"></div>
      <div class="row">
       <form class="col s12" id="formCargo" method="get">
-          <div class="input-field col s12">
-          <input id="nombre" type="text" class="validate">
+          <div class="input-field col s6 offset-s3">
+          <input name="nombre" type="text" class="validate">
           <label for="last_name">Nombre del cargo</label>
+        </div>
+        <div class="input-field col s12">
+          <textarea name="descripcion" class="materialize-textarea"></textarea>
+          <label for="descripcion">Descripcion</label>
         </div>
           <div class="center" style="margin-bottom:40px">
             <button class="btn waves-effect waves-light col s12 m2 offset-m1 margin" style="margin-top:30px" type="submit" name="action">Agregar</button>
@@ -24,8 +29,9 @@
         <table id="cargos" class="highlight scroll-y" style="margin: 20px auto;">
     <thead>
         <tr>
-            <th data-field="id">N. Empleado</th>
-            <th data-field="cedula">Cargo</th>
+            <th data-field="id">N. Cargo</th>
+            <th data-field="nombre">Cargo</th>
+            <th data-field="descripcion">Descripcion</th>
         </tr>
     </thead>
 

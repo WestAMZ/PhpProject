@@ -5,17 +5,28 @@
         function()
             {
                 $('#modalPuesto').openModal();
-            }
-        )
+            });
 
         $('#formCargo').submit(
             function()
             {
-                alert('hola');
+                var data = $("#formCargo").serialize();
+                var result = $('#result');
+                var modal = $('#myModal');
+                var ms = $('#message');
+                agregarpuesto(data, result,modal, ms);
                 return false;
-            }
-        )
-    })
+            });
+
+         $('#searchtxt').keypress(
+        function(e)
+        {
+            //condicion para linpiar de caracteres especiales (no alfa nunmericos)
+            var pressed = (e.key.toString().length == 1)? e.key :'';
+            var search = $(this).val()+ pressed;
+            searchPuesto(search,$('#cargos'));
+        });
+    });
 
 /*
 ==============================
@@ -56,4 +67,25 @@ function agregarpuesto(data,result,modal,message_area_modal)
     http.open('POST','?post=puesto');
     http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     http.send(data);
+}
+function searchPuesto(search,table)
+{
+    httpL = Connect();
+    httpL.onreadystatechange = function()
+    {
+        if(httpL.readyState == 4 && httpL.status ==200)
+        {
+            table.html(httpL.responseText);
+        }
+        else if(httpL.readyState != 4)
+        {
+            text = '<div class="alert alert-dismissible alert-info center s12 m12">' +
+                '<button type="button" class="close" data-dismiss="alert">&times;</button>' +
+                '<img src="views/img/load2.gif"></img> Cargando...</div>';
+            table.html(text);
+        }
+    }
+    httpL.open('GET','?get=cargo&search='+search);
+    httpL.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    httpL.send(null);
 }

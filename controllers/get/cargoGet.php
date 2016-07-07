@@ -9,7 +9,11 @@
         foreach( $empleados as &$empleado)
         {
 ?>
-
+              <tr class="cargo" onclick="select()">
+              <td><?php echo($cargo->getId_Puesto())?></td>
+              <td> <?php echo($cargo->getNombre())?> </td>
+               <td><?php echo($cargo->getDescripcion())?></td>
+              </tr>
 <?php
         }
     }
@@ -20,9 +24,10 @@
         foreach( $cargos as &$cargo)
         {
 ?>
-       <tr class="cargo" onclick="select">
+       <tr class="cargo">
                 <td> <?php echo($cargo->getId_Puesto())?> </td>
                 <td> <?php echo($cargo->getNombre())?> </td>
+                <td><?php echo($cargo->getDescripcion())?></td>
         </tr>
 
 <?php

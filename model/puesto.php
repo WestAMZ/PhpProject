@@ -83,7 +83,21 @@
                      Yha ocurrido un error </div>';
             }
             Connection :: close();
-            return added;
+            return $added;
+        }
+        function searchPuesto($search)
+        {
+            Connection :: connect();
+            $query = "SELECT p.id_puesto, p.nombre, p.descripcion FROM puesto p WHERE p.nombre like '%$search%' OR p.descripcion like '%$search%'";
+            $result = Connection::getConnection()->query($query);
+            $puestos = array();
+            while($row = $result->fetch_assoc())
+            {
+                $puesto = new Puesto($row['id_puesto'], $row['nombre'], $row['descripcion']);
+                array_push($puesto, $puestos);
+            }
+            Connection :: close();
+            return $puestos;
         }
     }
 
