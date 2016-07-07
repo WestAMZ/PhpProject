@@ -5,8 +5,8 @@
 
   if(isset($_GET['search']) and $_GET['search'] !='')
     {
-        $cargos = Puesto::searchInEmpleado(Connection::filterInput($_GET['search']));
-        foreach( $empleados as &$empleado)
+        $cargos = Puesto::searchPuesto(Connection::filterInput($_GET['search']));
+        foreach( $cargos as &$cargo)
         {
 ?>
               <tr class="cargo" onclick="select()">

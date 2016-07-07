@@ -41,18 +41,18 @@
         {
             //nombre del host
 
-           /*$host ="localhost";
-            $db = "ebco";
+           $host ="localhost";
+            $db = "ebco_sistema";
             $user = 'root';
-            $pass = '';*/
+            $pass = 'sistema123';
 
 
-
+/*
             $host ="localhost";
-            $db = "ebco";
-            $user = 'ebco_sistema';
+            $db = "ebco_sistema";
+            $user = '';
             $pass = '$$ebco';
-
+*/
 
             self:: $mysqli =new mysqli($host, $user, $pass,$db);
             if( self :: $mysqli -> connect_error)

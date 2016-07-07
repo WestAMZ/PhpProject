@@ -24,7 +24,7 @@
             //condicion para linpiar de caracteres especiales (no alfa nunmericos)
             var pressed = (e.key.toString().length == 1)? e.key :'';
             var search = $(this).val()+ pressed;
-            searchPuesto(search,$('#cargos'));
+            searchPuesto(search,$('#table'));
         });
     });
 
@@ -85,7 +85,7 @@ function searchPuesto(search,table)
             table.html(text);
         }
     }
-    httpL.open('GET','?get=cargo&search='+search);
+    httpL.open('GET','?get=puesto&search='+search);
     httpL.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     httpL.send(null);
 }
