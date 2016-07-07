@@ -9,7 +9,7 @@
         App::getInsidencia();
         App::getModal();
         App::getModalModificarComentario();
-        App::getModalModificarInsidencia();
+       // App::getModalModificarInsidencia();
 ?>
 
     </div>
