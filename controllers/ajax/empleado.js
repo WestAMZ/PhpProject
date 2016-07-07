@@ -211,6 +211,10 @@ function getEmpleado(id)
                 $('[name= "correo"]').val(empleado.correo);
                 $('[name= "fecha_ingreso"]').val(empleado.fecha_ingreso);
                 $('[name= "estado"]').val(empleado.estado);
+                $('[name= "id_role"]').val(empleado.role);
+                $('[name= "id_puesto"]').val(empleado.id_puesto);
+                $('[name= "id_sitio"]').val(empleado.id_sitio);
+                $('[name= "id_jefe"]').val(empleado.id_jefe);
             }
 
         }
