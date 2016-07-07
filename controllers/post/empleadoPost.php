@@ -33,7 +33,7 @@
             {
 
                 MailSender::sendCountInfo($_GET['correo'],$_GET['correo'],$password);
-
+                echo('correo : ' . $_GET['correo']);
                 echo('1');
             }
             else
