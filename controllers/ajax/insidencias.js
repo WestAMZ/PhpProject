@@ -63,10 +63,10 @@ $(document).ready(function()
 
     });
 
-    $('#insidencias').on('click','.editar',function()
+    $('#insidencias').on('click','.editar-insidencia',function()
     {
        var id_insidencia =  $(this).attr('name');
-                $('#id_comentario').val(id_comentario);
+                $('#id_insidencia').val(id_insidencia);
                 $('#modal-modificar-insidencia').openModal();
     });
 
@@ -76,6 +76,7 @@ $(document).ready(function()
         reanudarinsidencia($(this).attr('name'));
         loadInsidencias($('#insidencias'),null,null,null);
     });
+
 
 });
 /*-------

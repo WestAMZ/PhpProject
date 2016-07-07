@@ -42,7 +42,7 @@
                                 if($insidencia->getId_Usuario() == $_SESSION['id_usuario'])
                                 {
                             ?>
-                                <a class="editar" name="<?php echo($insidencia->getId_Insidencia())?>" style="cursor:pointer"><i class="material-icons">edit</i></a>
+                                <a class="editar-insidencia" name="<?php echo($insidencia->getId_Insidencia())?>" style="cursor:pointer"><i class="material-icons">edit</i></a>
                                 <?php
                                 }
                             ?>
@@ -128,7 +128,7 @@
                                 if($insidencia->getId_Usuario() == $_SESSION['id_usuario'])
                                 {
                             ?>
-                                    <a class="editar" name="<?php echo($insidencia->getId_Insidencia())?>" style="cursor:pointer"><i class="material-icons">edit</i></a>
+                                    <a class="editar-insidencia" name="<?php echo($insidencia->getId_Insidencia())?>" style="cursor:pointer"><i class="material-icons">edit</i></a>
 
                                     <?php
                                 }
