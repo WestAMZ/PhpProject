@@ -19,7 +19,7 @@
                 ?>
                      <a class="btn green cambiar-estado" id="<?php echo($aviso->getIdAviso())?>" estado="<?php echo($aviso->getEstado())?>">
                     <?php
-                            echo('Desabilidar');
+                            echo('Desabilitar');
                     ?>
                      </a>
 
@@ -28,10 +28,9 @@
                     else
                     {
                     ?>
-
                          <a class="btn red cambiar-estado" id="<?php echo($aviso->getIdAviso())?>" estado="<?php echo($aviso->getEstado())?>">
                     <?php
-                            echo('Abilidar');
+                            echo('Habilitar');
                     ?>
                         </a>
                     <?php
@@ -62,7 +61,7 @@ else
                 ?>
                      <a class="btn green cambiar-estado" id="<?php echo($aviso->getIdAviso())?>" estado="<?php echo($aviso->getEstado())?>">
                     <?php
-                            echo('Desabilidar');
+                            echo('Desabilitar');
                     ?>
                      </a>
 
@@ -74,7 +73,7 @@ else
 
                          <a class="btn red cambiar-estado" id="<?php echo($aviso->getIdAviso())?>" estado="<?php echo($aviso->getEstado())?>">
                     <?php
-                            echo('Abilidar');
+                            echo('Habilitar');
                     ?>
                         </a>
 
