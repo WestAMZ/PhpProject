@@ -24,7 +24,7 @@
             //condicion para linpiar de caracteres especiales (no alfa nunmericos)
             var pressed = (e.key.toString().length == 1)? e.key :'';
             var search = $(this).val()+ pressed;
-            searchPuesto(search,$('#table'));
+            searchPuesto(search,$('#cargos'));
         });
     });
 
