@@ -266,9 +266,9 @@
         {
             Connection::connect();
             $query = "SELECT `id_empleado`, `nombre1`, `nombre2`, `apellido1`, `apellido2`, `cedula`, `telefono`, `firma`, `id_puesto`, `id_sitio`, `id_jefe`, `inss`, `fecha_ingreso`, `estado`, `documentos` FROM `empleado` WHERE id_empleado = '$id' ";
-            //$id_empleado,$nombre1,$nombre2,$apellido1,$apellido2,$cedula,$telefono,$firma,$id_puesto,$id_sitio,$id_jefe,$inss,$fecha_ingreso,$fecha_retiro,$estado
+
             $result = Connection::getConnection()->query($query);
-            $row=$result->fetch_assoc();
+            $row = $result->fetch_assoc();
             $empleado =  new Empleado($row['id_empleado'],$row['nombre1'],$row['nombre2'],$row['apellido1'],
                 $row['apellido2'],$row['cedula'],$row['telefono'],$row['firma'],$row['id_puesto'],
                 $row['id_sitio'],$row['id_jefe'],$row['inss'],$row['fecha_ingreso'],$row['estado'],$row['documentos']);
