@@ -10,7 +10,7 @@
 
             self :: connect();
             $pass = self :: codify($pass);
-            $query = "SELECT id_usuario,password,role,id_empleado,foto FROM usuario  WHERE correo = '$correo' ";
+            $query = "SELECT id_usuario,password,role,u.id_empleado,foto,id_sitio FROM  `empleado` e INNER JOIN usuario u ON e.id_empleado = u.id_empleado WHERE correo = '$correo' ";
             $result = self :: getConnection() ->query($query);
             if($result->num_rows > 0)
             {
@@ -24,6 +24,7 @@
                 {
                     self::initSession();
                     $_SESSION['session'] = 'active';
+                    $_SESSION['id_sitio'] = $row['id_sitio'];
                     $_SESSION['id_usuario'] = $row['id_usuario'];
                     $_SESSION['role'] = $row['role'];
                     $_SESSION['id_empleado'] = $row['id_empleado'];

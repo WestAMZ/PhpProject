@@ -7,7 +7,16 @@
 <?php
     App::getLeftMain();
     App::getRightMain();
-    App::getEmployee();
+    if($_SESSION['role']=='1')
+    {
+        //gerente general
+        App::getEmployee_gg();
+    }
+    else if($_SESSION['role']=='2')
+    {
+        //gerente de sitio
+    }
+
     App::getModal();
     App::getModalPuesto();
 ?>
