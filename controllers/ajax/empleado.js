@@ -119,6 +119,7 @@ function agregarEmpleado(archivo,data,result,modal,message_area_modal)
         cache: false,
         contentType: false,
         processData: false,
+         timeout: 3000, // sets timeout to 3 seconds
         beforeSend:function()
                     {
                         text = '<div class="alert alert-dismissible alert-info">' +
