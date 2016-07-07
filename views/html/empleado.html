@@ -120,7 +120,7 @@
                         <option value="" selected>Sitio</option>
                         <?php
                  include_once(MODELS_DIR . 'sitio.php');
-                  $sitios = Sitio::getSitios();
+                  $sitios = Sitio::getSitiosDisponibles();
                   foreach ($sitios as &$sitio)
                   {
               ?>

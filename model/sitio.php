@@ -125,6 +125,21 @@
         Connection :: close();
         return $added;
     }
+    static function getSitiosDisponibles()
+    {
+        Connection :: connect();
+        $query = "SELECT `id_sitio`, `nombre`, `pais`, `ciudad`, `direccion`, `latitud`, `longitud`, `telefono`, `estado` FROM `sitio` WHERE `estado` = true";
+        $result = Connection::getConnection()->query($query);
+        $sitios = array();
+        while( $row = $result ->fetch_assoc())
+        {
+            //$idSitio, $nombre, $pais, $ciudad, $direccion, $telefono, $latitud, $longitud, $estado
+            $sitio = new Sitio( $row['id_sitio'] ,$row['nombre'] , $row['pais'] ,$row['ciudad'] ,$row['direccion'] , $row['telefono'] ,$row['latitud'] , $row['longitud']  , $row['estado']);
+            array_push($sitios,$sitio);
+        }
+        Connection ::close();
+        return $sitios;
+    }
     static function getSitios()
     {
         Connection :: connect();

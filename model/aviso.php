@@ -170,7 +170,7 @@ function updateAviso()
 static function cambiarEstado($id_aviso,$estado)
 {
     Connection :: connect();
-    $query = "UPDATE aviso set `estado` = '$estado' WHERE `idaviso` = '$this->id_aviso'";
+    $query = "UPDATE aviso set `estado` = '$estado' WHERE `idaviso` = '$id_aviso'";
     $result = Connection::getConnection()->query($query);
     Connection :: close();
 }
