@@ -6,7 +6,7 @@ $(document).ready(function()
     selectYears: 15,
     format: 'yyyy-mm-dd' });
 
-   $('#table').on('click','.aviso',function()
+   $('#avisos').on('click','.aviso',function()
     {
         $('#table .selected').removeClass('selected');
         $(this).toggleClass('selected');
@@ -36,7 +36,7 @@ $(document).ready(function()
             searchaviso(search,$('#table'));
         });
 
-    $('#sitios').on('click','.cambiar-estado',function()
+    $('#avisos').on('click','.cambiar-estado',function()
     {
         //invertimos el estado
         estado = ($(this).attr('estado') == 0 )? '1' : '0';

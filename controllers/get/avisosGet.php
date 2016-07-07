@@ -17,11 +17,11 @@
                     if($aviso->getEstado()==1)
                     {
                 ?>
-                     <button class="btn green" id="<?php echo($aviso->getIdAviso())?>" estado="<?php echo($aviso->getEstado())?>">
+                     <a class="btn green cambiar-estado" id="<?php echo($aviso->getIdAviso())?>" estado="<?php echo($aviso->getEstado())?>">
                     <?php
                             echo('Desabilidar');
                     ?>
-                     </button>
+                     </a>
 
                     <?php
                     }
@@ -29,11 +29,11 @@
                     {
                     ?>
 
-                         <button class="btn red" id="<?php echo($aviso->getIdAviso())?>" estado="<?php echo($aviso->getEstado())?>">
+                         <a class="btn red cambiar-estado" id="<?php echo($aviso->getIdAviso())?>" estado="<?php echo($aviso->getEstado())?>">
                     <?php
                             echo('Abilidar');
                     ?>
-                         </button
+                        </a>
                     <?php
                     }
                     ?>
@@ -60,11 +60,11 @@ else
                     if($aviso->getEstado()== 1)
                     {
                 ?>
-                     <button class="btn green" id="<?php echo($aviso->getIdAviso())?>" estado="<?php echo($aviso->getEstado())?>">
+                     <a class="btn green cambiar-estado" id="<?php echo($aviso->getIdAviso())?>" estado="<?php echo($aviso->getEstado())?>">
                     <?php
                             echo('Desabilidar');
                     ?>
-                     </button>
+                     </a>
 
                     <?php
                     }
@@ -72,11 +72,11 @@ else
                     {
                     ?>
 
-                         <button class="btn red" id="<?php echo($aviso->getIdAviso())?>" estado="<?php echo($aviso->getEstado())?>">
+                         <a class="btn red cambiar-estado" id="<?php echo($aviso->getIdAviso())?>" estado="<?php echo($aviso->getEstado())?>">
                     <?php
                             echo('Abilidar');
                     ?>
-                         </button
+                        </a>
 
                     <?php
                     }
