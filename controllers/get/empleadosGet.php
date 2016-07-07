@@ -14,6 +14,14 @@
                 <td><?php echo($empleado->getAllName())?></td>
                 <td><?php echo($empleado->getTelefono())?></td>
                 <td><?php echo($empleado->getFecha_Ingreso())?></td>
+                <?php
+                    if($empleado->getDocumentos() !="")
+                    {
+                ?>
+                    <td><a href="<?php echo(EMPLEADOS_DIR . $empleado->getDocumentos())?>">Documentos</a></td>
+                <?php
+                    }
+                ?>
             </tr>
 <?php
         }
@@ -23,13 +31,23 @@
         $empleados = Empleado::getEmpleados();
         foreach( $empleados as &$empleado)
         {
+
 ?>
+
             <tr class="empleado">
                 <td><?php echo($empleado->getId_Empleado())?></td>
                 <td><?php echo($empleado->getCedula())?></td><!-correo-->
                 <td><?php echo($empleado->getAllName())?></td>
                 <td><?php echo($empleado->getTelefono())?></td>
                 <td><?php echo($empleado->getFecha_Ingreso())?></td>
+                <?php
+                    if($empleado->getDocumentos() !="")
+                    {
+                ?>
+                    <td><a href="<?php echo(EMPLEADOS_DIR . $empleado->getDocumentos())?>">Documentos</a></td>
+                <?php
+                    }
+                ?>
             </tr>
 <?php
         }

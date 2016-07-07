@@ -25,9 +25,9 @@
         {
             include (HTML_DIR . 'navbar.html');
         }
-        static function getEmployee()
+        static function getEmployee_gg()
         {
-            include(HTML_DIR . 'empleado.html');
+            include(HTML_DIR . 'empleado-gg.html');
         }
         static function getMenuGG()
         {

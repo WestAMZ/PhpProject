@@ -109,7 +109,7 @@ $("#formEmpleado").submit(function ()
   =========================================================*/
 function agregarEmpleado(archivo,data,result,modal,message_area_modal)
 {
-    http = Connect();
+
     $.ajax(
     {
         url: '?post=empleado&'+data,
@@ -119,6 +119,7 @@ function agregarEmpleado(archivo,data,result,modal,message_area_modal)
         cache: false,
         contentType: false,
         processData: false,
+         timeout: 3000, // sets timeout to 3 seconds
         beforeSend:function()
                     {
                         text = '<div class="alert alert-dismissible alert-info">' +
@@ -273,29 +274,38 @@ function updateEmpleado(data,id,result,modal,message_area_modal)
 
 function searchEmpleado(search,table)
 {
-    httpL = Connect();
-    httpL.onreadystatechange = function()
-    {
-        if(httpL.readyState == 4 && httpL.status ==200)
-        {
-            table.html(httpL.responseText);
-        }
-        else if(httpL.readyState != 4)
-        {
-            text = '<div class="alert alert-dismissible alert-info center s12 m12">' +
-                '<button type="button" class="close" data-dismiss="alert">&times;</button>' +
-                '<img src="views/img/load2.gif"></img> Cargando...</div>';
-            table.html(text);
-        }
-    }
-    httpL.open('GET','?get=empleados&search='+search);
-    httpL.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    httpL.send(null);
-}
-//limpiar campos
 
-/*
-    Subida de archivo
-*/
+
+        $.ajax(
+    {
+        url: '?get=empleados&search='+search,
+        type: 'GET',
+        data: null,
+        dataType: "html",
+        cache: false,
+        contentType: false,
+        processData: false,
+        beforeSend:function()
+                    {
+                        text = '<div class="alert alert-dismissible alert-info center s12 m12">' +
+                        '<button type="button" class="close" data-dismiss="alert">&times;</button>' +
+                        '<img src="views/img/load2.gif"></img> Cargando...</div>';
+                        table.html(text);
+                    },
+        complete: function(res)
+                    {
+
+                        try
+                        {
+                            table.html(res.responseText);
+                        }
+                        catch (e)
+                        {
+                            $('result').html(res.responseText);
+                        }
+                    }
+    });
+
+}
 
 

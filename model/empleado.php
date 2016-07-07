@@ -189,7 +189,7 @@
         static function getEmpleados()
         {
              Connection :: connect();
-             $query = "SELECT `id_empleado`, `nombre1`, `nombre2`, `apellido1`, `apellido2`, `cedula`, `telefono`, `firma`, `id_puesto`, `id_sitio`, `id_jefe`, `inss`, `fecha_ingreso`, `estado` , 'documentos' FROM `empleado` ";
+             $query = "SELECT `id_empleado`, `nombre1`, `nombre2`, `apellido1`, `apellido2`, `cedula`, `telefono`, `firma`, `id_puesto`, `id_sitio`, `id_jefe`, `inss`, `fecha_ingreso`, `estado` , `documentos` FROM `empleado` ";
              $result = Connection::getConnection()->query($query);
              $empleados = array();
              while( $row = $result ->fetch_assoc())
