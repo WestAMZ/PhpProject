@@ -83,5 +83,9 @@
         {
             include(HTML_DIR . 'gestion-solicitud.html');
         }
+        static function getModalModificarInsidencia()
+        {
+            include(HTML_DIR . 'modal-modificar-insidencia');
+        }
     }
 ?>
