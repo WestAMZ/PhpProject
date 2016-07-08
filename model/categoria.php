@@ -6,6 +6,7 @@ class Categoria
     var $descripcion;
     var $url;
     var $estado;
+    var $add_error;
 
     // CONSTRUCT
     public function __construct(){}
@@ -57,6 +58,10 @@ class Categoria
     {
         return $this->estado;
     }
+    function add_error()
+    {
+        return $this->add_error;
+    }
 
     static function getCategorias()
     {
@@ -84,25 +89,58 @@ class Categoria
     {
         $added = false;
         Connection :: connect();
-
-        $query = "INSERT INTO categoria(nombre, descripcion, url,estado) VALUES('$this->nombre', '$this->descripcion', '$this->url','1')";
-        if(mkdir(DOCS_DIR . $this->url , 0777 ))
+        $returned = Connection :: getConnection()->query("SELECT * FROM categoria WHERE nombre ='$this->nombre'");
+        if($returned->num_rows == 0)
         {
-            if(Connection :: getConnection() -> query($query))
+            $query = "INSERT INTO categoria(nombre, descripcion, url,estado) VALUES('$this->nombre', '$this->descripcion', '$this->url','1')";
+            if(mkdir(DOCS_DIR . $this->url , 0777 ))
             {
-                $added = true;
+                if(Connection :: getConnection() -> query($query))
+                {
+                    $added = true;
+                }
+                else
+                {
+                    $added = false;
+                    $this->add_error = '<div class="alert alert-dismissible alert-danger">
+                             <button type="button" class="close" data-dismiss="alert">&times;</button>
+                             ha ocurrido un error </div>';
+                }
             }
-            else
+        }
+        else
+        {
+            $added=false;
+            $this->add_error = '<div class="alert alert-dismissible alert-danger">
+                             <button type="button" class="close" data-dismiss="alert">&times;</button>
+                             Ya existe una categoria con ese nombre </div>';
+        }
+
+        Connection :: close();
+        return $added;
+    }
+
+    static function SearchCategoria($search)
+    {
+        Connection :: connect();
+        $query = "SELECT id_categoria,estado, nombre, descripcion, url FROM categoria WHERE nombre LIKE '%$search%' ";
+        $result = Connection :: getConnection()->query($query);
+        $categorias = array();
+        if($result->num_rows >0)
+        {
+            while($row = $result->fetch_assoc())
             {
-                $added = false;
-                $this->add_error = '<div class="alert alert-dismissible alert-danger">
-                         <button type="button" class="close" data-dismiss="alert">&times;</button>
-                         ha ocurrido un error </div>';
-                $added = false;
+                $categoria = new Categoria();
+                $categoria->setEstado($row['estado']);
+                $categoria->setIdCategoria($row['id_categoria']);
+                $categoria->setNombre($row['nombre']);
+                $categoria->setDescripcion($row['descripcion']);
+                $categoria->setUrl($row['url']);
+                array_push($categorias, $categoria);
             }
         }
         Connection :: close();
-        return $added;
+        return $categorias;
     }
 }
 ?>

@@ -3,7 +3,7 @@
     $categorias = null;
     if(isset($_GET['search']) and $_GET['search'] !='')
     {
-        $categorias = Categoria::SearchinCategoria($_GET['search']);
+        $categorias = Categoria::SearchCategoria($_GET['search']);
     }
     else
     {
@@ -12,8 +12,9 @@
     echo(sizeof($categorias));
     foreach ($categorias as &$categoria)
     {
-
-?>
+        $id = $categoria->getIdCategoria();
+        $estado = $categoria->getEstado();
+    ?>
 
     <tr class="categoria">
         <td><?php echo($categoria->getIdCategoria())?></td>
@@ -25,13 +26,13 @@
                     if($categoria->getEstado()==1)
                     {
 
-                        echo('<button class="btn cambiar-estado green" id="<?php echo($categoria->getCategoria())?>" estado="<?php echo($sitio->getEstado())?>">Habilitar</button>');
+                        echo('<button class="btn cambiar-estado red" id="'. $id .'" estado="1">Deshabilitar</button>');
 
                     }
                     else
                     {
 
-                      echo('<button class="btn cambiar-estado red" id="<?php echo($categoria->getCategoria())?>" estado="<?php echo($sitio->getEstado())?>">Deshabilitar</button>');
+                      echo('<button class="btn cambiar-estado green" id="'. $id .'" estado="1">Habilitar</button>');
 
 
                     }
