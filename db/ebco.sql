@@ -309,7 +309,6 @@ CREATE TABLE `usuario` (
 --
 -- Volcado de datos para la tabla `usuario`
 --
-
 INSERT INTO `usuario` (`id_usuario`, `correo`, `password`, `id_empleado`, `role`, `estado`, `foto`) VALUES
 (1, 'westlymeza@gmail.com', 'a1d5285401e5441cf7ff053c4276c1af764f4ef3', 1, 1, 1, '120161106.jpg'),
 (2, 'eleazarg2112@gmail.com', 'a1d5285401e5441cf7ff053c4276c1af764f4ef3', 2, 2, 1, '220160630.jpg'),
