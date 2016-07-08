@@ -26,14 +26,44 @@
             {
                 $nombre="";
             }
-            $empleado = new Empleado                                                         (null,$_GET['nombre1'],$_GET['nombre2'],$_GET['apellido1'],$_GET['apellido2'],$_GET['cedula'],$_GET['telefono'],null,$_GET['id_puesto'],$_GET['id_sitio'],$_GET['id_jefe'],$_GET['inss'],$_GET['fecha_ingreso'],1,$nombre);
-            $password = Connection::generarCodigo(10);
+            $empleado = new Empleado();
+            $empleado->setId_Empleado(null);
+            $empleado->setNombre1($_GET['nombre1']);
+            $empleado->setNombre2($_GET['nombre2']);
+            $empleado->setApellido1($_GET['apellido1']);
+            $empleado->setApellido2($_GET['apellido2']);
+            $empleado->setCedula($_GET['cedula']);
+            $empleado->setTelefono($_GET['telefono']);
+            $empleado->setFirma(null);
+            $empleado->setId_Puesto($_GET['id_puesto']);
+            $empleado->setId_Sitio($_GET['id_sitio']);
+            $empleado->setId_Jefe($_GET['id_jefe']);
+            $empleado->setInss($_GET['inss']);
+            $empleado->setFecha_Ingreso($_GET['fecha_ingreso']);
+            $empleado->setEstado(1);
+            $empleado->setDocumentos($nombre);
 
-            if($empleado->saveEmpleado($_GET['correo'],$_GET['id_role'],null,$password))
+
+            if($empleado->saveEmpleado($_GET['correo'],$_GET['id_role'],null,""))
             {
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> origin/master
               //  MailSender::sendCountInfo($_GET['correo'],$_GET['correo'],$password);
                 echo('1');
+=======
+                //MailSender::sendCountInfo($_GET['correo'],$_GET['correo'],$password);
+                $correo = $_GET['correo'];
+                Connection::connect();
+                $query = "SELECT id_usuario FROM usuario WHERE correo = '$correo' ";
+                $result = Connection::getConnection()->query($query);
+                $row = $result ->fetch_assoc();
+
+                Connection::close();
+                echo($row['id_usuario']);
+>>>>>>> origin/master
             }
             else
             {
@@ -67,7 +97,23 @@
             //firma esta en null
             //$id_empleado,$nombre1,$nombre2,$apellido1,$apellido2,$cedula,$telefono,$firma,$id_puesto,$id_sitio,$id_jefe,$inss,$fecha_ingreso,$estado
             $id_mod = $_GET['id'];
-            $empleado = new Empleado ($id_mod,$_GET['nombre1'],$_GET['nombre2'],$_GET['apellido1'],$_GET['apellido2'],$_GET['cedula'],$_GET['telefono'],null,$_GET['id_puesto'],$_GET['id_sitio'],$_GET['id_jefe'],$_GET['inss'],$_GET['fecha_ingreso'],$_GET['estado'],$nombre);
+
+            $empleado = new Empleado();
+            $empleado->setId_Empleado($id_mod);
+            $empleado->setNombre1($_GET['nombre1']);
+            $empleado->setNombre2($_GET['nombre2']);
+            $empleado->setApellido1($_GET['apellido1']);
+            $empleado->setApellido2($_GET['apellido2']);
+            $empleado->setCedula($_GET['cedula']);
+            $empleado->setTelefono($_GET['telefono']);
+            $empleado->setFirma(null);
+            $empleado->setId_Puesto($_GET['id_puesto']);
+            $empleado->setId_Sitio($_GET['id_sitio']);
+            $empleado->setId_Jefe($_GET['id_jefe']);
+            $empleado->setInss($_GET['inss']);
+            $empleado->setFecha_Ingreso($_GET['fecha_ingreso']);
+            $empleado->setEstado($_GET['estado']);
+            $empleado->setDocumentos($nombre);
             $empleado->update($_GET['correo']);
         }
 
