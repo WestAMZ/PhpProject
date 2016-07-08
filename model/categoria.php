@@ -72,21 +72,25 @@ class Categoria
     {
         $added = false;
         Connection :: connect();
-        try
-        {
-            $query = "INSERT INTO categoria(nombre, descripcion, url) VALUES('$this->nombre', '$this->descripcion', '$this->url')";
-            $result = Connection :: getConnection() -> query($query);
-            $added = true;
-        }catch(Exception $e)
-        {
-            $added = false;
-            $this->add_error = '<div class="alert alert-dismissible alert-danger">
-                     <button type="button" class="close" data-dismiss="alert">&times;</button>
-                     ha ocurrido un error </div>';
-        }
 
-    Connection :: close();
-    return $added;
+        $query = "INSERT INTO categoria(nombre, descripcion, url) VALUES('$this->nombre', '$this->descripcion', '$this->url')";
+        if(mkdir(DOCS_DIR . $this->url , 0777 ))
+        {
+            if(Connection :: getConnection() -> query($query))
+            {
+                $added = true;
+            }
+            else
+            {
+                $added = false;
+                $this->add_error = '<div class="alert alert-dismissible alert-danger">
+                         <button type="button" class="close" data-dismiss="alert">&times;</button>
+                         ha ocurrido un error </div>';
+                $added = false;
+            }
+        }
+        Connection :: close();
+        return $added;
     }
 }
 ?>

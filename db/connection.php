@@ -33,6 +33,10 @@
                     echo 1;
                 }
             }
+            else
+            {
+                echo('usuario inexistente o inactivo');
+            }
             self :: getConnection()->close();
 
         }
@@ -50,7 +54,7 @@
 
 
             $host ="localhost";
-            $db = "ebco";
+            $db = "ebco_sistema";
             $user = 'ebco_sistema';
             $pass = '$$ebco';
 

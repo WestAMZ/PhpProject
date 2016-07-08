@@ -7,8 +7,7 @@ $(document).ready(function()
         var ms = $('#message');
         var modal = $('#myModal');
         agregarCategoria(archivo,modal,ms);
-
-
+        return false;
     });
 
 });
@@ -84,3 +83,4 @@ function editarCategoria(data,modal,message_area_modal)
                         }
                     }
     });
+}
