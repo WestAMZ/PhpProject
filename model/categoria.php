@@ -53,14 +53,17 @@ class Categoria
         $query = 'SELECT id_categoria, nombre, descripcion, url FROM categoria';
         $result = Connection :: getConnection()->query($query);
         $categorias = array();
-        while($row = $result->fetch_assoc())
+        if($result->num_rows >0)
         {
-            $categoria = new Categoria();
-            $categoria->setIdCategoria($row['id_categoria']);
-            $categoria->setNombre($row['nombre']);
-            $categoria->setDescripcion($row['descripcion']);
-            $categoria->setUrl($row['url']);
-            array_push($categorias, $categoria);
+            while($row = $result->fetch_assoc())
+            {
+                $categoria = new Categoria();
+                $categoria->setIdCategoria($row['id_categoria']);
+                $categoria->setNombre($row['nombre']);
+                $categoria->setDescripcion($row['descripcion']);
+                $categoria->setUrl($row['url']);
+                array_push($categorias, $categoria);
+            }
         }
         Connection :: close();
         return $categorias;
