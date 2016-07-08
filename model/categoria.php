@@ -71,7 +71,7 @@ class Categoria
         Connection :: connect();
         try
         {
-            $query = "INSERT INTO categoria(nombre, descripcion, url) VALUES('$this->nombre', '$this->descripcion', '$this->url')"
+            $query = "INSERT INTO categoria(nombre, descripcion, url) VALUES('$this->nombre', '$this->descripcion', '$this->url')";
             $result = Connection :: getConnection() -> query($query);
             $added = true;
         }catch(Exception $e)
