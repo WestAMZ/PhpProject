@@ -1,7 +1,7 @@
 <?php
 include_once(MODELS_DIR . 'reporte.php');
 
-echo(Reporte::generateReport(4));
+echo(Reporte::generateReport($_GET['id_empleado'],$_GET['id_solicitud']));
 /*
 $pdf = new FPDF();
 $pdf->AddPage();

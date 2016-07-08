@@ -47,6 +47,10 @@
             if($empleado->saveEmpleado($_GET['correo'],$_GET['id_role'],null,""))
             {
 
+<<<<<<< HEAD
+              //  MailSender::sendCountInfo($_GET['correo'],$_GET['correo'],$password);
+                echo('1');
+=======
                 //MailSender::sendCountInfo($_GET['correo'],$_GET['correo'],$password);
                 $correo = $_GET['correo'];
                 Connection::connect();
@@ -56,6 +60,7 @@
 
                 Connection::close();
                 echo($row['id_usuario']);
+>>>>>>> origin/master
             }
             else
             {
