@@ -119,7 +119,6 @@ function agregarEmpleado(archivo,data,result,modal,message_area_modal)
         cache: false,
         contentType: false,
         processData: false,
-         timeout: 3000, // sets timeout to 3 seconds
         beforeSend:function()
                     {
                         text = '<div class="alert alert-dismissible alert-info">' +
@@ -132,11 +131,12 @@ function agregarEmpleado(archivo,data,result,modal,message_area_modal)
                         var json;
                         try
                         {
-                            if(res.responseText==1)
+                            if($.isNumeric(res.responseText))
                             {
                                 message_area_modal.html("<img src='views/img/success.png'></img> El empleado ha sido agregado");
                                 modal.openModal();
                                 result.html('');
+                                sendMail(res.responseText);
                             }
                             else
                             {
@@ -152,37 +152,7 @@ function agregarEmpleado(archivo,data,result,modal,message_area_modal)
                     }
     });
 }
-    /*
-    http.onreadystatechange = function ()
-    {
-         if (http.readyState == 4 && http.status == 200)
-         {
 
-                if (http.responseText == 1)
-                {
-                    message_area_modal.html("<img src='views/img/success.png'></img> Se ha agregadoel empleado con exìto");
-                    modal.openModal();
-                    result.html('');
-
-                } else
-                {
-                    text = '<div class="alert alert-dismissible alert-danger">' +
-                        '<button type="button" class="close" data-dismiss="alert">&times;</button>' + http.responseText + '</div>';
-                    result.html(http.responseText);
-                }
-        }
-        else if (http.readyState != 4)
-        {
-            text = '<div class="alert alert-dismissible alert-info">' +
-                '<button type="button" class="close" data-dismiss="alert">&times;</button>' +
-                '<img src="views/img/load.gif"></img> Agragando empleado</div>';
-            result.html(text);
-        }
-    }
-    http.open('POST','?post=empleado');
-    http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    http.send(data);
-}*/
 
 
 /*
@@ -306,6 +276,25 @@ function searchEmpleado(search,table)
                     }
     });
 
+}
+
+function sendMail(id)
+{
+    $.ajax(
+    {
+        url: '?post=mail&id='+id,
+        type: 'GET',
+        data: null,
+        dataType: "html",
+        cache: false,
+        contentType: false,
+        processData: false,
+        complete: function(res)
+                    {
+
+                        $('#result').html(res);
+                    }
+    });
 }
 
 
