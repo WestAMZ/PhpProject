@@ -32,7 +32,7 @@
             if($empleado->saveEmpleado($_GET['correo'],$_GET['id_role'],null,$password))
             {
 
-                MailSender::sendCountInfo($_GET['correo'],$_GET['correo'],$password);
+              //  MailSender::sendCountInfo($_GET['correo'],$_GET['correo'],$password);
                 echo('1');
             }
             else

@@ -87,5 +87,17 @@
         {
             include(HTML_DIR . 'modal-modificar-insidencia');
         } */
+        static function getSolicitud()
+        {
+            include(HTML_DIR . 'solicitudmedica.html');
+        }
+        static function getNuevaInsidencia()
+        {
+            include(HTML_DIR . 'nuevainsidencia.html');
+        }
+        static function getSeguimientos()
+        {
+            include(HTML_DIR . 'showseguimiento.html');
+        }
     }
 ?>
