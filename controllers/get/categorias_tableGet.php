@@ -44,18 +44,22 @@ else
         <td><?php echo($categoria->getCity())?></td>
 
         <td>
-            <button class="btn cambiar-estado" id="<?php echo($sitio->getIdSitio())?>" estado="<?php echo($sitio->getStatus())?>">
+
                 <?php
-                    if($sitio->getStatus()==1)
+                    if($categoria->getEstado()==1)
                     {
-                        echo('Desabilitar');
+                ?>
+                        <button class="btn cambiar-estado green" id="<?php echo($categoria->getCategoria())?>" estado="<?php echo($sitio->getEstado())?>">Habilitar</button></td>
+                <?php
                     }
                     else
                     {
-                        echo('Habilitar');
+                      <button class="btn cambiar-estado red" id="<?php echo($categoria->getCategoria())?>" estado="<?php echo($sitio->getEstado())?>">Deshabilitar</button></td>
+                 ?>
+                <?php
                     }
                 ?>
-            </button></td>
+
     </tr>
 
 <?php

@@ -5,6 +5,8 @@ class Categoria
     var $nombre;
     var $descripcion;
     var $url;
+    var $estado;
+
     // CONSTRUCT
     public function __construct(){}
   /*  function __construct($id_categoria, $nombre, $descripcion, $url)
@@ -47,10 +49,19 @@ class Categoria
     {
         return $this->url;
     }
+    function setEstado($estado)
+    {
+        $this->estado = $estado;
+    }
+    function getEstado()
+    {
+        return $this->estado;
+    }
+
     static function getCategorias()
     {
         Connection :: connect();
-        $query = 'SELECT id_categoria, nombre, descripcion, url FROM categoria';
+        $query = 'SELECT id_categoria,estado, nombre, descripcion, url FROM categoria';
         $result = Connection :: getConnection()->query($query);
         $categorias = array();
         if($result->num_rows >0)
@@ -58,6 +69,7 @@ class Categoria
             while($row = $result->fetch_assoc())
             {
                 $categoria = new Categoria();
+                $categoria->setEstado($row['estado']);
                 $categoria->setIdCategoria($row['id_categoria']);
                 $categoria->setNombre($row['nombre']);
                 $categoria->setDescripcion($row['descripcion']);
@@ -73,7 +85,7 @@ class Categoria
         $added = false;
         Connection :: connect();
 
-        $query = "INSERT INTO categoria(nombre, descripcion, url) VALUES('$this->nombre', '$this->descripcion', '$this->url')";
+        $query = "INSERT INTO categoria(nombre, descripcion, url,estado) VALUES('$this->nombre', '$this->descripcion', '$this->url','1')";
         if(mkdir(DOCS_DIR . $this->url , 0777 ))
         {
             if(Connection :: getConnection() -> query($query))
