@@ -76,5 +76,24 @@ class Subcategoria
         Connection :: close();
         return $added;
     }
+    static function getSubcategoria()
+    {
+        Connection :: connect();
+        $query = 'SELECT id_subcategoria, nombre, descripcion, id_categoria, url FROM sub_categoria';
+        $result = Connection :: getConnection()->query($query);
+        $subcategorias = array();
+        while($row = $result->fetch_assoc())
+        {
+            $subcategoria = new Subcategoria();
+            $subcategoria->setIdSubcategoria($row['id_subcategoria']);
+            $subcategoria->setNombre($row['nombre']);
+            $subcategoria->setDescripcion($row['descripcion']);
+            $subcategoria->setIdCategoria($row['id_categoria']);
+            $subcategoria->setUrl($row['url']);
+            array_push(subcategorias, subcategoria);
+        }
+        Connection :: close();
+        return subcategorias;
+    }
 }
 ?>

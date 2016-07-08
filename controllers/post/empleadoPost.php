@@ -48,6 +48,9 @@
             {
 
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> origin/master
               //  MailSender::sendCountInfo($_GET['correo'],$_GET['correo'],$password);
                 echo('1');
 =======

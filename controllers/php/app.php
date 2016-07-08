@@ -99,5 +99,9 @@
         {
             include(HTML_DIR . 'showseguimiento.html');
         }
+        static function getMenuCategoria()
+        {
+            include(HTML_DIR . 'menucategoria.html');
+        }
     }
 ?>
