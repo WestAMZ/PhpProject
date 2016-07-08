@@ -50,7 +50,7 @@ class Categoria
     static function getCategorias()
     {
         Connection :: connect();
-        $query = 'SELECT id_categoria, nombre, descripcion, url FROM categoria WHERE estado = true';
+        $query = 'SELECT id_categoria, nombre, descripcion, url FROM categoria';
         $result = Connection :: getConnection()->query($query);
         $categorias = array();
         while($row = $result->fetch_assoc())
