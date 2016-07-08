@@ -1,7 +1,7 @@
 <?php
     if(!isset($_GET['mod']))
         {
-            $categoria = new Categoria($_GET['nombre'],$_GET['descripcion'],null);
+            $categoria = new Categoria($_GET['nombre'],$_GET['descripcion'],time(),null);
 
             if($categoria->saveCategoria())
             {
