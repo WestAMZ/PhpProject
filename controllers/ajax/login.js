@@ -24,7 +24,7 @@ function login(url,data,result,modal,message_area_modal)
             }
             else
             {
-                message_area_modal.html('<img src="views/img/error.png"></img> ' +http.responseText);
+                message_area_modal.html('<img src="views/img/error.png">No ha podido acceder por favor compruebe los datos ingresados</img> ' +http.responseText);
                 modal.openModal();
                 result.html('');
             }
