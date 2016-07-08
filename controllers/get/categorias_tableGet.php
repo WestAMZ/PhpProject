@@ -1,68 +1,45 @@
 <?php
     include_once( MODELS_DIR . 'categoria.php');
+    $categorias = null;
     if(isset($_GET['search']) and $_GET['search'] !='')
     {
-    $categorias = Categoria::SearchinCategoria($_GET['search']);
-    foreach ($categorias as &$categoria)
-    {
-?>
-    <tr class="sitio">
-        <td><?php echo($sitio->getIdSitio())?></td>
-        <td><?php echo($sitio->getName())?></td>
-        <td><?php echo($sitio->getCity())?></td>
-        <td><?php echo($sitio->getCountry())?></td>
-        <td><?php echo($sitio->getPhone())?></td>
-        <td><?php echo($sitio->getAddress())?></td>
-        <td>
-            <button class="btn cambiar-estado" id="<?php echo($sitio->getIdSitio())?>" estado="<?php echo($sitio->getStatus())?>">
-                <?php
-                    if($sitio->getStatus()==1)
-                    {
-                        echo('Desabilitar');
-                    }
-                    else
-                    {
-                        echo('Habilitar');
-                    }
-                ?>
-            </button></td>
-    </tr>
-<?php
+        $categorias = Categoria::SearchinCategoria($_GET['search']);
     }
-}
-else
-{
-    $categoria = Categorias::getCategorias();
+    else
+    {
+        $categorias = Categoria::getCategorias();
+    }
+    echo(sizeof($categorias));
     foreach ($categorias as &$categoria)
     {
 
 ?>
 
-    <tr class="sitio">
-        <td><?php echo($categoria->getIdSitio())?></td>
-        <td><?php echo($categoria->getName())?></td>
-        <td><?php echo($categoria->getCity())?></td>
+    <tr class="categoria">
+        <td><?php echo($categoria->getIdCategoria())?></td>
+        <td><?php echo($categoria->getNombre())?></td>
+        <td><?php echo($categoria->getDescripcion())?></td>
 
         <td>
-
                 <?php
                     if($categoria->getEstado()==1)
                     {
-                ?>
-                        <button class="btn cambiar-estado green" id="<?php echo($categoria->getCategoria())?>" estado="<?php echo($sitio->getEstado())?>">Habilitar</button></td>
-                <?php
+
+                        echo('<button class="btn cambiar-estado green" id="<?php echo($categoria->getCategoria())?>" estado="<?php echo($sitio->getEstado())?>">Habilitar</button>');
+
                     }
                     else
                     {
-                      <button class="btn cambiar-estado red" id="<?php echo($categoria->getCategoria())?>" estado="<?php echo($sitio->getEstado())?>">Deshabilitar</button></td>
-                 ?>
-                <?php
+
+                      echo('<button class="btn cambiar-estado red" id="<?php echo($categoria->getCategoria())?>" estado="<?php echo($sitio->getEstado())?>">Deshabilitar</button>');
+
+
                     }
                 ?>
-
+        </td>
     </tr>
 
 <?php
     }
-}
+
 ?>
