@@ -113,7 +113,7 @@ function agregarinsidencia(archivo,data,result,modal,message_area_modal)
                         }
                         catch (e)
                         {
-                            $('result').html(res.responseText);
+                            $('#result').html(res.responseText);
                         }
                     }
     });
