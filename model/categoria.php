@@ -6,14 +6,14 @@ class Categoria
     var $descripcion;
     var $url;
     // CONSTRUCT
-    public function __construc(){}
-    public function __construct($id_categoria, $nombre, $descripcion, $url)
+    public function __construct(){}
+  /*  function __construct($id_categoria, $nombre, $descripcion, $url)
     {
         $this->id_categoria = $id_categoria;
         $this->nombre = $nombre;
         $this->descripcion = $descripcion;
         $this->url = $url;
-    }
+    } */
     // SETTER AND GETTER METHODS
     function setIdCategoria($id_categoria)
     {
@@ -56,7 +56,7 @@ class Categoria
         while($row = $result->fetch_assoc())
         {
             $categoria = new Categoria();
-            $categoria->seIdCategoria($row['id_categoria']);
+            $categoria->setIdCategoria($row['id_categoria']);
             $categoria->setNombre($row['nombre']);
             $categoria->setDescripcion($row['descripcion']);
             $categoria->setUrl($row['url']);
