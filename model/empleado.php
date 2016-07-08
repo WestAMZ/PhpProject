@@ -22,25 +22,8 @@
         /*
         constructor por defecto
         */
-        function __construct($id_empleado,$nombre1,$nombre2,$apellido1,$apellido2,$cedula,$telefono,$firma,$id_puesto,$id_sitio,$id_jefe,$inss,$fecha_ingreso,$estado,$documentos)
+        function __construct()
         {
-            //quité la fecha de retiro
-            $this->id_empleado = $id_empleado;
-            $this->nombre1 = $nombre1;
-            $this->nombre2 = $nombre2;
-            $this->apellido1 = $apellido1;
-            $this->apellido2 = $apellido2;
-            $this->cedula = $cedula;
-            $this->telefono = $telefono;
-            $this->firma = $firma;
-            $this->id_puesto = $id_puesto;
-            $this->id_sitio = $id_sitio;
-            $this->id_jefe = $id_jefe;
-            $this->inss = $inss;
-            $this->fecha_ingreso = $fecha_ingreso;
-           // $this->fecha_retiro = $fecha_retiro;
-            $this->estado = $estado;
-            $this->documentos = $documentos;
         }
 
 
@@ -195,7 +178,22 @@
              while( $row = $result ->fetch_assoc())
              {
                 //$id_empleado,$nombre1,$nombre2,$apellido1,$apellido2,$cedula,$telefono,$firma,$id_puesto,$id_sitio,$id_jefe,$inss,$fecha_ingreso,$estado
-                 $empleado = new Empleado($row['id_empleado'],$row['nombre1'],$row['nombre2'],$row['apellido1'],$row['apellido2'],$row['cedula'],$row['telefono'],$row['firma'],$row['id_puesto'],$row['id_sitio'],$row['id_jefe'],$row['inss'],$row['fecha_ingreso'],$row['estado'],$row['documentos']);
+                 $empleado = new Empleado();
+                 $empleado->setId_Empleado($row['id_empleado']);
+                 $empleado->setNombre1($row['nombre1']);
+                 $empleado->setNombre2($row['nombre2']);
+                 $empleado->setApellido1($row['apellido1']);
+                 $empleado->setApellido2($row['apellido2']);
+                 $empleado->setCedula($row['cedula']);
+                 $empleado->setTelefono($row['telefono']);
+                 $empleado->setFirma($row['firma']);
+                 $empleado->setId_Puesto($row['id_puesto']);
+                 $empleado->setId_Sitio($row['id_sitio']);
+                 $empleado->setId_Jefe($row['id_jefe']);
+                 $empleado->setInss($row['inss']);
+                 $empleado->setFecha_Ingreso($row['fecha_ingreso']);
+                 $empleado->setEstado($row['estado']);
+                 $empleado->setDocumentos($row['documentos']);
                 array_push($empleados,$empleado);
              }
             Connection ::close();
@@ -214,8 +212,17 @@
                 try
                 {
                     $query = "INSERT INTO `empleado`(`id_empleado`,`nombre1`,`nombre2`,`apellido1`,`apellido2`,`cedula`,`telefono`,`firma`,`id_puesto`,`id_sitio`,`id_jefe`,`inss`,`fecha_ingreso`,`estado`,`documentos`) VALUES('$this->id_empleado','$this->nombre1','$this->nombre2','$this->apellido1','$this->apellido2','$this->cedula','$this->telefono','$this->firma','$this->id_puesto','$this->id_sitio','$this->id_jefe','$this->inss','$this->fecha_ingreso',1,'$this->documentos')";
-                    $result = Connection :: getConnection() -> query($query);
-                    $added = true;
+                    if($result = Connection :: getConnection() -> query($query))
+                    {
+                        $added = true;
+                    }
+                    else
+                    {
+                        $added = false;
+                        echo($query);
+                        $this->add_error = Connection :: getConnection() ->error;
+                    }
+
                 }catch(Exception $e)
                 {
                     $added = false;
@@ -269,9 +276,22 @@
 
             $result = Connection::getConnection()->query($query);
             $row = $result->fetch_assoc();
-            $empleado =  new Empleado($row['id_empleado'],$row['nombre1'],$row['nombre2'],$row['apellido1'],
-                $row['apellido2'],$row['cedula'],$row['telefono'],$row['firma'],$row['id_puesto'],
-                $row['id_sitio'],$row['id_jefe'],$row['inss'],$row['fecha_ingreso'],$row['estado'],$row['documentos']);
+            $empleado = new Empleado();
+            $empleado->setId_Empleado($row['id_empleado']);
+            $empleado->setNombre1($row['nombre1']);
+            $empleado->setNombre2($row['nombre2']);
+            $empleado->setApellido1($row['apellido1']);
+            $empleado->setApellido2($row['apellido2']);
+            $empleado->setCedula($row['cedula']);
+            $empleado->setTelefono($row['telefono']);
+            $empleado->setFirma($row['firma']);
+            $empleado->setId_Puesto($row['id_puesto']);
+            $empleado->setId_Sitio($row['id_sitio']);
+            $empleado->setId_Jefe($row['id_jefe']);
+            $empleado->setInss($row['inss']);
+            $empleado->setFecha_Ingreso($row['fecha_ingreso']);
+            $empleado->setEstado($row['estado']);
+            $empleado->setDocumentos($row['documentos']);
             Connection::close();
             return $empleado;
         }
@@ -284,7 +304,22 @@
              while($row = $result ->fetch_assoc())
              {
                 //$id_empleado,$nombre1,$nombre2,$apellido1,$apellido2,$cedula,$telefono,$firma,$id_puesto,$id_sitio,$id_jefe,$inss,$fecha_ingreso,$estado
-                 $empleado = new Empleado($row['id_empleado'],$row['nombre1'],$row['nombre2'],$row['apellido1'],$row['apellido2'],$row['cedula'],$row['telefono'],$row['firma'],$row['id_puesto'],$row['id_sitio'],$row['id_jefe'],$row['inss'],$row['fecha_ingreso'],$row['estado'],$row['documentos']);
+                 $empleado = new Empleado();
+                 $empleado->setId_Empleado($row['id_empleado']);
+                 $empleado->setNombre1($row['nombre1']);
+                 $empleado->setNombre2($row['nombre2']);
+                 $empleado->setApellido1($row['apellido1']);
+                 $empleado->setApellido2($row['apellido2']);
+                 $empleado->setCedula($row['cedula']);
+                 $empleado->setTelefono($row['telefono']);
+                 $empleado->setFirma($row['firma']);
+                 $empleado->setId_Puesto($row['id_puesto']);
+                 $empleado->setId_Sitio($row['id_sitio']);
+                 $empleado->setId_Jefe($row['id_jefe']);
+                 $empleado->setInss($row['inss']);
+                 $empleado->setFecha_Ingreso($row['fecha_ingreso']);
+                 $empleado->setEstado($row['estado']);
+                 $empleado->setDocumentos($row['documentos']);
                 array_push($empleados,$empleado);
              }
             Connection ::close();
