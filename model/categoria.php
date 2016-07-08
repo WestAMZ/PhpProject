@@ -68,7 +68,7 @@ class Categoria
         Connection :: close();
         return $categorias;
     }
-    static function saveCategoria()
+    function saveCategoria()
     {
         $added = false;
         Connection :: connect();

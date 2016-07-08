@@ -1,13 +1,14 @@
 $(document).ready(function()
 {
-    $('#formcategoria').submit(function()
+    $('#formcategoria').submit(function(e)
     {
+        e.preventDefault();
         var formulario = $('#formcategoria');
         var data = formulario.serialize();
         var ms = $('#message');
         var modal = $('#myModal');
-        agregarCategoria(archivo,modal,ms);
-        return false;
+        agregarCategoria(data,modal,ms);
+
     });
 
 });

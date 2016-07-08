@@ -1,4 +1,5 @@
 <?php
+    include_once(MODELS_DIR . 'categoria.php');
     if(!isset($_GET['mod']))
         {
             $time = time();
