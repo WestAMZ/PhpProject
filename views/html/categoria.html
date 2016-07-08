@@ -1,0 +1,51 @@
+<div id="menu-container">
+    <form id="formaviso" class="col s10 m10 offset-m1 offset-s1 panelbackground">
+        <hr>
+        <h5 class="center black-text">Gestion de Categorias</h5>
+        <hr>
+        <div class="row">
+            <div id="submenus" class="col s5 m3" style="border:1px solid black !important; margin:20px !important;">
+                <div class="switch">
+                    <label>
+                        Agregar
+                        <input type="checkbox" name="editar">
+                        <span class="lever right-align"></span>Editar
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s12 m4">
+                <input type="text" class="validate center" name="nombre" placeholder="Nombre">
+            </div>
+            <div class="input-field col s12 m8">
+                <input type="text" class="validate center" name="descripcion" placeholder="Descripcion">
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s6 m4 offset-s2">
+                <button type="submit" class="waves-effect waves-light btn green">Realizar</button>
+            </div>
+        </div>
+        <div class="center" style="margin-top: 35px;">
+            <i class="material-icons prefix">search</i>
+            <input id="searchtxt" type="text" class="validate center" placeholder="Buscar categoria">
+        </div>
+
+        <table id="categoria" class="responsive-table highlight scroll-y" style="margin: 20px 0">
+            <thead>
+                <tr>
+                    <th data-field="id">N. Categoria</th>
+                    <th data-field="titulo">Nombre</th>
+                    <th data-field="fecha_inicio">Descripcion</th>
+                    <th data-field="fecha_fin">Estado</th>
+                </tr>
+            </thead>
+            <tbody id="table">
+
+            </tbody>
+        </table>
+    </form>
+</div>
+
+</div>
