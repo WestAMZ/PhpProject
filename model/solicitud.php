@@ -12,6 +12,7 @@ class Solicitud
     var $fecha_aprobacion;
     var $aprobado_por;
 
+    public function __construct(){}
     function __contruct($id_solicitud, $fecha_solicitud, $observaciones, $estado, $id_empleado, $fase, $id_tipo_solicitud, $generado_por, $fecha_aprobacion, $aprobado_por)
     {
         $this->id_solicitud = $id_solicitud;
@@ -104,6 +105,27 @@ class Solicitud
     function getFechaAprobacion()
     {
         return $this->fecha_aprobacion;
+    }
+    function saveSolicitud()
+    {
+        try
+        {
+        $estado = true;
+        $added = false;
+        Connection :: connect();
+        Connection::getConnection()->query('SET FOREIGN_KEY_CHECKS=0');
+        $query = "INSERT INTO solicitud(fecha_solicitud, observacion, estado, id_empleado, fase, id_tipo_solicitud, generado_por, fecha_aprovacion, aprobado_por) VALUES(CURRENT_DATE, '$this->observaciones' ,'$this->estado', '$this->id_empleado', '1' ,'$this->id_tipo_solicitud','$this->generado_por',CURRENT_DATE,'$this->aprobado_por')";
+        $result = Connection :: getConnection()->query($query);
+        echo($result = Connection :: getConnection()->error);
+        $added = true;
+        }catch(Exception $e)
+            {
+                $this->add_error = '<div class="alert alert-dismissible alert-danger">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    ha ocurrido un error :/ </div>';
+            }
+        Connection :: close();
+        return $added;
     }
 }
 ?>

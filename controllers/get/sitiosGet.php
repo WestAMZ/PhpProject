@@ -18,7 +18,7 @@
                 <?php
                     if($sitio->getStatus()==1)
                     {
-                        echo('Desabilidar');
+                        echo('Desabilitar');
                     }
                     else
                     {
@@ -50,7 +50,7 @@ else
                 <?php
                     if($sitio->getStatus()==1)
                     {
-                        echo('Desabilidar');
+                        echo('Desabilitar');
                     }
                     else
                     {
