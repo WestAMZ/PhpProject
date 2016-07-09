@@ -113,15 +113,16 @@ function getSubCategoria(id)
         if(http.readyState == 4 && http.status ==200)
         {
             //Respuesta recivida
-            var subcategoria = JSON.parse(http.responseText).subcategoria[0];
-
+           var subcategoria = JSON.parse(http.responseText).subcategoria[0];
             if(subcategoria != null)
             {
-                alert('asignando..');
                 $('[name= "id_subcategoria"]').val(subcategoria.id_subcategoria);
                 $('[name= "nombre"]').val(subcategoria.nombre);
                 $('[name= "descripcion"]').val(subcategoria.descripcion);
                 $('[name= "id_categoria"]').val(subcategoria.id_categoria);
+
+                console.log(subcategoria);
+
             }
 
         }
