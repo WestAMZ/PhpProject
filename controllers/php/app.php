@@ -107,5 +107,9 @@
         {
             include(HTML_DIR . 'categoria.html');
         }
+        static function getSubCategoria()
+        {
+            include(HTML_DIR . 'subcategoria.html')
+        }
     }
 ?>
