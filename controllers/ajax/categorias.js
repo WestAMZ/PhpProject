@@ -20,6 +20,14 @@ $(document).ready(function()
             searchCategoria(search,$('#table'));
         });
 
+    $('#table').on('click','.cambiar-estado',function()
+    {
+        //invertimos el estado
+        estado = ($(this).attr('estado') == 0 )? '1' : '0';
+        id = $(this).attr('id');
+
+        cambiarEstado(id,estado);
+    });
 });
 
 function agregarCategoria(data,modal,message_area_modal)
@@ -142,3 +150,42 @@ function searchCategoria(search,table)
                     }
     });
 }
+function cambiarEstado(id,estado)
+{
+    data = '&mod=2&'+'id='+id+'&estado='+estado;
+
+    $.ajax(
+    {
+        url: '?post=categoria'+data,
+        type: 'POST',
+        data: null,
+        dataType: "html",
+        cache: false,
+        contentType: false,
+        processData: false,
+        complete: function(res)
+                    {
+
+                        try
+                        {
+                            if(res.responseText==1)
+                            {
+                                $('#message').html('Se ha cambiado el estado dela categoría');
+                                $('#myModal').openModal();
+                                searchCategoria("",$('#table'));
+                            }
+                            else
+                            {
+                                $('#message').html('Se ha ocurrido un error');
+                                $('#myModal').openModal();
+                            }
+                        }
+                        catch (e)
+                        {
+                            $('#message').html(res.responseText);
+                                $('#myModal').openModal();
+                        }
+                    }
+    });
+}
+
