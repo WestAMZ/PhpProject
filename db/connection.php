@@ -48,13 +48,9 @@
 
             $host ="localhost";
             $db = "ebco";
-<<<<<<< HEAD
             $user = 'ebco_sistema';
             $pass = '$$ebco';
-=======
-            $user = 'root';
-            $pass = '';
->>>>>>> origin/master
+
 
 /*
             $host ="localhost";
