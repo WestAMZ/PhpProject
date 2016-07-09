@@ -7,7 +7,7 @@
 <?php
     App::getLeftMain();
     App::getRightMain();
-    App::getMenuCategoria();
+    App::getMenuSubcategoria();
     App::getModal();
 
 ?>
