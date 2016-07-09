@@ -164,7 +164,6 @@ class Categoria
         Connection :: close();
         return $categorias;
     }
-<<<<<<< HEAD
     static function getCategoriaById($id)
     {
         Connection :: connect();
@@ -187,7 +186,8 @@ class Categoria
         $query = "UPDATE categoria set `nombre` = '$this->nombre',`descripcion` = '$this->descripcion' WHERE `id_categoria` = '$this->id_categoria'";
         $result = Connection::getConnection()->query($query);
         Connection :: close();
-=======
+    }
+
     static function cambiarEstado($id , $estado)
     {
         $flag = false;
@@ -200,7 +200,6 @@ class Categoria
         }
         Connection::close();
         return $flag;
->>>>>>> origin/master
     }
 }
 ?>
