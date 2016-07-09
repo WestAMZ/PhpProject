@@ -1,5 +1,5 @@
 <?php
-    App::getHead('Subcategorias');
+    App::getHead('Subir archivo');
 ?>
 
     <div id="main-container" class="container-fluid row full">
@@ -7,7 +7,6 @@
 <?php
     App::getLeftMain();
     App::getRightMain();
-    App::getMenuSubcategoria();
+    include(HTML_DIR. 'archivo.html');
     App::getModal();
-
 ?>

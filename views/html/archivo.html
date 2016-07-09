@@ -1,0 +1,65 @@
+<div id="menu-container">
+    <form id="formarchivo" class="col s10 m10 offset-m1 offset-s1 panelbackground">
+        <hr>
+        <h5 class="center black-text">Subir archivo</h5>
+        <hr>
+        <input type="hidden" name="id_categoria" value="">
+        <input type="hidden" name="id_subcategoria" value="">
+        <div id="result"></div>
+        <div class="row">
+            <div id="submenus" class="col s5 m3" style="border:1px solid black !important; margin:20px !important;">
+                <div class="switch">
+                    <label>
+                        Agregar
+                        <input type="checkbox" name="editar">
+                        <span class="lever right-align"></span>Editar
+                    </label>
+                </div>
+            </div>
+            <div id="result"></div>
+        </div>
+        <div class="row">
+            <div class="input-field col s12 m12">
+                <input type="text" class="validate center" name="descripcion" placeholder="Descripcion" required>
+            </div>
+        </div>
+        <div class="row">
+            <div class="file-field input-field col s12 m12" style="margin-top:-1px">
+                <div class="btn">
+                    <i class="fa fa-paperclip" aria-hidden="true"></i>
+                    <span>Adjuntar archivo a subir</span>
+                    <input type="file" id="file" required>
+                </div>
+                <div class="file-path-wrapper">
+                    <input class="file-path validate" type="text" name="fileToUpload" id="fileToUpload">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s6 m12 offset-s2">
+                <button type="submit" class="waves-effect waves-light btn green">Realizar</button>
+            </div>
+        </div>
+        <div class="center" style="margin-top: 35px;">
+            <i class="material-icons prefix">search</i>
+            <input id="searchtxt" type="text" class="validate center" placeholder="Buscar categoria">
+        </div>
+        <table id="categoria" class="responsive-table highlight scroll-y" style="margin: 20px 0">
+            <thead>
+                <tr>
+                    <th data-field="id">N. arhivo</th>
+                    <th data-field="titulo">Nombre</th>
+                    <th data-field="fecha_inicio">Descripcion</th>
+                    <th data-field="fecha_inicio">Fecha de subida</th>
+                    <th data-field="fecha_inicio">Subido por</th>
+                    <th data-field="fecha_fin">Estado</th>
+                </tr>
+            </thead>
+            <tbody id="table">
+
+            </tbody>
+        </table>
+    </form>
+    <script src="<?php echo(AJAX_DIR); ?>archivos.js"></script>
+</div>
+</div>
