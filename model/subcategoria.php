@@ -110,14 +110,16 @@ class Subcategoria
 
 
     }
-    static function getSubcategorias()
+    static function getSubcategorias($idcategoria)
     {
         Connection :: connect();
-        $query = 'SELECT id_subcategoria, nombre, descripcion, id_categoria, url FROM sub_categoria WHERE stado = TRUE';
+        $query = "SELECT id_subcategoria, nombre, descripcion, id_categoria, url FROM sub_categoria WHERE stado = TRUE and id_categoria = '$idcategoria'";
         $result = Connection :: getConnection()->query($query);
         $subcategorias = array();
-        while($row = $result->fetch_assoc())
+        if($result->num_rows > 0)
         {
+            while($row = $result->fetch_assoc())
+            {
             $subcategoria = new Subcategoria();
             $subcategoria->setIdSubcategoria($row['id_subcategoria']);
             $subcategoria->setNombre($row['nombre']);
@@ -125,6 +127,7 @@ class Subcategoria
             $subcategoria->setIdCategoria($row['id_categoria']);
             $subcategoria->setUrl($row['url']);
             array_push(subcategorias, subcategoria);
+            }
         }
         Connection :: close();
         return subcategorias;
