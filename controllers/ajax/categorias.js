@@ -9,15 +9,13 @@ $(document).ready(function()
 
         if($('[name = "editar"]').prop('checked') == true)
         {
-           // getAvisos(id_mod);
+            getCategoria(id_mod);
         }
        else
            {
-                $('[name= "id_aviso"]').val(0);
-                $('[name= "titulo"]').val("");
-                $('[name= "fecha_publicacion"]').val("");
-                $('[name= "fecha_finalizacion"]').val("");
-                $('[name= "contenido"]').val("");
+                $('[name= "id_categoria"]').val(0);
+                $('[name= "nombre"]').val("");
+                $('[name= "descripcion"]').val("");
            }
     });
 
@@ -25,10 +23,20 @@ $(document).ready(function()
     {
         e.preventDefault();
         var formulario = $('#formcategoria');
+        var result = $('#result')
         var data = formulario.serialize();
         var ms = $('#message');
         var modal = $('#myModal');
-        agregarCategoria(data,modal,ms);
+
+        if($('[name = "editar"]').prop('checked') == true)
+        {
+            updateCategoria(data,result,modal,ms);
+            searchCategoria('',$("#table"));
+        }
+        else
+        {
+            agregarCategoria(data,modal,ms);
+        }
 
     });
 
@@ -210,3 +218,64 @@ function cambiarEstado(id,estado)
     });
 }
 
+function getCategoria(id)
+{
+    http = Connect();
+    http.onreadystatechange = function()
+    {
+        if(http.readyState == 4 && http.status ==200)
+        {
+            //Respuesta recivida
+            var categoria = JSON.parse(http.responseText).categoria[0];
+
+            if(categoria != null)
+            {
+                $('[name= "id_categoria"]').val(categoria.id_categoria);
+                $('[name= "nombre"]').val(categoria.nombre);
+                $('[name= "descripcion"]').val(categoria.descripcion);
+            }
+
+        }
+        else if(http.readyState != 4)
+        {
+            //Esperando respuesta
+        }
+    }
+    http.open('GET','?get=categoria&id='+id);
+    http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    http.send(null);
+}
+function updateCategoria(data,result,modal,message_area_modal)
+{
+    http = Connect();
+    http.onreadystatechange = function ()
+    {
+         if (http.readyState == 4 && http.status == 200)
+         {
+
+            if (http.responseText == 1)
+            {
+                message_area_modal.html("<img src='views/img/success.png'></img> El aviso ha sido modificado con exíto");
+                modal.openModal();
+                result.html('');
+            }
+            else
+            {
+                text = '<div class="alert alert-dismissible alert-danger">' +
+                    '<button type="button" class="close" data-dismiss="alert">&times;</button>' + http.responseText + '</div>';
+                    result.html(http.responseText);
+            }
+
+        }
+        else if (http.readyState != 4)
+        {
+            text = '<div class="alert alert-dismissible alert-info">' +
+                '<button type="button" class="close" data-dismiss="alert">&times;</button>' +
+                '<img src="views/img/load.gif"></img> Procesando acción...</div>';
+            result.html(text);
+        }
+    }
+    http.open('POST','?post=categoria&mod=1');
+    http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    http.send(data);
+}

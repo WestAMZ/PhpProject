@@ -48,8 +48,8 @@
 
             $host ="localhost";
             $db = "ebco";
-            $user = 'root';
-            $pass = 'sistema123';
+            $user = 'ebco_sistema';
+            $pass = '$$ebco';
 
 /*
             $host ="localhost";
