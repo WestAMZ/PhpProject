@@ -26,13 +26,13 @@
                     if($categoria->getEstado()==1)
                     {
 
-                        echo('<button class="btn cambiar-estado red" id="'. $id .'" estado="1">Deshabilitar</button>');
+                        echo('<button class="btn cambiar-estado green" id="'. $id .'" estado="1">Desabilitar</button>');
 
                     }
                     else
                     {
 
-                      echo('<button class="btn cambiar-estado green" id="'. $id .'" estado="1">Habilitar</button>');
+                      echo('<button class="btn cambiar-estado red" id="'. $id .'" estado="1">Habilitar</button>');
 
 
                     }

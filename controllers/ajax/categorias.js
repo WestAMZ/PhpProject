@@ -1,5 +1,26 @@
 $(document).ready(function()
 {
+    $('#table').on('click','.categoria',function()
+    {
+        $('#table .selected').removeClass('selected');
+        $(this).toggleClass('selected');
+        var id_mod = $(this).children(0).html();
+
+
+        if($('[name = "editar"]').prop('checked') == true)
+        {
+           // getAvisos(id_mod);
+        }
+       else
+           {
+                $('[name= "id_aviso"]').val(0);
+                $('[name= "titulo"]').val("");
+                $('[name= "fecha_publicacion"]').val("");
+                $('[name= "fecha_finalizacion"]').val("");
+                $('[name= "contenido"]').val("");
+           }
+    });
+
     $('#formcategoria').submit(function(e)
     {
         e.preventDefault();
