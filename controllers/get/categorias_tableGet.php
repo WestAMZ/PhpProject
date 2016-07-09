@@ -7,7 +7,7 @@
     }
     else
     {
-        $categorias = Categoria::getCategorias();
+        $categorias = Categoria::getAllCategorias();
     }
     echo(sizeof($categorias));
     foreach ($categorias as &$categoria)
@@ -26,13 +26,13 @@
                     if($categoria->getEstado()==1)
                     {
 
-                        echo('<button class="btn cambiar-estado green" id="'. $id .'" estado="1">Desabilitar</button>');
+                        echo('<a class="btn cambiar-estado green" id="'. $id .'" estado="1">Desabilitar</a>');
 
                     }
                     else
                     {
 
-                      echo('<button class="btn cambiar-estado red" id="'. $id .'" estado="1">Habilitar</button>');
+                      echo('<a class="btn cambiar-estado red" id="'. $id .'" estado="0">Habilitar</a>');
 
 
                     }

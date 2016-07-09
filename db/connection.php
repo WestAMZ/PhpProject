@@ -49,7 +49,7 @@
             $host ="localhost";
             $db = "ebco";
             $user = 'root';
-            $pass = 'sistema123';
+            $pass = '';
 
 /*
             $host ="localhost";
