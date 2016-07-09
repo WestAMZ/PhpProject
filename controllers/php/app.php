@@ -109,7 +109,7 @@
         }
         static function getSubCategoria()
         {
-            include(HTML_DIR . 'subcategoria.html')
+            include(HTML_DIR . 'subcategoria.html');
         }
     }
 ?>
