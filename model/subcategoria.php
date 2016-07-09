@@ -10,7 +10,7 @@ class Subcategoria
     var $add_error;
     // CONSTRUCT
     public function __construct(){}
-    public function __construct($id_subcategoria, $nombre, $descripcion, $id_subcategoria, $url, $estado)
+  /*  public function __construct($id_subcategoria, $nombre, $descripcion, $id_subcategoria, $url, $estado)
     {
         $this->id_subcategoria = $id_subcategoria;
         $this->nombre = $nombre;
@@ -18,7 +18,7 @@ class Subcategoria
         $this->id_categoria = $id_categoria;
         $this->url = $url;
         $this->estado = $estado;
-    }
+    } */
     // GETTER AND SETTER METHODS
     function setIdSubcategoria($id_subcategoria)
     {
