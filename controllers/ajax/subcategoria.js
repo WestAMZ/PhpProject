@@ -117,11 +117,6 @@ function getSubCategoria(id)
             if(subcategoria != null)
             {
                 $('[name= "id_subcategoria"]').val(subcategoria.id_subcategoria);
-                $('[name= "nombre"]').val(subcategoria.nombre);
-                $('[name= "descripcion"]').val(subcategoria.descripcion);
-                $('[name= "id_categoria"]').val(subcategoria.id_categoria);
-
-                console.log(subcategoria);
 
             }
 
