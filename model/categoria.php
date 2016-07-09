@@ -164,6 +164,30 @@ class Categoria
         Connection :: close();
         return $categorias;
     }
+<<<<<<< HEAD
+    static function getCategoriaById($id)
+    {
+        Connection :: connect();
+        $query = "SELECT id_categoria,estado, nombre, descripcion, url FROM categoria where id_categoria= '$id'";
+        $result = Connection::getConnection()->query($query);
+
+        $row = $result ->fetch_assoc();
+        $categoria = new Categoria();
+        $categoria->setIdCategoria($row['id_categoria']);
+        $categoria->setNombre($row['nombre']);
+        $categoria->setDescripcion($row['descripcion']);
+        $categoria->setUrl($row['url']);
+        $categoria->setEstado($row['estado']);
+        Connection ::close();
+        return $categoria;
+    }
+    function updateCategoria()
+    {
+        Connection :: connect();
+        $query = "UPDATE categoria set `nombre` = '$this->nombre',`descripcion` = '$this->descripcion' WHERE `id_categoria` = '$this->id_categoria'";
+        $result = Connection::getConnection()->query($query);
+        Connection :: close();
+=======
     static function cambiarEstado($id , $estado)
     {
         $flag = false;
@@ -176,6 +200,7 @@ class Categoria
         }
         Connection::close();
         return $flag;
+>>>>>>> origin/master
     }
 }
 ?>
