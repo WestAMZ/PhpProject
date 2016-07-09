@@ -201,5 +201,21 @@ class Categoria
         Connection::close();
         return $flag;
     }
+    static function getCategoriaByUrl($url)
+    {
+        Connection :: connect();
+        $query = "SELECT id_categoria,estado, nombre, descripcion, url FROM categoria where url = '$url'";
+        $result = Connection::getConnection()->query($query);
+
+        $row = $result ->fetch_assoc();
+        $categoria = new Categoria();
+        $categoria->setIdCategoria($row['id_categoria']);
+        $categoria->setNombre($row['nombre']);
+        $categoria->setDescripcion($row['descripcion']);
+        $categoria->setUrl($row['url']);
+        $categoria->setEstado($row['estado']);
+        Connection ::close();
+        return $categoria;
+    }
 }
 ?>
