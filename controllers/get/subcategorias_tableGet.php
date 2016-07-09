@@ -26,6 +26,8 @@
 
         <td>
                 <?php
+
+
                     if($subcategoria->getEstado()==1)
                     {
 
@@ -39,6 +41,7 @@
 
 
                     }
+
                 ?>
         </td>
     </tr>
