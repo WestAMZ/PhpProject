@@ -110,18 +110,15 @@ class Subcategoria
         {
             while($row = $result->fetch_assoc())
             {
-            $subcategoria = new Subcategoria();
-            $subcategoria->setIdSubcategoria($row['id_subcategoria']);
-            $subcategoria->setNombre($row['nombre']);
-            $subcategoria->setDescripcion($row['descripcion']);
-            $subcategoria->setIdCategoria($row['id_categoria']);
-            $subcategoria->setUrl($row['url']);
-<<<<<<< HEAD
-            array_push(subcategorias, subcategoria);
+                $subcategoria = new Subcategoria();
+                $subcategoria->setIdSubcategoria($row['id_subcategoria']);
+                $subcategoria->setNombre($row['nombre']);
+                $subcategoria->setDescripcion($row['descripcion']);
+                $subcategoria->setIdCategoria($row['id_categoria']);
+                $subcategoria->setUrl($row['url']);
             }
-=======
             array_push($subcategorias, $subcategoria);
->>>>>>> origin/master
+
         }
         Connection :: close();
         return subcategorias;
