@@ -26,7 +26,10 @@
         //mode 2: cambio de estado
         else if($_GET['mod']==2)
         {
-            Categoria::cambiarEstado($_GET['id'],$_GET['estado']);
-            echo('1');
+           if( Categoria::cambiarEstado($_GET['id'],$_GET['estado']))
+           {
+                echo('1');
+           }
+
         }
 ?>
