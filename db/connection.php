@@ -44,19 +44,10 @@
 
         public static function connect()
         {
-            //nombre del host
-
-            $host ="localhost";
-            $db = "ebco";
-            $user = 'root';
-            $pass = '';
-
-/*
             $host ="localhost";
             $db = "ebco_sistema";
-            $user = 'ebco_sistema';
-            $pass = '$$ebco';
-*/
+            $user = 'root';
+            $pass = 'sistema123';
 
             self:: $mysqli =new mysqli($host, $user, $pass,$db);
             if( self :: $mysqli -> connect_error)

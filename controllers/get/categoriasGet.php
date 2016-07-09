@@ -1,6 +1,6 @@
 <?php
     include( MODELS_DIR . 'categoria.php');
-    $categorias = Subcategoria::getCategorias();
+    $categorias = Categoria::getCategorias();
      foreach ($categorias as &$categoria)
     {
 ?>
