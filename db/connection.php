@@ -44,10 +44,9 @@
 
         public static function connect()
         {
-            //nombre del host
-/*
             $host ="localhost";
             $db = "ebco";
+<<<<<<< HEAD
             $user = 'root';
             $pass = '';
 */
@@ -56,6 +55,10 @@
             $db = "ebco";
             $user = 'root';
             $pass = '';
+=======
+            $user = 'ebco_sistema';
+            $pass = '$$ebco';
+>>>>>>> origin/master
 
             self:: $mysqli =new mysqli($host, $user, $pass,$db);
             if( self :: $mysqli -> connect_error)
