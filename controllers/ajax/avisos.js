@@ -46,6 +46,17 @@ $(document).ready(function()
     });
 
 });
+$('[name="editar"]').change(function () {
+        if ($('[name="editar"]').prop('checked') == true)
+        {
+
+            $('#accion').text('Modificar');
+        }
+        else
+        {
+            $('#accion').text('Agregar');
+        }
+    });
 $("#formaviso").submit(function ()
 {
     var data = $("#formaviso").serialize();
