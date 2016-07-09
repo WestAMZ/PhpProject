@@ -17,16 +17,17 @@ $(document).ready(function()
         $(this).toggleClass('selected');
         var id_mod = $(this).children(0).html();
 
-
         if($('[name = "editar"]').prop('checked') == true)
         {
 
+            getSubCategoria(id_mod);
         }
        else
            {
-                $('[name= "id_sub_categoria"]').val(0);
+                $('[name= "id_subcategoria"]').val(0);
                 $('[name= "nombre"]').val("");
                 $('[name= "descripcion"]').val("");
+               $('[name= "id_categoria"]').val(0);
            }
     });
 
@@ -102,4 +103,30 @@ function editarSubcategoria(data,modal,message_area_modal)
                         }
                     }
     });
+}
+
+function getSubCategoria(id)
+{
+    http = Connect();
+    http.onreadystatechange = function()
+    {
+        if(http.readyState == 4 && http.status ==200)
+        {
+            //Respuesta recivida
+           var subcategoria = JSON.parse(http.responseText).subcategoria[0];
+            if(subcategoria != null)
+            {
+                $('[name= "id_subcategoria"]').val(subcategoria.id_subcategoria);
+
+            }
+
+        }
+        else if(http.readyState != 4)
+        {
+            //Esperando respuesta
+        }
+    }
+    http.open('GET','?get=subcategoria&id='+id);
+    http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    http.send(null);
 }
