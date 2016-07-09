@@ -35,7 +35,7 @@
             <i class="material-icons prefix">search</i>
             <input id="searchtxt" type="text" class="validate center" placeholder="Buscar categoria">
         </div>
-        <table id="categoria" class="responsive-table highlight scroll-y" style="margin: 20px 0">
+        <table id="subcategoria" class="responsive-table highlight scroll-y" style="margin: 20px 0">
             <thead>
                 <tr>
                     <th data-field="id">N. Sub-Categoria</th>
@@ -45,9 +45,11 @@
                 </tr>
             </thead>
             <tbody id="table">
-                <!--<?php include(GET_DIR . 'subcategoriasGet.php'); ?> -->
+                <?php include(GET_DIR . 'subcategorias_tableGet.php'); ?>
             </tbody>
         </table>
     </form>
 </div>
 </div>
+<script src="<?php echo(AJAX_DIR)?>subcategoria.js">
+</script>

@@ -11,6 +11,25 @@ $(document).ready(function()
 
     });
 
+    $('#table').on('click','.subcategoria',function()
+    {
+        $('#table .selected').removeClass('selected');
+        $(this).toggleClass('selected');
+        var id_mod = $(this).children(0).html();
+
+
+        if($('[name = "editar"]').prop('checked') == true)
+        {
+
+        }
+       else
+           {
+                $('[name= "id_sub_categoria"]').val(0);
+                $('[name= "nombre"]').val("");
+                $('[name= "descripcion"]').val("");
+           }
+    });
+
 });
 
 function agregarSubcategoria(data,modal,message_area_modal)

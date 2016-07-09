@@ -109,6 +109,7 @@ class Subcategoria
         $query = "SELECT id_subcategoria, nombre, descripcion, id_categoria, url FROM sub_categoria WHERE estado = TRUE and id_categoria = '$idcategoria'";
         $result = Connection :: getConnection()->query($query);
         $subcategorias = array();
+
         if($result->num_rows > 0)
         {
             while($row = $result->fetch_assoc())
@@ -127,10 +128,10 @@ class Subcategoria
         Connection :: close();
         return $subcategorias;
     }
-    static function getAllSubcategorias()
+    static function getAllSubcategorias($id_categoria)
     {
         Connection :: connect();
-        $query = 'SELECT id_subcategoria, nombre, descripcion, id_categoria, url FROM sub_categoria';
+        $query = "SELECT id_subcategoria, nombre, descripcion, id_categoria, url FROM sub_categoria where id_categoria ='$id_categoria'";
         $result = Connection :: getConnection()->query($query);
         $subcategorias = array();
         while($row = $result->fetch_assoc())
@@ -144,12 +145,12 @@ class Subcategoria
             array_push($subcategorias, $subcategoria);
         }
         Connection :: close();
-        return subcategorias;
+        return $subcategorias;
     }
-    static function SearchSubCategoria($search)
+    static function SearchSubCategoria($search,$id_categoria)
     {
         Connection :: connect();
-        $query = "SELECT id_subcategoria,estado, nombre, descripcion, url, id_categoria FROM sub_categoria WHERE nombre LIKE '%$search%' ";
+        $query = "SELECT id_subcategoria,estado, nombre, descripcion, url, id_categoria FROM sub_categoria WHERE id_categoria = '$id_categoria' and nombre LIKE '%$search%' ";
         $result = Connection :: getConnection()->query($query);
         $subcategorias = array();
         if($result->num_rows >0)
