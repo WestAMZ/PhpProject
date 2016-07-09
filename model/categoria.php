@@ -85,6 +85,28 @@ class Categoria
         Connection :: close();
         return $categorias;
     }
+    static function getAllCategorias()
+    {
+        Connection :: connect();
+        $query = 'SELECT id_categoria,estado, nombre, descripcion, url FROM categoria';
+        $result = Connection :: getConnection()->query($query);
+        $categorias = array();
+        if($result->num_rows > 0)
+        {
+            while($row = $result->fetch_assoc())
+            {
+                $categoria = new Categoria();
+                $categoria->setEstado($row['estado']);
+                $categoria->setIdCategoria($row['id_categoria']);
+                $categoria->setNombre($row['nombre']);
+                $categoria->setDescripcion($row['descripcion']);
+                $categoria->setUrl($row['url']);
+                array_push($categorias, $categoria);
+            }
+        }
+        Connection :: close();
+        return $categorias;
+    }
     function saveCategoria()
     {
         $added = false;
@@ -142,6 +164,7 @@ class Categoria
         Connection :: close();
         return $categorias;
     }
+<<<<<<< HEAD
     static function getCategoriaById($id)
     {
         Connection :: connect();
@@ -164,6 +187,20 @@ class Categoria
         $query = "UPDATE categoria set `nombre` = '$this->nombre',`descripcion` = '$this->descripcion' WHERE `id_categoria` = '$this->id_categoria'";
         $result = Connection::getConnection()->query($query);
         Connection :: close();
+=======
+    static function cambiarEstado($id , $estado)
+    {
+        $flag = false;
+        Connection::connect();
+        $query = "UPDATE categoria SET estado = '$estado' WHERE id_categoria = '$id' ";
+
+        if(Connection::getConnection()->query($query))
+        {
+            $flag =true;
+        }
+        Connection::close();
+        return $flag;
+>>>>>>> origin/master
     }
 }
 ?>

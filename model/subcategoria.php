@@ -6,15 +6,18 @@ class Subcategoria
     var $descripcion;
     var $id_categoria;
     var $url;
+    var $estado;
+    var $add_error;
     // CONSTRUCT
     public function __construct(){}
-    public function __construct($id_subcategoria, $nombre, $descripcion, $id_subcategoria, $url)
+    public function __construct($id_subcategoria, $nombre, $descripcion, $id_subcategoria, $url, $estado)
     {
         $this->id_subcategoria = $id_subcategoria;
         $this->nombre = $nombre;
         $this->descripcion = $descripcion;
         $this->id_categoria = $id_categoria;
         $this->url = $url;
+        $this->estado = $estado;
     }
     // GETTER AND SETTER METHODS
     function setIdSubcategoria($id_subcategoria)
@@ -57,24 +60,55 @@ class Subcategoria
     {
         return $this->url;
     }
+    function setEstado($estado)
+    {
+        $this->estado = $estado;
+    }
+    function getEstado()
+    {
+        return $this->estado;
+    }
     static function saveSubcategoria()
     {
         $added = false;
         Connection :: connect();
-        try
+        $returned = Connection :: getConnection()->query("SELECT * FROM sub_categoria WHERE nombre ='$this->nombre'");
+        if($returned->num_rows == 0)
         {
-            $query = 'INSERT INTO sub_categoria(nombre, descripcion, id_categoria, url) VALUES('$this->nombre', '$this->descripcion', '$this->id_categoria', '$this->url')';
-            $result = Connection :: getConnection()->query($query);
-            $added = true;
-        }catch(Exception $e)
-        {
-            $added = false;
-            $this->add_error = '<div class="alert alert-dismissible alert-danger">
-                     <button type="button" class="close" data-dismiss="alert">&times;</button>
-                     ha ocurrido un error </div>';
+            $second_query = "SELECT url FROM categoria WHERE id_categoria = '$this->id_categoria'";
+            $result = Connection :: getConnection()->query($second_query);
+            $row = $result->fetch_assoc();
+            $categoria_url = $row['url'];
+
+            $query = "INSERT INTO sub_categoria(nombre, descripcion, id_categoria, url, estado) VALUES('$this->nombre', '$this->descripcion', '$this->id_categoria', '$this->url', '1')";
+
+            if(mkdir(DOCS_DIR . $categoria_url . '/' . $this->url , 0777 ))
+            {
+                if(Connection :: getConnection() -> query($query))
+                {
+                    $added = true;
+                }
+                else
+                {
+                    $added = false;
+                    $this->add_error = '<div class="alert alert-dismissible alert-danger">
+                             <button type="button" class="close" data-dismiss="alert">&times;</button>
+                             ha ocurrido un error </div>';
+                }
+            }
         }
+        else
+        {
+            $added=false;
+            $this->add_error = '<div class="alert alert-dismissible alert-danger">
+                             <button type="button" class="close" data-dismiss="alert">&times;</button>
+                             Ya existe una categoria con ese nombre </div>';
+        }
+
         Connection :: close();
         return $added;
+
+
     }
     static function getSubcategoria()
     {
@@ -95,5 +129,47 @@ class Subcategoria
         Connection :: close();
         return subcategorias;
     }
-}
+    static function SearchSubCategoria($search)
+    {
+        Connection :: connect();
+        $query = "SELECT id_subcategoria,estado, nombre, descripcion, url, id_categoria FROM sub_categoria WHERE nombre LIKE '%$search%' ";
+        $result = Connection :: getConnection()->query($query);
+        $subcategorias = array();
+        if($result->num_rows >0)
+        {
+            while($row = $result->fetch_assoc())
+            {
+                $subcategoria = new Categoria();
+                $subcategoria->setEstado($row['estado']);
+                $subcategoria->setIdCategoria($row['id_subcategoria']);
+                $subcategoria->setNombre($row['nombre']);
+                $subcategoria->setDescripcion($row['descripcion']);
+                $subcategoria->setUrl($row['url']);
+                $subcategoria->setIdCategoria($row['id_categoria']);
+                array_push($categorias, $categoria);
+            }
+        }
+        Connection :: close();
+        return $categorias;
+    }
+    static function getSubcategoriaById($id_subcategoria)
+    {
+        Connection :: connect();
+        $query = "SELECT * FROM sub_categoria WHERE id_subcategoria = '$id_subcategoria'"
+        $result = Connection :: getConnection()->query($query);
+        $subcategorias = array();
+        while($row = $result->fetch_assoc())
+        {
+            $subcategoria = new Subcategoria();
+            $subcategoria->setIdSubcategoria($row['id_subcategoria']);
+            $subcategoria->setNombre($row['nombre']);
+            $subcategoria->setDescripcion($row['descripcion']);
+            $subcategoria->setIdCategoria($row['id_categoria']);
+            $subcategoria->setUrl($row['url']);
+            $subcategoria->setEstado($row['estado']);
+            array_push($subcategorias, $subcategoria);
+        }
+        Connection :: close();
+        return $subcategorias;
+    }
 ?>
