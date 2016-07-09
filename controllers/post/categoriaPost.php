@@ -1,7 +1,12 @@
 <?php
+    include_once(MODELS_DIR . 'categoria.php');
     if(!isset($_GET['mod']))
         {
-            $categoria = new Categoria($_GET['nombre'],$_GET['descripcion'],time(),null);
+            $time = time();
+            $categoria = new Categoria();
+            $categoria->setNombre($_GET['nombre']);
+            $categoria->setDescripcion($_GET['descripcion']);
+            $categoria->setUrl($time);
 
             if($categoria->saveCategoria())
             {

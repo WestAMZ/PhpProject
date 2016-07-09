@@ -33,6 +33,10 @@
                     echo 1;
                 }
             }
+            else
+            {
+                echo('usuario inexistente o inactivo');
+            }
             self :: getConnection()->close();
 
         }

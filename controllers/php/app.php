@@ -103,5 +103,9 @@
         {
             include(HTML_DIR . 'menucategoria.html');
         }
+        static function getCategoria()
+        {
+            include(HTML_DIR . 'categoria.html');
+        }
     }
 ?>

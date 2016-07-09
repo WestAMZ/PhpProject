@@ -1,16 +1,33 @@
 $(document).ready(function()
 {
-    $('#formcategoria').submit(function()
+    $('#formcategoria').submit(function(e)
     {
+        e.preventDefault();
         var formulario = $('#formcategoria');
         var data = formulario.serialize();
         var ms = $('#message');
         var modal = $('#myModal');
-        agregarCategoria(archivo,modal,ms);
-
+        agregarCategoria(data,modal,ms);
 
     });
 
+    $('#searchtxt').keypress(
+        function(e)
+        {
+            //condicion para linpiar de caracteres especiales (no alfa nunmericos)
+            var pressed = (e.key.toString().length == 1)? e.key :'';
+            var search = $(this).val()+ pressed;
+            searchCategoria(search,$('#table'));
+        });
+
+    $('#table').on('click','.cambiar-estado',function()
+    {
+        //invertimos el estado
+        estado = ($(this).attr('estado') == 0 )? '1' : '0';
+        id = $(this).attr('id');
+
+        cambiarEstado(id,estado);
+    });
 });
 
 function agregarCategoria(data,modal,message_area_modal)
@@ -24,6 +41,13 @@ function agregarCategoria(data,modal,message_area_modal)
         cache: false,
         contentType: false,
         processData: false,
+        beforeSend:function()
+                    {
+                        text = '<div class="alert alert-dismissible alert-info center s12 m12">' +
+                        '<button type="button" class="close" data-dismiss="alert">&times;</button>' +
+                        '<img src="views/img/load.gif"></img> Creando categoría</div>';
+                        $('#result').html(text);
+                    },
         complete: function(res)
                     {
                         try
@@ -33,6 +57,7 @@ function agregarCategoria(data,modal,message_area_modal)
                                 message_area_modal.html("<img src='views/img/success.png'></img> La categoría se ha creado");
                                 modal.openModal();
                                 $('#result').html('');
+                                searchCategoria("",$('#table'));
                             }
                             else
                             {
@@ -61,6 +86,13 @@ function editarCategoria(data,modal,message_area_modal)
         cache: false,
         contentType: false,
         processData: false,
+        beforeSend:function()
+                    {
+                        text = '<div class="alert alert-dismissible alert-info center s12 m12">' +
+                        '<button type="button" class="close" data-dismiss="alert">&times;</button>' +
+                        '<img src="views/img/load.gif"></img> Creando categoría...</div>';
+                        table.html(text);
+                    },
         complete: function(res)
                     {
                         try
@@ -84,3 +116,76 @@ function editarCategoria(data,modal,message_area_modal)
                         }
                     }
     });
+}
+
+
+function searchCategoria(search,table)
+{
+    $.ajax(
+    {
+        url: '?get=categorias_table&search='+search,
+        type: 'POST',
+        data: null,
+        dataType: "html",
+        cache: false,
+        contentType: false,
+        processData: false,
+        beforeSend:function()
+                    {
+                        text = '<div class="alert alert-dismissible alert-info center s12 m12">' +
+                        '<button type="button" class="close" data-dismiss="alert">&times;</button>' +
+                        '<img src="views/img/load2.gif"></img> Cargando...</div>';
+                        table.html(text);
+                    },
+        complete: function(res)
+                    {
+                        try
+                        {
+                            table.html(res.responseText);
+                        }
+                        catch (e)
+                        {
+                            table.html(res.responseText);
+                        }
+                    }
+    });
+}
+function cambiarEstado(id,estado)
+{
+    data = '&mod=2&'+'id='+id+'&estado='+estado;
+
+    $.ajax(
+    {
+        url: '?post=categoria'+data,
+        type: 'POST',
+        data: null,
+        dataType: "html",
+        cache: false,
+        contentType: false,
+        processData: false,
+        complete: function(res)
+                    {
+
+                        try
+                        {
+                            if(res.responseText==1)
+                            {
+                                $('#message').html('Se ha cambiado el estado dela categoría');
+                                $('#myModal').openModal();
+                                searchCategoria("",$('#table'));
+                            }
+                            else
+                            {
+                                $('#message').html('Se ha ocurrido un error');
+                                $('#myModal').openModal();
+                            }
+                        }
+                        catch (e)
+                        {
+                            $('#message').html(res.responseText);
+                                $('#myModal').openModal();
+                        }
+                    }
+    });
+}
+
