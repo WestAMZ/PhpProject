@@ -12,7 +12,17 @@ $(document).ready(function ()
         var form = $('#formsitio');
         getSitio(id_mod);
     });
+    $('[name="editar"]').change(function () {
+        if ($('[name="editar"]').prop('checked') == true)
+        {
 
+            $('#accion').text('Modificar');
+        }
+        else
+        {
+            $('#accion').text('Agregar');
+        }
+    });
      $('#searchtxt').keypress(
         function(e)
         {
