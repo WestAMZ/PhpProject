@@ -44,18 +44,14 @@
 
         public static function connect()
         {
-<<<<<<< HEAD
-=======
             //nombre del host
-
+/*
             $host ="localhost";
             $db = "ebco";
             $user = 'root';
             $pass = '';
+*/
 
-
-/*
->>>>>>> origin/master
             $host ="localhost";
             $db = "ebco_sistema";
             $user = 'root';
