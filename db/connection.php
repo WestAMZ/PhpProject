@@ -53,9 +53,9 @@
 */
 
             $host ="localhost";
-            $db = "ebco_sistema";
+            $db = "ebco";
             $user = 'root';
-            $pass = 'sistema123';
+            $pass = '';
 
             self:: $mysqli =new mysqli($host, $user, $pass,$db);
             if( self :: $mysqli -> connect_error)
