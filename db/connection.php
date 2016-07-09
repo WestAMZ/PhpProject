@@ -51,6 +51,7 @@
             $user = 'root';
             $pass = '';
 
+
 /*
             $host ="localhost";
             $db = "ebco_sistema";

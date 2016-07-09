@@ -107,9 +107,15 @@
         {
             include(HTML_DIR . 'categoria.html');
         }
+
+        static function getMenuSubcategoria()
+        {
+            include(HTML_DIR . 'menusubcategoria.html');
+        }
         static function getSubCategoria()
         {
             include(HTML_DIR . 'subcategoria.html');
+
         }
     }
 ?>

@@ -10,16 +10,6 @@ class Subcategoria
     var $add_error;
     // CONSTRUCT
     public function __construct(){}
-  /*  public function __construct($id_subcategoria, $nombre, $descripcion, $id_subcategoria, $url, $estado)
-    {
-        $this->id_subcategoria = $id_subcategoria;
-        $this->nombre = $nombre;
-        $this->descripcion = $descripcion;
-        $this->id_categoria = $id_categoria;
-        $this->url = $url;
-        $this->estado = $estado;
-    } */
-    // GETTER AND SETTER METHODS
     function setIdSubcategoria($id_subcategoria)
     {
         $this->id_subcategoria = $id_subcategoria;
@@ -126,8 +116,12 @@ class Subcategoria
             $subcategoria->setDescripcion($row['descripcion']);
             $subcategoria->setIdCategoria($row['id_categoria']);
             $subcategoria->setUrl($row['url']);
+<<<<<<< HEAD
             array_push(subcategorias, subcategoria);
             }
+=======
+            array_push($subcategorias, $subcategoria);
+>>>>>>> origin/master
         }
         Connection :: close();
         return subcategorias;
@@ -146,7 +140,7 @@ class Subcategoria
             $subcategoria->setDescripcion($row['descripcion']);
             $subcategoria->setIdCategoria($row['id_categoria']);
             $subcategoria->setUrl($row['url']);
-            array_push(subcategorias, subcategoria);
+            array_push($subcategorias, $subcategoria);
         }
         Connection :: close();
         return subcategorias;
@@ -177,7 +171,7 @@ class Subcategoria
     static function getSubcategoriaById($id_subcategoria)
     {
         Connection :: connect();
-        $query = "SELECT * FROM sub_categoria WHERE id_subcategoria = '$id_subcategoria'"
+        $query = "SELECT * FROM sub_categoria WHERE id_subcategoria = '$id_subcategoria'";
         $result = Connection :: getConnection()->query($query);
         $subcategorias = array();
         while($row = $result->fetch_assoc())
@@ -194,4 +188,5 @@ class Subcategoria
         Connection :: close();
         return $subcategorias;
     }
+}
 ?>
