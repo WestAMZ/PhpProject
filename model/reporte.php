@@ -4,12 +4,14 @@ class Reporte extends FPDF
      static function generateReport($id_empleado, $id_solicitud)
     {   $pdf = new FPDF();
         Connection::connect();
+
         $query = "SELECT DATE_FORMAT(so.fecha_solicitud,'%m-%d-%Y') as fecha_solicitud,CONCAT(e.nombre1, ' ', e.nombre2, ' ',e.apellido1,' ',e.apellido2) as nombre,e.cedula as cedula,e.firma as firma,s.nombre as sitio,p.nombre as cargo,e.telefono as telefono,e.fecha_ingreso as fecha_ingreso,fvlm.numero_dias as numeros_dias,fvlm.periodo as periodo, fvlm.inicio as dia_inicio,fvlm.termina as dia_fin,fvlm.regresa as dia_regreso, so.observacion as observaciones,
         (SELECT CONCAT(j.nombre1, ' ',j.nombre2,' ', j.apellido1, ' ', j.apellido2) FROM empleado e INNER JOIN empleado j ON j.id_empleado = e.id_jefe where e.id_empleado = '$id_empleado') as jefe,
         (SELECT j.firma FROM empleado e INNER JOIN empleado j ON j.id_empleado = e.id_jefe where e.id_empleado = '$id_empleado') as firma_jefe,
-        (SELECT CONCAT(e.nombre1, ' ', e.nombre2, ' ' , e.apellido1, ' ', e.apellido2) FROM empleado e INNER JOIN puesto p on e.id_puesto = p.id_puesto WHERE p.id_puesto =  3) as gerente_general,
-        (SELECT e.firma FROM empleado e INNER JOIN puesto p on e.id_puesto = p.id_puesto WHERE p.id_puesto =  3) as firma_gerente_general
-        FROM puesto p INNER JOIN empleado e on p.id_puesto = e.id_puesto INNER JOIN sitio s on e.id_sitio = s.id_sitio INNER JOIN solicitud so on e.id_empleado = so.id_empleado INNER JOIN tipo_solicitud ts on so.id_tipo_solicitud = ts.idTipo_Solicitud INNER JOIN formato_vacaciones_licencia_medica fvlm on so.id_solicitud = fvlm.id_solicitud WHERE e.id_jefe != e.id_empleado and e.id_empleado = '$id_empleado' AND so.id_solicitud = $id_solicitud";
+        (SELECT CONCAT(e.nombre1, ' ', e.nombre2, ' ' , e.apellido1, ' ', e.apellido2) FROM empleado e INNER JOIN puesto p on e.id_puesto = p.id_puesto WHERE p.id_puesto =  1) as gerente_general,
+        (SELECT e.firma FROM empleado e INNER JOIN puesto p on e.id_puesto = p.id_puesto WHERE p.id_puesto =  1) as firma_gerente_general
+        FROM puesto p INNER JOIN empleado e on p.id_puesto = e.id_puesto INNER JOIN sitio s on e.id_sitio = s.id_sitio INNER JOIN solicitud so on e.id_empleado = so.id_empleado INNER JOIN tipo_solicitud ts on so.id_tipo_solicitud = ts.idTipo_Solicitud INNER JOIN formato_vacaciones_licencia_medica fvlm on so.id_solicitud = fvlm.id_solicitud WHERE e.id_jefe != e.id_empleado and e.id_empleado = '$id_empleado' AND so.id_solicitud = '$id_solicitud'";
+
         $result = Connection::getConnection()->query($query);
         $row=$result->fetch_assoc();
         //$pdf = new FPD();
