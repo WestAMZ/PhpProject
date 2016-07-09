@@ -111,7 +111,7 @@
         static function getMenuSubcategoria()
         {
             include(HTML_DIR . 'menusubcategoria.html');
-
+        }
         static function getSubCategoria()
         {
             include(HTML_DIR . 'subcategoria.html');
