@@ -1,4 +1,5 @@
 <?php
+include(MODELS_DIR .'categoria.php');
 class Subcategoria
 {
     var $id_subcategoria;
@@ -100,10 +101,12 @@ class Subcategoria
 
 
     }
-    static function getSubcategorias($idcategoria)
+    static function getSubcategorias($url)
     {
+        $categoria = Categoria::getCategoriaByUrl($url);
+        $idcategoria = $categoria->getIdCategoria();
         Connection :: connect();
-        $query = "SELECT id_subcategoria, nombre, descripcion, id_categoria, url FROM sub_categoria WHERE stado = TRUE and id_categoria = '$idcategoria'";
+        $query = "SELECT id_subcategoria, nombre, descripcion, id_categoria, url FROM sub_categoria WHERE estado = TRUE and id_categoria = '$idcategoria'";
         $result = Connection :: getConnection()->query($query);
         $subcategorias = array();
         if($result->num_rows > 0)
@@ -116,12 +119,13 @@ class Subcategoria
                 $subcategoria->setDescripcion($row['descripcion']);
                 $subcategoria->setIdCategoria($row['id_categoria']);
                 $subcategoria->setUrl($row['url']);
+                array_push($subcategorias, $subcategoria);
             }
-            array_push($subcategorias, $subcategoria);
+
 
         }
         Connection :: close();
-        return subcategorias;
+        return $subcategorias;
     }
     static function getAllSubcategorias()
     {
