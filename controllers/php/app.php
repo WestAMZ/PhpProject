@@ -117,5 +117,17 @@
             include(HTML_DIR . 'subcategoria.html');
 
         }
+<<<<<<< HEAD
+        static function getMenuSitio()
+        {
+            include(HTML_DIR . 'seguimiento.html');
+        }
+
+=======
+        static function getPermisos()
+        {
+            include(HTML_DIR . 'permisos.html');
+        }
+>>>>>>> origin/master
     }
 ?>
