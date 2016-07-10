@@ -22,7 +22,7 @@
     <tr class="subcategoria">
         <td><?php echo($subcategoria->getIdSubcategoria())?></td>
         <td><?php echo($subcategoria->getNombre())?></td>
-        <td><?php echo($subcategoria->getDescripcion())?></td>
+
 
         <td>
                 <?php

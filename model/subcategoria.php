@@ -34,7 +34,16 @@ class Subcategoria
     }
     function getImg()
     {
-        return $this->img;
+        $img = "";
+        if($this->img == null or $this->img == "")
+        {
+            $img = "folder-2.svg";
+        }
+        else
+        {
+            $img = $this->img;
+        }
+        return $img;
     }
     function setIdCategoria($id_categoria)
     {
