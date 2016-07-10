@@ -1,4 +1,6 @@
 <?php
+    include(MODELS_DIR . 'subcategoria.php');
+    include(MODELS_DIR. 'archivo.php');
     if(!isset($_GET['mod']))
     {
 
@@ -10,9 +12,18 @@
             $time = time();
             $nombre = "{$_POST['nombre_archivo']}_$time.$extension";
             //directorio mas nombre de archivo
-            if (move_uploaded_file($archivo['tmp_name'], EMPLEADOS_DIR. $nombre))
+            $dir_archivo = Subcategoria::getFullUrlById($_GET['id_subcategoria']);
+            $dir_archivo = DOCS_DIR . $dir_archivo .'/';
+
+            if (move_uploaded_file($archivo['tmp_name'], $dir_archivo . $nombre))
             {
-                $_archivo = new Archivo(null,$nombre,$_GET['descripcion'],null,$_SESSION['id_usuario']);
+                $_archivo = new Archivo();
+                $_archivo->id_archivo = null;
+                $_archivo->nombre = $nombre;
+                $_archivo->fecha_subida = null;
+                $_archivo->descripcion = $_GET['descripcion'];
+                $_archivo->id_subcategoria = $_GET['id_subcategoria'];
+                $_archivo->id_usuario = $_SESSION['id_usuario'];
                 if($_archivo->saveArchivo())
                 {
                     echo(1);

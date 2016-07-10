@@ -5,7 +5,7 @@
     foreach ($subcategorias as &$subcategoria)
     {
 ?>
-    <a class="menu-btn categoria col s11 m4 offset-m1" href="#" id="<?php echo($subcategoria->getIdCategoria())?>">
+    <a class="menu-btn categoria col s11 m4 offset-m1" href="?<?php echo($subcategoria->getVista())?>" id="<?php echo($subcategoria->getIdCategoria())?>">
         <div class="menu-div">
             <img src="<?php echo(IMG_DIR)?>folder-2.svg" alt="">
         </div>

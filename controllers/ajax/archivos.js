@@ -1,7 +1,8 @@
 $(document).ready(function()
 {
-    $('#formarchivo').submit(function()
+    $('#formarchivo').submit(function(e)
     {
+        e.preventDefault();
         var formulario = $('#formarchivo');
         var data = formulario.serialize();
         var archivo = new FormData();
@@ -18,7 +19,7 @@ $(document).ready(function()
         else
         {
             alert('no se ha cargado ningun archivo');
-        }
+        };
 
 
     });
@@ -59,8 +60,9 @@ function agregarArchivo(archivo,data,modal,message_area_modal)
                         }
                     }
     });
+}
 
-    function editarArchivo(archivo,data,modal,message_area_modal)
+function editarArchivo(archivo,data,modal,message_area_modal)
 {
     $.ajax(
     {
@@ -94,3 +96,4 @@ function agregarArchivo(archivo,data,modal,message_area_modal)
                         }
                     }
     });
+}

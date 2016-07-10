@@ -2,13 +2,14 @@
     class Archivo
     {
         var $id_archivo;
-        var $nombre
+        var $nombre;
         var $fecha_subida;
         var $descripcion;
         var $id_subcategoria;
         var $id_usuario;
 
-        function __construct($id_archivo,$nombre,$fecha_subida,$descripcion,$id_subcategoria, $id_usuario)
+        function __construct(){}
+        function contructor($id_archivo,$nombre,$fecha_subida,$descripcion,$id_subcategoria, $id_usuario)
         {
             $this->id_archivo = $id_archivo;
             $this->nombre = $nombre;
@@ -16,6 +17,7 @@
             $this->descripcion = $descripcion;
             $this->$id_subcategoria = $id_subcategoria;
             $this->id_usuario = $id_usuario;
+            return $this;
         }
         /*
             Metodos setters
@@ -71,13 +73,13 @@
         {
             return $this->id_usuario;
         }
-        static function saveArchivo()
+        function saveArchivo()
         {
             $added = false;
             Connection :: connect();
             try
             {
-                $query = 'INSERT INTO archivo(fecha_subida, descripcion, nombre, id_subcategoria, id_usuario) VALUES('$this->fecha_subida', '$this->descripcion', '$this->nombre', '$this->id_subcategoria', '$this->id_usuario')';
+                $query = "INSERT INTO archivo(fecha_subida, descripcion, nombre, id_subcategoria, id_usuario) VALUES('$this->fecha_subida', '$this->descripcion', '$this->nombre', '$this->id_subcategoria', '$this->id_usuario')";
                 $result = Connection :: getConnection()->query($query);
                 $added = true;
             }catch(Exception $e)
