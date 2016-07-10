@@ -58,6 +58,19 @@ $(document).ready(function()
 
         cambiarEstado(id,estado);
     });
+
+
+    //modificacion de texto de boton
+    $('#editar').change(function () {
+        if ($('#editar').prop('checked') == true)
+        {
+            $('#accion').text('Modificar');
+        }
+        else
+        {
+            $('#accion').text('Agregar');
+        }
+    });
 });
 
 function agregarCategoria(data,modal,message_area_modal)
