@@ -1,0 +1,20 @@
+Script para cagar los datos de las bases de datos Ebco.sql
+
+Correo :   
+
+	   westlymeza@gmail.com    password:  ebco123 (Gerente General)
+	   eleazarg2112@gmail.com  password: ebco123 (Gerente de sitio)
+
+Menus disponibles(Solo para gerente general)
+
+1) Gestion de empleados
+2) Gestion de sucursales
+3) Informacion de sucursales
+4) Incidencias
+5) Gestion de solicitudes (Vista previa de uno de los formatos, con datos dinamicamente)
+
+
+NOTA: Subida de archivos,asi como curriculum y archivos para las incidencias aun no se encuentra disponible
+
+
+	   

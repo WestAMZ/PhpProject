@@ -1,5 +1,6 @@
 <?php
     include_once( MODELS_DIR . 'archivo.php');
+    include_once( MODELS_DIR . 'usuario.php');
     $archivos = null;
     if(isset($_GET['search']) and $_GET['search'] !='')
     {
@@ -14,6 +15,7 @@
     {
         $id = $archivo->getIdArchivo();
         $estado = $archivo->getEstado();
+        $nombre_usuario = Usuario::getNameUser($id);
     ?>
 
     <tr class="categoria">
@@ -21,6 +23,9 @@
         <td><?php echo($archivo->getNombre())?></td>
         <td><?php echo($archivo->getDescripcion())?></td>
         <td><?php echo($archivo->getFechaSubida())?></td>
+        <td><?php echo($nombre_usuario)?></td>
+        <td><a href="<?php echo($archivo->getUrl())?>"><i class="fa fa-arrow-circle-down" aria-hidden="true"></i>
+</a></td>
 
 
 

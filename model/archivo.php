@@ -1,4 +1,5 @@
 <?php
+    include_once(MODELS_DIR . 'subcategoria.php');
     class Archivo
     {
         var $id_archivo;
@@ -144,6 +145,12 @@
             }
             Connection :: close();
             return $archivos;
+        }
+        function getUrl()
+        {
+            $url= Subcategoria::getFullUrlById($this->id_archivo);
+            $url = DOCS_DIR . $url . '/'. $this->nombre;
+            return $url;
         }
     }
 ?>
