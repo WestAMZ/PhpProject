@@ -40,7 +40,16 @@ class Categoria
     }
     function getImg()
     {
-        return $this->img;
+        $img = "";
+        if($this->img == null or $this->img == "")
+        {
+            $img = "folder-3.svg";
+        }
+        else
+        {
+            $img = $this->img;
+        }
+        return $img;
     }
     function setUrl($url)
     {
@@ -183,7 +192,7 @@ class Categoria
     function updateCategoria()
     {
         Connection :: connect();
-        $query = "UPDATE categoria set `nombre` = '$this->nombre',`img` = '$this->img' WHERE `id_categoria` = '$this->id_categoria'";
+        $query = "UPDATE categoria set `nombre` = '$this->nombre'  WHERE `id_categoria` = '$this->id_categoria'";
         $result = Connection::getConnection()->query($query);
         Connection :: close();
     }

@@ -5,7 +5,6 @@
             $time = time();
             $categoria = new Categoria();
             $categoria->setNombre($_GET['nombre']);
-            $categoria->setDescripcion($_GET['descripcion']);
             $categoria->setUrl($time);
 
             if($categoria->saveCategoria())
@@ -26,7 +25,6 @@
             $categoria = new Categoria();
             $categoria->setIdCategoria($_POST['id_categoria']);
             $categoria->setNombre($_POST['nombre']);
-            $categoria->setDescripcion($_POST['descripcion']);
             $categoria->setUrl(null);
             $categoria->setEstado(null);
             $categoria->updateCategoria();

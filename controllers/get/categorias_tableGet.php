@@ -9,7 +9,7 @@
     {
         $categorias = Categoria::getAllCategorias();
     }
-    echo(sizeof($categorias));
+    //echo(sizeof($categorias));
     foreach ($categorias as &$categoria)
     {
         $id = $categoria->getIdCategoria();
@@ -19,7 +19,7 @@
     <tr class="categoria">
         <td><?php echo($categoria->getIdCategoria())?></td>
         <td><?php echo($categoria->getNombre())?></td>
-        <td><?php echo($categoria->getDescripcion())?></td>
+
 
         <td>
                 <?php
