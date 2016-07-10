@@ -3,14 +3,14 @@
 */
 INSERT INTO `categoria` (`id_categoria`, `nombre`, `img`, `url`, `estado`,`vista`) VALUES
 (1, 'AdministraciÃ²n', '', 'url=1468175259', 1,''),
-(2, 'RRHH', '', '1468175267', 1,''),
+(2, 'RRHH', 'team.svg', '1468175267', 1,''),
 (3, 'Radio pretecciÃ²n', '', 'url=1468175295', 1,''),
 (4, 'Finanzas y contabilidad', '', 'url=1468175318', 1,''),
 (5, 'Suministros', '', 'url=1468175440', 1,''),
-(6, 'Inventario', '', 'url=1468175449', 1,''),
+(6, 'Inventario', 'stock.svg', 'url=1468175449', 1,''),
 (7, 'Operaciones', '', 'url=1468175466', 1,''),
-(8, 'Seguimientos', '', 'url=1468175478', 1,''),
-(9, 'InformaciÃ²n de sitios', '', '1468175501', 1,'');
+(8, 'Seguimientos', 'technology.svg', 'url=1468175478', 1,''),
+(9, 'InformaciÃ²n de sitios', 'information.svg', '1468175501', 1,'');
 
 /*
     Subcategorias Administracion
