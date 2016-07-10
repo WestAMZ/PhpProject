@@ -1,4 +1,4 @@
-<?php
+ <?php
     include( MODELS_DIR . 'subcategoria.php');
     $subcategorias = Subcategoria::getSubcategorias($_GET['url']);
 

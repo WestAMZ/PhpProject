@@ -8,6 +8,7 @@
         App::getRightMain();
         App::getPermisos();
         App::getModal();
+        App::getModalJefe();
 ?>
 
 </div>
