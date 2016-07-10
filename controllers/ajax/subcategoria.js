@@ -1,12 +1,13 @@
 $(document).ready(function()
 {
-    $('#formasubcategoria').submit(function()
+    $('#formsubcategoria').submit(function(e)
     {
-        var formulario = $('#formasubcategoria');
+        e.preventDefault();
+        var formulario = $('#formsubcategoria');
         var data = formulario.serialize();
         var ms = $('#message');
         var modal = $('#myModal');
-        agregarSubcategoria(archivo,modal,ms);
+        agregarSubcategoria(data,modal,ms);
 
 
     });
@@ -26,9 +27,20 @@ $(document).ready(function()
            {
                 $('[name= "id_subcategoria"]').val(0);
                 $('[name= "nombre"]').val("");
-                $('[name= "descripcion"]').val("");
                $('[name= "id_categoria"]').val(0);
            }
+    });
+
+    //modificacion de texto de boton
+    $('#editar').change(function () {
+        if ($('#editar').prop('checked') == true)
+        {
+            $('#accion').text('Modificar');
+        }
+        else
+        {
+            $('#accion').text('Agregar');
+        }
     });
 
 });

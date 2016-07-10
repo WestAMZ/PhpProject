@@ -77,7 +77,11 @@ class Subcategoria
     {
         return $this->vista;
     }
-    static function saveSubcategoria()
+    function add_error()
+    {
+        return $this->add_error;
+    }
+    function saveSubcategoria()
     {
         $added = false;
         Connection :: connect();
@@ -90,7 +94,7 @@ class Subcategoria
             $categoria_url = $row['url'];
 
             $query = "INSERT INTO sub_categoria(nombre, img, id_categoria, url, estado) VALUES('$this->nombre', '$this->img', '$this->id_categoria', '$this->url', '1')";
-
+            echo($query);
             if(mkdir(DOCS_DIR . $categoria_url . '/' . $this->url , 0777 ))
             {
                 if(Connection :: getConnection() -> query($query))
@@ -100,9 +104,10 @@ class Subcategoria
                 else
                 {
                     $added = false;
-                    $this->add_error = '<div class="alert alert-dismissible alert-danger">
+                    $this->add_error = Connection :: getConnection() ->error;
+                        /*'<div class="alert alert-dismissible alert-danger">
                              <button type="button" class="close" data-dismiss="alert">&times;</button>
-                             ha ocurrido un error </div>';
+                             ha ocurrido un error </div>';*/
                 }
             }
         }

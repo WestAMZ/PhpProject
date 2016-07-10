@@ -1,9 +1,13 @@
 <?php
     include_once(MODELS_DIR . 'subcategoria.php');
+
     if(!isset($_GET['mod']))
         {
+            $categoria = Categoria::getCategoriaByUrl($_GET['url']);
+            $id_categoria = $categoria->getIdCategoria();
             $time = time();
             $subcategoria = new Subcategoria();
+            $subcategoria->setIdCategoria($id_categoria);
             $subcategoria->setNombre($_GET['nombre']);
             $subcategoria->setUrl($time);
 
