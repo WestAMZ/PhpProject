@@ -233,7 +233,6 @@ function getCategoria(id)
             {
                 $('[name= "id_categoria"]').val(categoria.id_categoria);
                 $('[name= "nombre"]').val(categoria.nombre);
-                $('[name= "descripcion"]').val(categoria.descripcion);
             }
 
         }
