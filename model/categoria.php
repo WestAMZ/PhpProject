@@ -3,18 +3,18 @@ class Categoria
 {
     var $id_categoria;
     var $nombre;
-    var $descripcion;
+    var $img;
     var $url;
     var $estado;
     var $add_error;
 
     // CONSTRUCT
     public function __construct(){}
-  /*  function __construct($id_categoria, $nombre, $descripcion, $url)
+  /*  function __construct($id_categoria, $nombre, $img, $url)
     {
         $this->id_categoria = $id_categoria;
         $this->nombre = $nombre;
-        $this->descripcion = $descripcion;
+        $this->img = $img;
         $this->url = $url;
     } */
     // SETTER AND GETTER METHODS
@@ -34,13 +34,13 @@ class Categoria
     {
         return $this->nombre;
     }
-    function setDescripcion($descripcion)
+    function setImg($img)
     {
-        $this->descripcion = $descripcion;
+        $this->img = $img;
     }
-    function getDescripcion()
+    function getImg()
     {
-        return $this->descripcion;
+        return $this->img;
     }
     function setUrl($url)
     {
@@ -66,7 +66,7 @@ class Categoria
     static function getCategorias()
     {
         Connection :: connect();
-        $query = 'SELECT id_categoria,estado, nombre, descripcion, url FROM categoria where estado = true';
+        $query = 'SELECT id_categoria,estado, nombre, img, url FROM categoria where estado = true';
         $result = Connection :: getConnection()->query($query);
         $categorias = array();
         if($result->num_rows > 0)
@@ -77,7 +77,7 @@ class Categoria
                 $categoria->setEstado($row['estado']);
                 $categoria->setIdCategoria($row['id_categoria']);
                 $categoria->setNombre($row['nombre']);
-                $categoria->setDescripcion($row['descripcion']);
+                $categoria->setImg($row['img']);
                 $categoria->setUrl($row['url']);
                 array_push($categorias, $categoria);
             }
@@ -88,7 +88,7 @@ class Categoria
     static function getAllCategorias()
     {
         Connection :: connect();
-        $query = 'SELECT id_categoria,estado, nombre, descripcion, url FROM categoria';
+        $query = 'SELECT id_categoria,estado, nombre, img, url FROM categoria';
         $result = Connection :: getConnection()->query($query);
         $categorias = array();
         if($result->num_rows > 0)
@@ -99,7 +99,7 @@ class Categoria
                 $categoria->setEstado($row['estado']);
                 $categoria->setIdCategoria($row['id_categoria']);
                 $categoria->setNombre($row['nombre']);
-                $categoria->setDescripcion($row['descripcion']);
+                $categoria->setImg($row['img']);
                 $categoria->setUrl($row['url']);
                 array_push($categorias, $categoria);
             }
@@ -114,7 +114,7 @@ class Categoria
         $returned = Connection :: getConnection()->query("SELECT * FROM categoria WHERE nombre ='$this->nombre'");
         if($returned->num_rows == 0)
         {
-            $query = "INSERT INTO categoria(nombre, descripcion, url,estado) VALUES('$this->nombre', '$this->descripcion', '$this->url','1')";
+            $query = "INSERT INTO categoria(nombre, img, url,estado) VALUES('$this->nombre', '$this->img', '$this->url','1')";
             if(mkdir(DOCS_DIR . $this->url , 0777 ))
             {
                 if(Connection :: getConnection() -> query($query))
@@ -145,7 +145,7 @@ class Categoria
     static function SearchCategoria($search)
     {
         Connection :: connect();
-        $query = "SELECT id_categoria,estado, nombre, descripcion, url FROM categoria WHERE nombre LIKE '%$search%' ";
+        $query = "SELECT id_categoria,estado, nombre, img, url FROM categoria WHERE nombre LIKE '%$search%' ";
         $result = Connection :: getConnection()->query($query);
         $categorias = array();
         if($result->num_rows >0)
@@ -156,7 +156,7 @@ class Categoria
                 $categoria->setEstado($row['estado']);
                 $categoria->setIdCategoria($row['id_categoria']);
                 $categoria->setNombre($row['nombre']);
-                $categoria->setDescripcion($row['descripcion']);
+                $categoria->setImg($row['img']);
                 $categoria->setUrl($row['url']);
                 array_push($categorias, $categoria);
             }
@@ -167,14 +167,14 @@ class Categoria
     static function getCategoriaById($id)
     {
         Connection :: connect();
-        $query = "SELECT id_categoria,estado, nombre, descripcion, url FROM categoria where id_categoria= '$id'";
+        $query = "SELECT id_categoria,estado, nombre, img, url FROM categoria where id_categoria= '$id'";
         $result = Connection::getConnection()->query($query);
 
         $row = $result ->fetch_assoc();
         $categoria = new Categoria();
         $categoria->setIdCategoria($row['id_categoria']);
         $categoria->setNombre($row['nombre']);
-        $categoria->setDescripcion($row['descripcion']);
+        $categoria->setImg($row['img']);
         $categoria->setUrl($row['url']);
         $categoria->setEstado($row['estado']);
         Connection ::close();
@@ -183,7 +183,7 @@ class Categoria
     function updateCategoria()
     {
         Connection :: connect();
-        $query = "UPDATE categoria set `nombre` = '$this->nombre',`descripcion` = '$this->descripcion' WHERE `id_categoria` = '$this->id_categoria'";
+        $query = "UPDATE categoria set `nombre` = '$this->nombre',`img` = '$this->img' WHERE `id_categoria` = '$this->id_categoria'";
         $result = Connection::getConnection()->query($query);
         Connection :: close();
     }
@@ -204,14 +204,14 @@ class Categoria
     static function getCategoriaByUrl($url)
     {
         Connection :: connect();
-        $query = "SELECT id_categoria,estado, nombre, descripcion, url FROM categoria where url = '$url'";
+        $query = "SELECT id_categoria,estado, nombre, img, url FROM categoria where url = '$url'";
         $result = Connection::getConnection()->query($query);
 
         $row = $result ->fetch_assoc();
         $categoria = new Categoria();
         $categoria->setIdCategoria($row['id_categoria']);
         $categoria->setNombre($row['nombre']);
-        $categoria->setDescripcion($row['descripcion']);
+        $categoria->setImg($row['img']);
         $categoria->setUrl($row['url']);
         $categoria->setEstado($row['estado']);
         Connection ::close();

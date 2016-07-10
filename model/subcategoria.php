@@ -4,10 +4,11 @@ class Subcategoria
 {
     var $id_subcategoria;
     var $nombre;
-    var $descripcion;
+    var $img;
     var $id_categoria;
     var $url;
     var $estado;
+    var $vista;
     var $add_error;
     // CONSTRUCT
     public function __construct(){}
@@ -27,13 +28,13 @@ class Subcategoria
     {
         return $this->nombre;
     }
-    function setDescripcion($descripcion)
+    function setImg($img)
     {
-        $this->descripcion = $descripcion;
+        $this->img = $img;
     }
-    function getDescripcion()
+    function getImg()
     {
-        return $this->descripcion;
+        return $this->img;
     }
     function setIdCategoria($id_categoria)
     {
@@ -59,6 +60,14 @@ class Subcategoria
     {
         return $this->estado;
     }
+    function setVista($vista)
+    {
+        $this->vista= $vista;
+    }
+    function getVista()
+    {
+        return $this->vista;
+    }
     static function saveSubcategoria()
     {
         $added = false;
@@ -71,7 +80,7 @@ class Subcategoria
             $row = $result->fetch_assoc();
             $categoria_url = $row['url'];
 
-            $query = "INSERT INTO sub_categoria(nombre, descripcion, id_categoria, url, estado) VALUES('$this->nombre', '$this->descripcion', '$this->id_categoria', '$this->url', '1')";
+            $query = "INSERT INTO sub_categoria(nombre, img, id_categoria, url, estado) VALUES('$this->nombre', '$this->img', '$this->id_categoria', '$this->url', '1')";
 
             if(mkdir(DOCS_DIR . $categoria_url . '/' . $this->url , 0777 ))
             {
@@ -106,7 +115,7 @@ class Subcategoria
         $categoria = Categoria::getCategoriaByUrl($url);
         $idcategoria = $categoria->getIdCategoria();
         Connection :: connect();
-        $query = "SELECT id_subcategoria, nombre, descripcion, id_categoria, url FROM sub_categoria WHERE estado = TRUE and id_categoria = '$idcategoria'";
+        $query = "SELECT id_subcategoria, nombre, img, id_categoria, url FROM sub_categoria WHERE estado = TRUE and id_categoria = '$idcategoria'";
         $result = Connection :: getConnection()->query($query);
         $subcategorias = array();
 
@@ -117,7 +126,7 @@ class Subcategoria
                 $subcategoria = new Subcategoria();
                 $subcategoria->setIdSubcategoria($row['id_subcategoria']);
                 $subcategoria->setNombre($row['nombre']);
-                $subcategoria->setDescripcion($row['descripcion']);
+                $subcategoria->setImg($row['img']);
                 $subcategoria->setIdCategoria($row['id_categoria']);
                 $subcategoria->setUrl($row['url']);
                 array_push($subcategorias, $subcategoria);
@@ -131,7 +140,7 @@ class Subcategoria
     static function getAllSubcategorias($id_categoria)
     {
         Connection :: connect();
-        $query = "SELECT id_subcategoria, nombre, descripcion, id_categoria, estado, url FROM sub_categoria where id_categoria ='$id_categoria'";
+        $query = "SELECT id_subcategoria, nombre, img, id_categoria, estado, url FROM sub_categoria where id_categoria ='$id_categoria'";
         $result = Connection :: getConnection()->query($query);
         $subcategorias = array();
         while($row = $result->fetch_assoc())
@@ -139,7 +148,7 @@ class Subcategoria
             $subcategoria = new Subcategoria();
             $subcategoria->setIdSubcategoria($row['id_subcategoria']);
             $subcategoria->setNombre($row['nombre']);
-            $subcategoria->setDescripcion($row['descripcion']);
+            $subcategoria->setImg($row['img']);
             $subcategoria->setIdCategoria($row['id_categoria']);
             $subcategoria->setEstado($row['estado']);
             $subcategoria->setUrl($row['url']);
@@ -152,7 +161,7 @@ class Subcategoria
     static function SearchSubCategoria($search,$id_categoria)
     {
         Connection :: connect();
-        $query = "SELECT id_subcategoria,estado, nombre, descripcion, url, id_categoria FROM sub_categoria WHERE id_categoria = '$id_categoria' and nombre LIKE '%$search%' ";
+        $query = "SELECT id_subcategoria,estado, nombre, img, url, id_categoria FROM sub_categoria WHERE id_categoria = '$id_categoria' and nombre LIKE '%$search%' ";
         $result = Connection :: getConnection()->query($query);
         $subcategorias = array();
         if($result->num_rows >0)
@@ -163,7 +172,7 @@ class Subcategoria
                 $subcategoria->setEstado($row['estado']);
                 $subcategoria->setIdCategoria($row['id_subcategoria']);
                 $subcategoria->setNombre($row['nombre']);
-                $subcategoria->setDescripcion($row['descripcion']);
+                $subcategoria->setImg($row['img']);
                 $subcategoria->setUrl($row['url']);
                 $subcategoria->setIdCategoria($row['id_categoria']);
                 array_push($categorias, $categoria);
@@ -183,7 +192,7 @@ class Subcategoria
             $subcategoria = new Subcategoria();
             $subcategoria->setIdSubcategoria($row['id_subcategoria']);
             $subcategoria->setNombre($row['nombre']);
-            $subcategoria->setDescripcion($row['descripcion']);
+            $subcategoria->setImg($row['img']);
             $subcategoria->setIdCategoria($row['id_categoria']);
             $subcategoria->setUrl($row['url']);
             $subcategoria->setEstado($row['estado']);
