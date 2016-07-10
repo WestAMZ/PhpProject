@@ -7,6 +7,7 @@
         var $descripcion;
         var $id_subcategoria;
         var $id_usuario;
+        var $estado;
 
         function __construct(){}
         function contructor($id_archivo,$nombre,$fecha_subida,$descripcion,$id_subcategoria, $id_usuario)
@@ -22,6 +23,10 @@
         /*
             Metodos setters
         */
+        function setEstado($estado)
+        {
+            $this->estado = $estado;
+        }
         function setIdArchivo($id_archivo)
         {
             $this->id_archivo = $id_archivo;
@@ -73,13 +78,17 @@
         {
             return $this->id_usuario;
         }
+        function getEstado()
+        {
+            return $this->estado;
+        }
         function saveArchivo()
         {
             $added = false;
             Connection :: connect();
             try
             {
-                $query = "INSERT INTO archivo(fecha_subida, descripcion, nombre, id_subcategoria, id_usuario) VALUES('$this->fecha_subida', '$this->descripcion', '$this->nombre', '$this->id_subcategoria', '$this->id_usuario')";
+                $query = "INSERT INTO archivo(fecha_subida, descripcion, nombre, id_subcategoria, id_usuario,estado) VALUES( CURRENT_DATE(), '$this->descripcion', '$this->nombre', '$this->id_subcategoria', '$this->id_usuario' , '1')";
                 $result = Connection :: getConnection()->query($query);
                 $added = true;
             }catch(Exception $e)
@@ -95,7 +104,7 @@
         static function getArchivo()
         {
             Connection :: connect();
-            $query = 'SELECT id_archivo,fecha_subida, descripcion, nombre, id_subcategoria, id_usuario FROM archivo';
+            $query = "SELECT id_archivo,DATE_FORMAT(fecha_subida,'%m-%d-%Y') as fecha_subida, descripcion, nombre, id_subcategoria, id_usuario,estado FROM archivo ";
             $result = Connection :: getConnection()->query($query);
             $archivos = array();
             while($row = $result->fetch_assoc())
@@ -107,6 +116,30 @@
                 $archivo->setNombre($row['nombre']);
                 $archivo->setIdSubcategoria($row['id_subcategoria']);
                 $archivo->setIdUsuario($row['id_usuario']);
+                $archivo->setEstado($row['estado']);
+                array_push($archivos, $archivo);
+            }
+            Connection :: close();
+            return $archivos;
+        }
+
+        static function getAllArchivos($id_subcategoria)
+        {
+            Connection :: connect();
+            $query = "SELECT id_archivo,fecha_subida, descripcion, nombre, id_subcategoria, id_usuario,estado FROM archivo WHERE id_subcategoria = '$id_subcategoria' ";
+            $result = Connection :: getConnection()->query($query);
+
+            $archivos = array();
+            while($row = $result->fetch_assoc())
+            {
+                $archivo = new Archivo();
+                $archivo->setIdArchivo($row['id_archivo']);
+                $archivo->setFechaSubida($row['fecha_subida']);
+                $archivo->setDescripcion($row['descripcion']);
+                $archivo->setNombre($row['nombre']);
+                $archivo->setIdSubcategoria($row['id_subcategoria']);
+                $archivo->setIdUsuario($row['id_usuario']);
+                $archivo->setEstado($row['estado']);
                 array_push($archivos, $archivo);
             }
             Connection :: close();
