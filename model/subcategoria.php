@@ -275,5 +275,24 @@ class Subcategoria
         Connection::close();
         return $added;
     }
+    /*static function getSubcategoriaByUrl()
+    {
+        Connectio::connect();
+        $query = "SELECT `id_subcategoria`, `nombre`, `img`, `id_categoria`, `url`, `estado`, `vista` FROM `sub_categoria` WHERE ";
+        $result = Connection :: getConnection()->query($query);
+
+        if($row = $result->fetch_assoc())
+        {
+            $subcategoria = new Subcategoria();
+            $subcategoria->setIdSubcategoria($row['id_subcategoria']);
+            $subcategoria->setNombre($row['nombre']);
+            $subcategoria->setImg($row['img']);
+            $subcategoria->setIdCategoria($row['id_categoria']);
+            $subcategoria->setUrl($row['url']);
+            $subcategoria->setEstado($row['estado']);
+            array_push($subcategorias, $subcategoria);
+        }
+        Connectio::close();
+    }*/
 }
 ?>

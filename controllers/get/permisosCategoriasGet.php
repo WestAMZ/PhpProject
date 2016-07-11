@@ -6,8 +6,11 @@
                     </div>
 
                 </div>*/
-    include(MODELS_DIR . 'subcategoria.php');
-    $subcategorias = Subcategoria::getAllSubcategorias($_GET['id']);
+    include_once(MODELS_DIR . 'subcategoria.php');
+    include_once(MODELS_DIR . 'categoria.php');
+    $categoria = Categoria::getCategoriaByUrl($_GET['url']);
+    $id = $categoria->getIdCategoria();
+    $subcategorias = Subcategoria::getAllSubcategorias($id);
     foreach ($subcategorias as &$subcategoria)
     {
         $nombre = $subcategoria->getNombre();
