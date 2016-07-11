@@ -77,7 +77,8 @@ function searchnoresuelta(search, table,id) {
     httpL.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     httpL.send(null);
 }
-function searchresuelta(search, table,id) {
+function searchresuelta(search, table,id)
+{
     httpL = Connect();
     httpL.onreadystatechange = function () {
         if (httpL.readyState == 4 && httpL.status == 200) {
