@@ -1,10 +1,10 @@
 $(document).ready(function () {
 
-    $('#seguimientos').on('click', '.seguimiento', function () {
+     $('#seguimientos').on('click','.seguimiento',function()
+    {
         $('#table .selected').removeClass('selected');
         $(this).toggleClass('selected');
-        id = $(this).attr('id');
-        alert(id);
+
     });
 
     $(document).ready(function () {

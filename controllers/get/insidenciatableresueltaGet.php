@@ -6,7 +6,7 @@
     foreach ($insidencias as &$insidencia)
     {
 ?>
-    <tr id="<?php echo($insidencia->getIdinsidencia())?>" class="insidencia">
+    <tr id="<?php echo($insidencia->getIdinsidencia())?>" class="seguimiento">
         <td>
             <?php echo($insidencia->getIdInsidencia())?>
         </td>
