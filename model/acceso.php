@@ -4,73 +4,39 @@ class Acceso
     var $id_acceso;
     var $id_subcategoria;
     var $id_usuario;
+    var $permiso;
 
     public function __construct(){}
-    function __contruct($id_aviso, $titulo, $contenido, $fecha_publicacion, $fecha_finalizacion, $estado, $id_empleado)
+    function __contruct($id_acceso, $id_subcategoria, $id_usuario, $permiso)
 {
-    $this->id_aviso = $id_aviso;
-    $this->titulo = $titulo;
-    $this->contenido = $contenido;
-    $this->fecha_publicacion = $fecha_publicacion;
-    $this->fecha_finalizacion = $fecha_finalizacion;
-    $this->estado = $estado;
-    $this->id_empleado = $id_empleado;
+    $this->id_acceso = $id_acceso;
+    $this->id_subcategoria = $id_subcategoria;
+    $this->id_usuario = $id_usuario;
+    $this->permiso = $permiso;
 }
-function setIdAviso($id_aviso)
+function setIdAcceso($id_acceso)
 {
-    $this->id_aviso = $id_aviso;
+    $this->id_acceso = $id_acceso;
 }
-function getIdAviso()
+function getIdSubcategoria()
 {
-    return $this->id_aviso;
+    return $this->id_subcategoria;
 }
-function setTitulo($titulo)
+function setIdUsuario($id_usuario)
 {
-    $this->titulo = $titulo;
+    $this->id_usuario = $id_usuario;
 }
-function getTitulo()
+function getIdUsuario()
 {
-    return $this->titulo;
+    return $this->id_usuario;
 }
-function setContenido($contenido)
+function setPermiso($permiso)
 {
-    $this->contenido = $contenido;
+    $this->permiso = $permiso;
 }
-function getContenido()
+function getPermiso()
 {
-    return $this->contenido;
-}
-function setFechaPublicacion($fecha_publicacion)
-{
-    $this->fecha_publicacion = $fecha_publicacion;
-}
-function getFechaPublicacion()
-{
-    return $this->fecha_publicacion;
-}
-function setFechaFinalizacion($fecha_finalizacion)
-{
-    $this->fecha_finalizacion = $fecha_finalizacion;
-}
-function getFechaFinalizacion()
-{
-    return $this->fecha_finalizacion;
-}
-function setEstado($estado)
-{
-    $this->estado = $estado;
-}
-function getEstado()
-{
-    return $this->estado;
-}
-function setIdEmpleado($id_empleado)
-{
-    $this->id_empleado = $id_empleado;
-}
-function getIdEmpleado()
-{
-    return $id_empleado;
+    return $this->permiso;
 }
 
 }
