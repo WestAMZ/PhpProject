@@ -117,16 +117,17 @@
             include(HTML_DIR . 'subcategoria.html');
 
         }
-
         static function getMenuSitio()
         {
             include(HTML_DIR . 'seguimiento.html');
         }
-
-
         static function getPermisos()
         {
             include(HTML_DIR . 'permisos.html');
+        }
+        static function getModalJefe()
+        {
+            include(HTML_DIR . 'modal-seleccionar-jefe.html');
         }
         static function getInsidenciaSitio()
         {

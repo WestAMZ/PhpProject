@@ -226,6 +226,7 @@ class Subcategoria
     static function getFullUrlById($id)
     {
         Connection::connect();
+        $full_url = "";
         $query = "SELECT CONCAT(c.url ,'/',s.url) as full_url FROM  categoria c INNER JOIN sub_categoria s ON c.id_categoria = s.id_categoria WHERE  s.id_subcategoria= '$id'";
         if($result = Connection::getConnection()->query($query))
         {
