@@ -38,5 +38,20 @@ regresa, id_solicitud) VALUES('15', '2' ,CURRENT_DATE(), CURRENT_DATE(), CURRENT
 2);
 UPDATE solicitud SET generado_por = 2 WHERE id_solicitud = 2;
 
+/* Consulta para cargar las insidencias por sitio*/
 
-SELECT * FROM sub_categoria
+SELECT i.id_insidencia AS 'No. Insidencia',
+	   i.estado AS 'Estado',
+	   i.fecha,
+	   i.titulo,
+	   i.descripcion,
+	   CONCAT(e.nombre1, ' ', e.apellido2) AS 'Usuario'
+FROM usuario u INNER JOIN insidencia i ON u.id_usuario = i.id_usuario 
+INNER JOIN empleado e on u.id_empleado = e.id_empleado
+INNER JOIN sitio s ON e.id_sitio = s.id_sitio WHERE s.id_sitio = 1 ORDER BY i.fecha DESC;
+
+USE ebco_sistema;
+INSERT INTO insidencia(fecha, descripcion, nivel, estado, id_usuario, Adjunto, titulo)
+VALUES(CURRENT_DATE(), 'Problemas en el area de RR HH debido al estado de las impresoras'
+, 0, false,1, null, 'Problemas en el area de Recursos Humanos');
+
