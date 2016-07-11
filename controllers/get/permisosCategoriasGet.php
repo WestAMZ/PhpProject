@@ -1,11 +1,5 @@
 <?php
-    /* <div class="input-field col s6 m2">
 
-                    <div class="input-field col s6 m2">
-                        <a id="select-jefe" class="waves-effect waves-light btn">jefe</a>
-                    </div>
-
-                </div>*/
     include_once(MODELS_DIR . 'subcategoria.php');
     include_once(MODELS_DIR . 'categoria.php');
     $categoria = Categoria::getCategoriaByUrl($_GET['url']);
