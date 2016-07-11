@@ -128,6 +128,9 @@
         {
             include(HTML_DIR . 'permisos.html');
         }
-
+        static function getInsidenciaSitio()
+        {
+            include(HTML_DIR . 'insidenciasitio.html');
+        }
     }
 ?>

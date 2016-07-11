@@ -34,7 +34,7 @@ else
             $id = $_GET['id'];
             Connection :: connect();
             $query = "SELECT i.id_insidencia,
-	                         i.estado,terter
+	                         i.estado,
 	                         i.fecha,
 	                         i.titulo,
 	                         i.descripcion,
@@ -57,14 +57,17 @@ else
                 <?php
                     if($row['estado'] == 1)
                     {
-                        $img = 'locked.svg';
+                    ?>
+                        <i class="fa fa-lock" style="font-size:30px;color:red" ></i>
+                    <?php
                     }
                     else
                     {
-                        $img = 'locked-1.svg';
+                    ?>
+                        <i class="fa fa-unlock-alt" style="font-size:30px;color:green" ></i>
+                    <?php
                     }
                  ?>
-                 <img src="<?php IMG_DIR . $img ?>">
             </td>
             <td>
                 <?php echo($row['fecha'])?>
