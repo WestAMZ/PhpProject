@@ -44,7 +44,7 @@ else
                       INNER JOIN empleado e on u.id_empleado = e.id_empleado
                       INNER JOIN sitio s ON e.id_sitio = s.id_sitio WHERE s.id_sitio = '$id'and i.estado = true ORDER BY i.fecha DESC";
 
-            $result = Connection::getConnection()->query($query);
+         $result = Connection::getConnection()->query($query);
         if($result->num_rows > 0)
         {
             while($row = $result->fetch_assoc())
@@ -52,7 +52,7 @@ else
 
 ?>
 
-        <tr id="<?php echo($row['id_insidencia'])?>" class="insidencia">
+        <tr class="seguimiento">
             <td>
                 <?php echo($row['id_insidencia'])?>
             </td>
