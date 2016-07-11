@@ -1,5 +1,5 @@
 <?php
-    include( MODELS_DIR . 'insidencia.php');
+    include_once( MODELS_DIR . 'insidencia.php');
     if(isset($_GET['search']) and $_GET['search'] !='')
     {
     $insidencias = insidencia::Searchininsidencias($_GET['search']);
@@ -42,7 +42,7 @@ else
                              i.adjunto
                       FROM usuario u INNER JOIN insidencia i ON u.id_usuario = i.id_usuario
                       INNER JOIN empleado e on u.id_empleado = e.id_empleado
-                      INNER JOIN sitio s ON e.id_sitio = s.id_sitio WHERE s.id_sitio = '$id' ORDER BY i.fecha DESC";
+                      INNER JOIN sitio s ON e.id_sitio = s.id_sitio WHERE s.id_sitio = '$id'and i.estado = true ORDER BY i.fecha DESC";
 
             $result = Connection::getConnection()->query($query);
             while($row = $result->fetch_assoc())
