@@ -117,5 +117,10 @@
             include(HTML_DIR . 'subcategoria.html');
 
         }
+        static function getMenuSitio()
+        {
+            include(HTML_DIR . 'seguimiento.html');
+        }
+
     }
 ?>

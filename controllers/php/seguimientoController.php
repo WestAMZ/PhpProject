@@ -1,5 +1,5 @@
 <?php
-    App::getHead('Seguimiento');
+    App::getHead('Seguimientos');
 ?>
 
 
@@ -9,5 +9,5 @@
 <?php
     App::getLeftMain();
     App::getRightMain();
-    App::getSeguimientos();
+    App::getMenuSitio();
 ?>
