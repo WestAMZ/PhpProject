@@ -1,7 +1,12 @@
 $(document).ready(function ()
 {
 
-    $('#table').on('click','.sitio',function()
+  $(document).ready(function(){
+    $('ul.tabs').tabs();
+  });
+
+
+    $('#table').on('click','.insidencia',function()
     {
         $('#table .selected').removeClass('selected');
         $(this).toggleClass('selected');

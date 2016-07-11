@@ -38,7 +38,8 @@ else
 	                         i.fecha,
 	                         i.titulo,
 	                         i.descripcion,
-	                         CONCAT(e.nombre1, ' ', e.apellido2) AS 'usuario'
+	                         CONCAT(e.nombre1, ' ', e.apellido2) AS 'usuario',
+                             i.adjunto
                       FROM usuario u INNER JOIN insidencia i ON u.id_usuario = i.id_usuario
                       INNER JOIN empleado e on u.id_empleado = e.id_empleado
                       INNER JOIN sitio s ON e.id_sitio = s.id_sitio WHERE s.id_sitio = '$id' ORDER BY i.fecha DESC";
@@ -58,14 +59,14 @@ else
                     if($row['estado'] == 1)
                     {
                     ?>
-                        <i class="fa fa-lock" style="font-size:30px;color:red" ></i>
+                    <i class="fa fa-lock" style="font-size:30px;color:red"></i>
                     <?php
                     }
                     else
                     {
                     ?>
-                        <i class="fa fa-unlock-alt" style="font-size:30px;color:green" ></i>
-                    <?php
+                        <i class="fa fa-unlock-alt" style="font-size:30px;color:green"></i>
+                        <?php
                     }
                  ?>
             </td>
@@ -80,6 +81,18 @@ else
             </td>
             <td>
                 <?php echo($row['usuario'])?>
+            </td>
+            <td>
+                <?php
+                    if($row['adjunto'] != null)
+                    {
+                 ?>
+                    <a href="<?php echo(INSIDENCIAS_DIR . $row['adjunto'])?>"> <i class="fa fa-paperclip" style="font-size:20px;color:blue"></i>
+                        <?php echo($row['adjunto']) ?>
+                    </a>
+                    <?php
+                    }
+                ?>
             </td>
         </tr>
         <?php
