@@ -12,6 +12,12 @@ $(document).ready(function()
 
     });
 
+    if($('[name = "editar"]').prop('checked') == true)
+    {
+        updateCategoria(data,result,modal,ms);
+        searchSubCategoria('',$("#table"));
+    }
+
     $('#table').on('click','.subcategoria',function()
     {
         $('#table .selected').removeClass('selected');
@@ -43,6 +49,15 @@ $(document).ready(function()
         }
     });
 
+    $('#searchtxt').keypress(
+        function(e)
+        {
+            //condicion para linpiar de caracteres especiales (no alfa nunmericos)
+            var pressed = (e.key.toString().length == 1)? e.key :'';
+            var search = $(this).val()+ pressed;
+            searchSubcategoria(search,$('#table'));
+        });
+
 });
 
 function agregarSubcategoria(data,modal,message_area_modal)
@@ -65,6 +80,7 @@ function agregarSubcategoria(data,modal,message_area_modal)
                                 message_area_modal.html("<img src='views/img/success.png'></img> Se ha creado subcategoría");
                                 modal.openModal();
                                 $('#result').html('');
+                                searchSubcategoria('',$('#table'));
                             }
                             else
                             {
@@ -125,11 +141,12 @@ function getSubCategoria(id)
         if(http.readyState == 4 && http.status ==200)
         {
             //Respuesta recivida
-           var subcategoria = JSON.parse(http.responseText).subcategoria[0];
+            var subcategoria = JSON.parse(http.responseText).subcategoria[0];
             if(subcategoria != null)
             {
+                subcategoria = subcategoria[0];
                 $('[name= "id_subcategoria"]').val(subcategoria.id_subcategoria);
-
+                $('[name= "nombre"]').val(subcategoria.nombre);
             }
 
         }
@@ -141,4 +158,37 @@ function getSubCategoria(id)
     http.open('GET','?get=subcategoria&id='+id);
     http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     http.send(null);
+}
+
+function searchSubcategoria(search,table)
+{
+    $url = $('[name="url"]').val();
+    $.ajax(
+    {
+        url: '?get=subcategorias_table&search='+search+'&url='+$url,
+        type: 'POST',
+        data: null,
+        dataType: "html",
+        cache: false,
+        contentType: false,
+        processData: false,
+        beforeSend:function()
+                    {
+                        text = '<div class="alert alert-dismissible alert-info center s12 m12">' +
+                        '<button type="button" class="close" data-dismiss="alert">&times;</button>' +
+                        '<img src="views/img/load2.gif"></img> Cargando...</div>';
+                        table.html(text);
+                    },
+        complete: function(res)
+                    {
+                        try
+                        {
+                            table.html(res.responseText);
+                        }
+                        catch (e)
+                        {
+                            table.html(res.responseText);
+                        }
+                    }
+    });
 }

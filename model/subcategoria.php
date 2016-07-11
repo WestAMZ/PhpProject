@@ -94,7 +94,6 @@ class Subcategoria
             $categoria_url = $row['url'];
 
             $query = "INSERT INTO sub_categoria(nombre, img, id_categoria, url, estado) VALUES('$this->nombre', '$this->img', '$this->id_categoria', '$this->url', '1')";
-            echo($query);
             if(mkdir(DOCS_DIR . $categoria_url . '/' . $this->url , 0777 ))
             {
                 if(Connection :: getConnection() -> query($query))
