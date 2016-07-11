@@ -75,7 +75,16 @@ class Subcategoria
     }
     function getVista()
     {
-        return $this->vista;
+        $vista="";
+        if($this->vista != "")
+        {
+            $vista = "view=" . $this->vista;
+        }
+        else
+        {
+            $vista = "view=archivo&id=".$this->id_subcategoria;
+        }
+        return $vista;
     }
     function add_error()
     {
@@ -213,6 +222,26 @@ class Subcategoria
         }
         Connection :: close();
         return $subcategorias;
+    }
+    static function getFullUrlById($id)
+    {
+        Connection::connect();
+        $full_url = "";
+        $query = "SELECT CONCAT(c.url ,'/',s.url) as full_url FROM  categoria c INNER JOIN sub_categoria s ON c.id_categoria = s.id_categoria WHERE  s.id_subcategoria= '$id'";
+        if($result = Connection::getConnection()->query($query))
+        {
+            if($result->num_rows >0)
+            {
+                $row = $result->fetch_assoc();
+                $full_url =$row['full_url'];
+            }
+        }
+        else
+        {
+            echo(Connection::getConnection()->error);
+        }
+        Connection::close();
+        return $full_url;
     }
 }
 ?>

@@ -1,22 +1,21 @@
 $(document).ready(function ()
 {
 
-    $('#table').on('click','.sitio',function()
+  $(document).ready(function(){
+    $('ul.tabs').tabs();
+  });
+
+
+    $('#table').on('click','.insidencia',function()
     {
+        alert('hola');
         $('#table .selected').removeClass('selected');
         $(this).toggleClass('selected');
         id = $(this).attr('id');
         alert(id);
 
     });
-    $('#searchtxt').keypress(
-        function(e)
-        {
-            //condicion para linpiar de caracteres especiales (no alfa nunmericos)
-            var pressed = (e.key.toString().length == 1)? e.key :'';
-            var search = $(this).val()+ pressed;
-            searchSitios(search,$('#table'));
-        });
+
 });
 function searchSitios(search,table)
 {

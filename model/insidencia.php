@@ -117,20 +117,24 @@
             Connection :: close();
             return $added;
         }
-        static function getInsidencias()
+        static function getInsidencias($id)
         {
             Connection :: connect();
-            $query = "SELECT i.`id_insidencia` as id_insidencia, DATE_FORMAT(i.`fecha`,'%W %D %M %Y') as fecha, i.`descripcion` as descripcion, i.`nivel` as nivel, i.`estado` as estado, i.`id_usuario` as id_usuario, i.`adjunto` as archivo  FROM `insidencia` i
-ORDER BY id_insidencia DESC";
+            $query = "SELECT i.id_insidencia,
+	                         i.estado,
+	                         i.fecha,
+	                         i.titulo,
+	                         i.descripcion,
+	                         CONCAT(e.nombre1, ' ', e.apellido2) AS 'Usuario'
+                      FROM usuario u INNER JOIN insidencia i ON u.id_usuario = i.id_usuario
+                      INNER JOIN empleado e on u.id_empleado = e.id_empleado
+                      INNER JOIN sitio s ON e.id_sitio = s.id_sitio WHERE s.id_sitio = '$id' ORDER BY i.fecha DESC";
+
             $result = Connection::getConnection()->query($query);
-            $insidencias = array();
-            while($row = $result->fetch_assoc())
-            {
-                $insidencia = new Insidencia($row['id_insidencia'],$row['fecha'],$row['descripcion'],$row['nivel'],$row['estado'],$row['id_usuario'],$row['archivo']);
-                array_push($insidencias,$insidencia);
-            }
+            $row = $result->fetch_assoc();
+
             Connection ::close();
-            return $insidencias;
+            return $row;
         }
         static function uploadfile($filename)
         {

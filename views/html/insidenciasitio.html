@@ -1,30 +1,67 @@
 <div id="menu-container">
-    <form id="forminsidencia" class="col s10 m10 offset-m1 offset-s1 panelbackground">
+    <div class="col s10 m10 offset-m1 offset-s1 panelbackground">
         <hr>
-        <h5 class="center">Insidencias del Sitio</h5>
+        <h5 class="center">Incidencias del Sitio</h5>
         <hr>
-        <div class="col s12 m12 offset-m3" style="margin-top:50px">
-            <i class="material-icons prefix">search</i>
-            <input id="searchtxt" type="text" class="validate center" placeholder="Buscar insidencia">
-        </div>
-        <div class="row">
-            <table id="table" class="col s12 m12 centered bordered scroll-y">
-                <thead>
-                    <tr>
-                        <th data-field="id">No. Insidencia</th>
-                        <th data-field="estado">Estado</th>
-                        <th data-field="fecha">Fecha</th>
-                        <th data-field="titulo">Titulo</th>
-                        <th data-field="contenido">Contenido</th>
-                        <th data-field="usuario">Usuario</th>
-                    </tr>
-                </thead>
-                <tbody id="table">
-                    <?php include( GET_DIR . 'insidenciatableGet.php')?>
-                </tbody>
-            </table>
-        </div>
-    </form>
+        <ul class=" tabs tab-profile z-depth-3 red">
+            <li class="tab col s4">
+                <a class="white-text waves-effect waves-light" href="#forminsidencia">Seguimientos Resueltos                </a>
+            </li>
+            <li class="tab col s4">
+                <a class="white-text waves-effect waves-light" href="#forminsidencianoresuelta">Seguimientos Sin Resolver
+                </a>
+            </li>
+        </ul>
+
+
+        <form id="forminsidencia">
+            <div class="col s12 m12 center" style="margin-top:50px">
+                <i class="material-icons prefix">search</i>
+                <input id="searchtxt" type="text" class="validate center" placeholder="Buscar incidencia">
+            </div>
+            <div class="row">
+                <table id="table" class="col s12 m12 centered bordered scroll-y">
+                    <thead>
+                        <tr>
+                            <th data-field="id">No. Incidencia</th>
+                            <th data-field="estado">Estado</th>
+                            <th data-field="fecha">Fecha</th>
+                            <th data-field="titulo">Titulo</th>
+                            <th data-field="contenido">Contenido</th>
+                            <th data-field="usuario">Usuario</th>
+                        </tr>
+                    </thead>
+                    <tbody id="table">
+                        <?php include( GET_DIR . 'insidenciatableresueltaGet.php')?>
+                    </tbody>
+                </table>
+            </div>
+        </form>
+
+        <form id="forminsidencianoresuelta">
+            <div class="col s12 m12 center" style="margin-top:50px">
+                <i class="material-icons prefix">search</i>
+                <input id="searchtxt" type="text" class="validate center" placeholder="Buscar incidencia">
+            </div>
+            <div class="row">
+                <table id="table" class="col s12 m12 centered bordered scroll-y">
+                    <thead>
+                        <tr>
+                            <th data-field="id">No. Incidencia</th>
+                            <th data-field="estado">Estado</th>
+                            <th data-field="fecha">Fecha</th>
+                            <th data-field="titulo">Titulo</th>
+                            <th data-field="contenido">Contenido</th>
+                            <th data-field="usuario">Usuario</th>
+                        </tr>
+                    </thead>
+                    <tbody id="table">
+                        <!--<?php include( GET_DIR . 'insidenciatableresueltaGet.php')?> -->
+                    </tbody>
+                </table>
+            </div>
+        </form>
+    </div>
 </div>
 </div>
 
