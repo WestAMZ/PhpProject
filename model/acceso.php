@@ -58,4 +58,10 @@ static function getAccesoByEmpleadoAndCategoria($id_empleado, $id_categoria)
     Connection :: close();
     return $accesos;
 }
+
+static function saveAcceso()
+{
+
+}
+
 ?>
