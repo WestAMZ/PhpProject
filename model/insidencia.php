@@ -196,10 +196,20 @@
 
         static function cambiarEstado($id,$estado)
         {
+            echo("id " . $id);
+            echo("estado" . $estado);
             Connection::connect();
             $query = "UPDATE `insidencia` SET `estado`= '$estado' WHERE id_insidencia = '$id'";
-            Connection::getConnection()->query($query);
-            echo(Connection::getConnection()->affected_rows );
+
+            if( Connection::getConnection()->query($query))
+            {
+                echo('se ejecuto bien');
+            }
+            else
+            {
+                echo('se ejecuto mal');
+            }
+            echo(Connection::getConnection()->affected_rows);
             Connection::close();
         }
     }

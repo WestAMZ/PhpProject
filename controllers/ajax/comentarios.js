@@ -7,7 +7,8 @@
         result = $(this).children('.result-comentario');
         var comentarios = $(this).children('.collection');
         agregarcomentario('?post=comentario', data, result, $('#myModal'), $('#message'));
-        loadInsidencias($('#insidencias'),result,null,null);
+      window.location.reload();
+      //  loadInsidencias($('#insidencias'),result,null,null);
         //loadComentarios(comentarios,result,id);
 
         return false;
@@ -37,7 +38,8 @@
             var ms = $('#message');
 
             updatecomentario(data,null, modal, ms);
-            loadInsidencias($('#insidencias'),null,null,null);
+           // loadInsidencias($('#insidencias'),null,null,null);
+             window.location.reload();
             return false;
         });
 

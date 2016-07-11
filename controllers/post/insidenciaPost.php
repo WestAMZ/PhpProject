@@ -39,17 +39,17 @@
                 }
             }
             //modificar
-            else if($_GET['mod']==1)
+            else if($_GET['mod']== 1)
             {
 
             }
             //cambiar estado
-            else if($_GET['mod']==2)
+            else if($_GET['mod']== 2)
             {
-                echo('get');
                 $id = $_GET['id'];
                 $estado = $_GET['estado'];
                 Insidencia::cambiarEstado($id,$estado);
+                echo("1");
             }
 
     //}
