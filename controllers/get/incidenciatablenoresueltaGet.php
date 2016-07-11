@@ -133,6 +133,9 @@ else
                     }
                 ?>
             </td>
+            <td>
+                <a href="?view=insidencia">Ver Comentarios</a>
+            </td>
         </tr>
         <?php
             }

@@ -135,6 +135,9 @@ else
                     }
                 ?>
             </td>
+             <td>
+            <a href="?view=insidencia&id=<?php echo($row['id_insidencia'])?>" >Ver Comentarios</a>
+            </td>
         </tr>
         <?php
             }
