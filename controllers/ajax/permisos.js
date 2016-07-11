@@ -35,7 +35,7 @@ $(document).ready(function ()
 });
 
 
-function guar(data,modal,message_area_modal)
+function guardarCambios(data,modal,message_area_modal)
 {
     $.ajax(
     {
