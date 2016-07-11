@@ -14,7 +14,10 @@ $(document).ready(function()
 
     if($('[name = "editar"]').prop('checked') == true)
     {
-        updateCategoria(data,result,modal,ms);
+        var data = formulario.serialize();
+        var ms = $('#message');
+        var modal = $('#myModal');
+        updateSubcategoria(data,modal,ms);
         searchSubCategoria('',$("#table"));
     }
 

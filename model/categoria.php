@@ -7,7 +7,7 @@ class Categoria
     var $url;
     var $estado;
     var $add_error;
-
+    var $vista;
     // CONSTRUCT
     public function __construct(){}
   /*  function __construct($id_categoria, $nombre, $img, $url)
@@ -71,11 +71,27 @@ class Categoria
     {
         return $this->add_error;
     }
-
+    function setVista($vista)
+    {
+        $this->vista = $vista;
+    }
+    function getVista()
+    {
+        $vista="";
+        if($this->vista != "")
+        {
+            $vista = "view=" . $this->vista;
+        }
+        else
+        {
+            $vista = "url=" . $this->url;
+        }
+        return $vista;
+    }
     static function getCategorias()
     {
         Connection :: connect();
-        $query = 'SELECT id_categoria,estado, nombre, img, url FROM categoria where estado = true';
+        $query = 'SELECT id_categoria,estado, nombre, img, url , vista FROM categoria where estado = true';
         $result = Connection :: getConnection()->query($query);
         $categorias = array();
         if($result->num_rows > 0)
@@ -88,6 +104,7 @@ class Categoria
                 $categoria->setNombre($row['nombre']);
                 $categoria->setImg($row['img']);
                 $categoria->setUrl($row['url']);
+                $categoria->setVista($row['vista']);
                 array_push($categorias, $categoria);
             }
         }
