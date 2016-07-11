@@ -9,8 +9,9 @@
         var $estado;
         var $id_usuario;
         var $adjunto;
+        var $titulo;
 
-        function __construct($id_insidencia,$fecha,$descripcion,$nivel,$estado,$id_usuario,$adjunto)
+        function __construct($id_insidencia,$fecha,$descripcion,$nivel,$estado,$id_usuario,$adjunto, $titulo)
         {
             $this->id_insidencia = $id_insidencia;
             $this->fecha = $fecha;
@@ -19,6 +20,7 @@
             $this->estado = $estado;
             $this->id_usuario = $id_usuario;
             $this->adjunto = $adjunto;
+            $this->titulo = $titulo;
         }
 
         /*
@@ -52,10 +54,17 @@
         {
             $this->adjunto = $adjunto;
         }
-
+        function setTitulo($titulo)
+        {
+            $this->titulo = $titulo;
+        }
         /*
             Metodos getters
         */
+        function getTitulo()
+        {
+            return $this->titulo;
+        }
         function getId_Insidencia()
         {
             return $this->id_insidencia;
