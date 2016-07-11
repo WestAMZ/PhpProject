@@ -117,5 +117,9 @@
             include(HTML_DIR . 'subcategoria.html');
 
         }
+        static function getPermisos()
+        {
+            include(HTML_DIR . 'permisos.html');
+        }
     }
 ?>
