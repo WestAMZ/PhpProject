@@ -24,6 +24,15 @@ $(document).ready(function()
 
     });
 
+     $('#table').on('click','.cambiar-estado',function()
+    {
+        //invertimos el estado
+        estado = ($(this).attr('estado') == 0 )? '1' : '0';
+        id = $(this).attr('id');
+
+        cambiarEstado(id,estado);
+    });
+
     $('#searchtxt').keypress(
         function(e)
         {
@@ -56,6 +65,7 @@ function agregarArchivo(archivo,data,modal,message_area_modal)
                                 message_area_modal.html("<img src='views/img/success.png'></img> El archivo ha sido cargado");
                                 modal.openModal();
                                 $('#result').html('');
+                                searchArchivos("",$('[name="id_subcategoria"]').val(),$('#table'));
                             }
                             else
                             {

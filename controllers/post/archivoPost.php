@@ -76,4 +76,12 @@
         }
 
     }
+    else if($_GET['mod']==2)
+    {
+
+        if(Archivo::cambiarEstado($_GET['id'],$_GET['estado']))
+        {
+            echo('1');
+        }
+    }
 ?>

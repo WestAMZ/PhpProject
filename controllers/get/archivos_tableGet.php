@@ -15,7 +15,8 @@
     {
         $id = $archivo->getIdArchivo();
         $estado = $archivo->getEstado();
-        $nombre_usuario = Usuario::getNameUser($id);
+        $id_usuario = $archivo->getIdUsuario();
+        $nombre_usuario = Usuario::getNameUser($id_usuario);
     ?>
 
     <tr class="categoria">
