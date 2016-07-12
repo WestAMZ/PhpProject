@@ -4,13 +4,17 @@
         <h5 class="center black-text">Gestion de Permisos</h5>
         <hr>
         <br>
+        <input type="hidden" name="id_usuario" value="" required>
         <div class="row">
-           <a id = "select-usuario" class="waves-effect waves-light btn small s12 m1 red">Usuario</a>
-            <input id="id_usuario" name="id_usuario" type="text" class="validate col s12 m2 center" name="" placeholder="usuario">
+           <a id = "select-usuario" class="waves-effect waves-light btn small s12 m6 red">Usuario</a>
+            <input id="nombre_empledo" name="nombre_empledo" type="text" class="validate col s12 m4 center" name="" placeholder="usuario">
         </div>
         <div class="row">
             <?php include(GET_DIR.'permisosCategoriasGet.php')?>
          </div>
+         <div class="input-field col s12 m4 center">
+                <button type="submit" class="waves-effect waves-light btn green" id="accion">Guardar cambios</button>
+            </div>
     </form>
 </div>
 
