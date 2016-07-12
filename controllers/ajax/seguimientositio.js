@@ -17,13 +17,13 @@ $(document).ready(function ()
         $(this).toggleClass('selected');
     });
 
-    $('#searchtxt').keypress(
+    $('#searchtxt2').keypress(
         function(e)
         {
-            var pressed = (e.key.toString().length == 1) ? e.key :'';
+            alert('nada');
+            var pressed = (e.key.toString().length == 1)? e.key :'';
             var search = $(this).val()+ pressed;
-            id =$('[name= "id_sitio"]').val();
-            searchnoresuelta(search,$('#table2'),id);
+            searchnoresuelta(search,$('#table2'));
         });
 
 });
@@ -50,7 +50,7 @@ $("#agregarinsidencia").submit(function ()
     return false;
 });
 
-function searchnoresuelta(search, table,id) {
+function searchnoresuelta(search, table) {
     httpL = Connect();
     httpL.onreadystatechange = function () {
         if (httpL.readyState == 4 && httpL.status == 200) {
@@ -62,7 +62,7 @@ function searchnoresuelta(search, table,id) {
             table.html(text);
         }
     }
-    httpL.open('GET', '?get=incidenciatablenoresuelta&search=' + search+'&id=' + id);
+    httpL.open('GET', '?get=incidenciatablenoresuelta&search=' + search);
     httpL.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     httpL.send(null);
 }
@@ -86,13 +86,13 @@ function agregarinsidencia(archivo,data,result,modal,message_area_modal)
                             {
                                 message_area_modal.html("<img src='views/img/success.png'></img> la insidencia ha sido posteada");
                                 modal.openModal();
-                                //result.html('');
+                                result.html('');
                             }
                             else
                             {
                                 text = '<div class="alert alert-dismissible alert-danger">' +
                                 '<button type="button" class="close" data-dismiss="alert">&times;</button>' + http.responseText + '</div>';
-                              //  result.html(http.responseText);
+                                result.html(http.responseText);
                             }
                         }
                         catch (e)
@@ -101,4 +101,28 @@ function agregarinsidencia(archivo,data,result,modal,message_area_modal)
                         }
                     }
     });
+}
+ function loadInsidencias(div,result,modal,message_area_modal)
+{
+    http = Connect();
+    http.onreadystatechange = function()
+    {
+        if(http.readyState == 4 && http.status ==200)
+        {
+            div.html(http.responseText);
+            message_area_modal.html("<img src='views/img/success.png'></img> La insidencia ha sido publicada satisfactoriamente");
+            modal.openModal();
+            result.html('');
+        }
+        else if(http.readyState != 4)
+        {
+            text = '<div class="alert alert-dismissible alert-info center s12 m12">' +
+                '<button type="button" class="close" data-dismiss="alert">&times;</button>' +
+                '<img src="views/img/load2.gif"></img> Cargando...</div>';
+            div.html(text);
+        }
+    }
+    http.open('GET','?get=insidencias');
+    http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    http.send(null);
 }
