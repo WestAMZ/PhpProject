@@ -43,8 +43,10 @@ $("#agregarinsidencia").submit(function ()
     var ms = $('#message');
     var modal = $('#myModal');
 
+    id =$('[name= "id_sitio"]').val();
+
     agregarinsidencia(archivo ,data, result, modal, ms);
-  //  loadInsidencias($('#insidencias'),result,modal,ms);
+    searchnoresuelta(' ',$('#table2'),id);
     return false;
 });
 
