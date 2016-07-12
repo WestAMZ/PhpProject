@@ -56,7 +56,7 @@ $("#agregarinsidencia").submit(function ()
     id =$('[name= "id_sitio"]').val();
 
     agregarinsidencia(archivo ,data, result, modal, ms);
-    searchnoresuelta('',$('#table2'),id);
+    searchnoresuelta(' ',$('#table2'),id);
 
     return false;
 });

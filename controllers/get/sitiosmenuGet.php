@@ -14,6 +14,7 @@
                 <?php echo($sitio->getName())?>
             </p>
         </div>
+         <span class="new badge green">4</span>
     </a>
     <?php
      }

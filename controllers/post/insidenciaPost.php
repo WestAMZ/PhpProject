@@ -26,16 +26,24 @@
                 }
 
 
+                $insidencia = new Insidencia();
+                $insidencia->setId_Insidencia(null);
+                $insidencia->setFecha(null);
+                $insidencia->setDescripcion($_GET['descripcion']);
+                $insidencia->setNivel(0);
+                $insidencia->setEstado(0);
+                $insidencia->setId_Usuario($_SESSION['id_usuario']);
+                $insidencia->setAdjunto($nombre);
+                $insidencia->setTitulo($_GET['titulo']);
 
-
-                $insidencia = new Insidencia(null,null,$_GET['descripcion'],0,0,$_SESSION['id_usuario'],$nombre, $_GET['titulo']);
                 if($insidencia->saveInsidencia())
                 {
                     echo ('1');
                 }
-                    else
+                else
                 {
-                    echo ($insidencia->add_error());
+                    echo('no lo inserto');
+                   // echo ($insidencia->add_error());
                 }
             }
             //modificar
@@ -52,5 +60,5 @@
                 echo("1");
             }
 
-    //}
+    //
 ?>

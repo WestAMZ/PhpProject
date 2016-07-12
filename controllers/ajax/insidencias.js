@@ -1,3 +1,4 @@
+/*
 $("#agregarinsidencia").submit(function ()
 {
     var data = $("#agregarinsidencia").serialize();
@@ -18,7 +19,7 @@ $("#agregarinsidencia").submit(function ()
     loadInsidencias($('#insidencias'),result,modal,ms);
     return false;
 });
-
+*/
 /*
         $("#agregarinsidencia").on("submit", function(e)
         {

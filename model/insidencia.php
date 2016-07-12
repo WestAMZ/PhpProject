@@ -100,21 +100,17 @@
 
         function saveInsidencia()
         {
-            $added = false;
-            try
-            {
+                $added = false;
                 Connection :: connect();
-                $query = "INSERT INTO `insidencia`(`fecha`,`descripcion`,`nivel`,`estado`,`id_usuario`,`adjunto`) VALUES(CURRENT_DATE,'$this->descripcion','$this->nivel','$this->estado','$this->id_usuario','$this->adjunto')";
-                $result = Connection :: getConnection() -> query($query);
-                $added = true;
-
-
-            }catch(Exception $e)
-            {
-                $this->add_error = '<div class="alert alert-dismissible alert-danger">
-                    <button type="button" class="close" data-dismiss="alert">&times;</button>
-                    ha ocurrido un error :/ </div>';
-            }
+                $query = "INSERT INTO `insidencia`(`fecha`,`descripcion`,`nivel`,`estado`,`id_usuario`,`adjunto`,`titulo`) VALUES(CURRENT_DATE,'$this->descripcion','$this->nivel','$this->estado','$this->id_usuario','$this->adjunto','$this->titulo')";
+                if($result = Connection :: getConnection() -> query($query))
+                {
+                    $added = true;
+                }
+                else
+                {
+                   echo(Connection::getConnection()->error);
+                }
 
             Connection :: close();
             return $added;
@@ -165,9 +161,6 @@
                 $incidencia->setId_Usuario($row['id_usuario']);
                 $incidencia->setAdjunto($row['adjunto']);
                 $incidencia->setTitulo($row['titulo']);
-                /*
-                $incidencia = new Insidencia($row['id_insidencia'], $row['fecha'],$row['descripcion'], 0, $row['estado'], $row['id_usuario'], $row['adjunto'], $row['titulo']);
-                */
             }
         Connection :: close();
         return $incidencia;
