@@ -17,6 +17,15 @@ $(document).ready(function ()
         $(this).toggleClass('selected');
     });
 
+    $('#searchtxt').keypress(
+        function(e)
+        {
+            var pressed = (e.key.toString().length == 1)? e.key :'';
+            var search = $(this).val()+ pressed;
+            id = $('[name= "id_sitio"]').val();
+            searchresuelta(search,$('#table1'),id);
+        });
+
     $('#searchtxt2').keypress(
         function(e)
         {
@@ -25,6 +34,7 @@ $(document).ready(function ()
             id = $('[name= "id_sitio"]').val();
             searchnoresuelta(search,$('#table2'),id);
         });
+
 
 });
 $("#agregarinsidencia").submit(function ()
@@ -46,7 +56,8 @@ $("#agregarinsidencia").submit(function ()
     id =$('[name= "id_sitio"]').val();
 
     agregarinsidencia(archivo ,data, result, modal, ms);
-    searchnoresuelta(' ',$('#table2'),id);
+    searchnoresuelta('',$('#table2'),id);
+
     return false;
 });
 
@@ -63,6 +74,22 @@ function searchnoresuelta(search, table,id) {
         }
     }
     httpL.open('GET', '?get=incidenciatablenoresuelta&search=' + search+'&id=' + id);
+    httpL.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    httpL.send(null);
+}
+function searchresuelta(search, table,id) {
+    httpL = Connect();
+    httpL.onreadystatechange = function () {
+        if (httpL.readyState == 4 && httpL.status == 200) {
+            table.html(httpL.responseText);
+        } else if (httpL.readyState != 4) {
+            text = '<div class="alert alert-dismissible alert-info center s12 m12">' +
+                '<button type="button" class="close" data-dismiss="alert">&times;</button>' +
+                '<img src="views/img/load2.gif"></img> Cargando...</div>';
+            table.html(text);
+        }
+    }
+    httpL.open('GET', '?get=insidenciatableresuelta&search=' + search+'&id=' + id);
     httpL.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     httpL.send(null);
 }
