@@ -3,12 +3,12 @@
     include_once (MODELS_DIR . 'usuario.php');
     include(MODELS_DIR . 'comentario.php');
 
-    $insidencias = Insidencia :: getInsidencias();
-    foreach ($insidencias as &$insidencia)
-    {
+    $insidencia = Insidencia :: getIncidenciasById($_GET['id']);
+//    foreach ($insidencias as &$insidencia)
+//    {
         if($insidencia->getId_Usuario() == $_SESSION['id_usuario'])
         {
-            if($insidencia->getEstado() == 1)
+            if($insidencia->getEstado() == 0 )
             {
 ?>
 
@@ -184,7 +184,7 @@
         }
         else
         {
-            if($insidencia->getEstado() == 1)
+            if($insidencia->getEstado() == 0)
             {
         ?>
 
@@ -355,5 +355,5 @@
 <?php
             }
         }
-    }
+   // }
 ?>
