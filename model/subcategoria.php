@@ -190,18 +190,18 @@ class Subcategoria
         {
             while($row = $result->fetch_assoc())
             {
-                $subcategoria = new Categoria();
+                $subcategoria = new Subcategoria();
                 $subcategoria->setEstado($row['estado']);
-                $subcategoria->setIdCategoria($row['id_subcategoria']);
+                $subcategoria->setIdSUbcategoria($row['id_subcategoria']);
                 $subcategoria->setNombre($row['nombre']);
                 $subcategoria->setImg($row['img']);
                 $subcategoria->setUrl($row['url']);
                 $subcategoria->setIdCategoria($row['id_categoria']);
-                array_push($categorias, $categoria);
+                array_push($subcategorias, $subcategoria);
             }
         }
         Connection :: close();
-        return $categorias;
+        return $subcategorias;
     }
     static function getSubcategoriaById($id_subcategoria)
     {
@@ -242,6 +242,38 @@ class Subcategoria
         }
         Connection::close();
         return $full_url;
+    }
+    function updateSubcategoria()
+    {
+        $added = false;
+        Connection::connect();
+        $query= "UPDATE `sub_categoria` SET `nombre`='$this->nombre'  WHERE id_subcategoria ='$this->id_subcategoria' ";
+        if($result = Connection::getConnection()->query($query))
+        {
+            $added = true;
+        }
+        else
+        {
+            echo(Connection::getConnection()->error);
+        }
+        Connection::close();
+        return $added;
+    }
+    static function cambiarEstado($id,$estado)
+    {
+        $added = false;
+        Connection::connect();
+        $query= "UPDATE `sub_categoria` SET `estado`='$estado'  WHERE id_subcategoria ='$id' ";
+        if($result = Connection::getConnection()->query($query))
+        {
+            $added = true;
+        }
+        else
+        {
+            echo(Connection::getConnection()->error);
+        }
+        Connection::close();
+        return $added;
     }
 }
 ?>
