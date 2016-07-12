@@ -213,7 +213,7 @@ function cambiarEstado(id,estado)
                         {
                             if(res.responseText==1)
                             {
-                                $('#message').html('Se ha cambiado el estado dela categoría');
+                                $('#message').html('Se ha cambiado el estado de la categoría');
                                 $('#myModal').openModal();
                                 searchCategoria("",$('#table'));
                             }
@@ -268,7 +268,7 @@ function updateCategoria(data,result,modal,message_area_modal)
 
             if (http.responseText == 1)
             {
-                message_area_modal.html("<img src='views/img/success.png'></img> El aviso ha sido modificado con exíto");
+                message_area_modal.html("<img src='views/img/success.png'></img> La categoría se ha modifícado con exíto");
                 modal.openModal();
                 result.html('');
             }

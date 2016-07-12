@@ -31,8 +31,11 @@
             $subcategoria->setNombre($_POST['nombre']);
             $subcategoria->setUrl(null);
             $subcategoria->setEstado(null);
-            $subcategoria->updateSubcategoria();
-            echo('1');
+            if($subcategoria->updateSubcategoria())
+            {
+                echo('1');
+            }
+
         }
         //mode 2: cambio de estado
         else if($_GET['mod']==2)

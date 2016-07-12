@@ -7,19 +7,18 @@ $(document).ready(function()
         var data = formulario.serialize();
         var ms = $('#message');
         var modal = $('#myModal');
-        agregarSubcategoria(data,modal,ms);
+        if($('[name = "editar"]').prop('checked') == false)
+        {
+            agregarSubcategoria(data,modal,ms);
+        }
+        else
+        {
+            updateSubcategoria(data,modal,ms);
+        }
 
 
     });
 
-    if($('[name = "editar"]').prop('checked') == true)
-    {
-        var data = formulario.serialize();
-        var ms = $('#message');
-        var modal = $('#myModal');
-        updateSubcategoria(data,modal,ms);
-        searchSubCategoria('',$("#table"));
-    }
 
     $('#table').on('click','.subcategoria',function()
     {
@@ -32,12 +31,12 @@ $(document).ready(function()
 
             getSubCategoria(id_mod);
         }
-       else
-           {
-                $('[name= "id_subcategoria"]').val(0);
-                $('[name= "nombre"]').val("");
-               $('[name= "id_categoria"]').val(0);
-           }
+        else
+        {
+             $('[name= "id_subcategoria"]').val(0);
+             $('[name= "nombre"]').val("");
+             $('[name= "id_categoria"]').val(0);
+        }
     });
 
     //modificacion de texto de boton
@@ -60,6 +59,16 @@ $(document).ready(function()
             var search = $(this).val()+ pressed;
             searchSubcategoria(search,$('#table'));
         });
+
+    //Cambio de estado
+    $('#table').on('click','.cambiar-estado',function()
+    {
+        //invertimos el estado
+        estado = ($(this).attr('estado') == 0 )? '1' : '0';
+        id = $(this).attr('id');
+
+        cambiarEstado(id,estado);
+    });
 
 });
 
@@ -194,4 +203,80 @@ function searchSubcategoria(search,table)
                         }
                     }
     });
+}
+
+function cambiarEstado(id,estado)
+{
+    data = '&mod=2&'+'id='+id+'&estado='+estado;
+
+    $.ajax(
+    {
+        url: '?post=subcategoria'+data,
+        type: 'POST',
+        data: null,
+        dataType: "html",
+        cache: false,
+        contentType: false,
+        processData: false,
+        complete: function(res)
+                    {
+
+                        try
+                        {
+                            if(res.responseText==1)
+                            {
+                                $('#message').html('Se ha cambiado el estado de la subcategoría');
+                                $('#myModal').openModal();
+                                searchSubcategoria("",$('#table'));
+                            }
+                            else
+                            {
+                                $('#message').html('Se ha ocurrido un error');
+                                $('#myModal').openModal();
+                            }
+                        }
+                        catch (e)
+                        {
+                            $('#message').html(res.responseText);
+                                $('#myModal').openModal();
+                        }
+                    }
+    });
+}
+
+
+function updateSubcategoria(data,modal,message_area_modal)
+{
+    http = Connect();
+    http.onreadystatechange = function ()
+    {
+         if (http.readyState == 4 && http.status == 200)
+         {
+
+            if (http.responseText == 1)
+            {
+                message_area_modal.html("<img src='views/img/success.png'></img> La subcategoría se ha modifícado con exíto");
+                modal.openModal();
+                $('#result').html('');
+                searchSubcategoria('',$("#table"));
+            }
+            else
+            {
+                text = '<div class="alert alert-dismissible alert-danger">' +
+                    '<button type="button" class="close" data-dismiss="alert">&times;</button>' + http.responseText + '</div>';
+                    $('#result').html(http.responseText);
+            }
+
+        }
+        else if (http.readyState != 4)
+        {
+            text = '<div class="alert alert-dismissible alert-info">' +
+                '<button type="button" class="close" data-dismiss="alert">&times;</button>' +
+                '<img src="views/img/load.gif"></img> Procesando acción...</div>';
+            $('#result').html(text);
+        }
+    }
+    http.open('POST','?post=subcategoria&mod=1');
+    http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    http.send(data);
 }
