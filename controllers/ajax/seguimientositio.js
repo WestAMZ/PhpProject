@@ -17,13 +17,13 @@ $(document).ready(function ()
         $(this).toggleClass('selected');
     });
 
-    $('#searchtxt2').keypress(
+    $('#searchtxt').keypress(
         function(e)
         {
-            alert('nada');
-            var pressed = (e.key.toString().length == 1)? e.key :'';
+            var pressed = (e.key.toString().length == 1) ? e.key :'';
             var search = $(this).val()+ pressed;
-            searchnoresuelta(search,$('#table2'));
+            id =$('[name= "id_sitio"]').val();
+            searchnoresuelta(search,$('#table2'),id);
         });
 
 });
@@ -48,7 +48,7 @@ $("#agregarinsidencia").submit(function ()
     return false;
 });
 
-function searchnoresuelta(search, table) {
+function searchnoresuelta(search, table,id) {
     httpL = Connect();
     httpL.onreadystatechange = function () {
         if (httpL.readyState == 4 && httpL.status == 200) {
@@ -60,7 +60,7 @@ function searchnoresuelta(search, table) {
             table.html(text);
         }
     }
-    httpL.open('GET', '?get=incidenciatablenoresuelta&search=' + search);
+    httpL.open('GET', '?get=incidenciatablenoresuelta&search=' + search+'&id=' + id);
     httpL.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     httpL.send(null);
 }
@@ -84,13 +84,13 @@ function agregarinsidencia(archivo,data,result,modal,message_area_modal)
                             {
                                 message_area_modal.html("<img src='views/img/success.png'></img> la insidencia ha sido posteada");
                                 modal.openModal();
-                                result.html('');
+                                //result.html('');
                             }
                             else
                             {
                                 text = '<div class="alert alert-dismissible alert-danger">' +
                                 '<button type="button" class="close" data-dismiss="alert">&times;</button>' + http.responseText + '</div>';
-                                result.html(http.responseText);
+                              //  result.html(http.responseText);
                             }
                         }
                         catch (e)

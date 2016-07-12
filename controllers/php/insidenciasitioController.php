@@ -9,4 +9,5 @@
     App::getLeftMain();
     App::getRightMain();
     App::getInsidenciaSitio();
+    App::getModal();
 ?>

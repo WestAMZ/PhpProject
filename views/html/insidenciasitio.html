@@ -5,6 +5,7 @@
         <hr>
          <div class="row">
             <form class="col s12 m12 " id="agregarinsidencia">
+               <input type="hidden" value="<?php echo($_GET['id'])?>" name="id_sitio">
                 <div id="result"></div>
                 <div class="row">
                 <div class="input-field col s8">
@@ -38,7 +39,7 @@
 
         <ul class=" tabs tab-profile z-depth-3 red">
             <li class="tab col s4">
-                <a class="white-text waves-effect waves-light" href="#forminsidencia">Seguimientos Resueltos                </a>
+                <a class="white-text waves-effect waves-light" href="#forminsidencia">Seguimientos Resueltos</a>
             </li>
             <li class="tab col s4">
                 <a class="white-text waves-effect waves-light" href="#forminsidencianoresuelta">Seguimientos Sin Resolver
@@ -48,10 +49,10 @@
 
 
         <form id="forminsidencia">
-            <div class="col s12 m12 center" style="margin-top:50px">
+        <!--    <div class="col s12 m12 center" style="margin-top:50px">
                 <i class="material-icons prefix">search</i>
                 <input id="searchtxt" type="text" class="validate center" placeholder="Buscar incidencia">
-            </div>
+            </div> -->
             <div class="row">
                 <table id="seguimientos" class="responsive-table highlight scroll-y" style="margin: 20px auto;">
                     <thead>
