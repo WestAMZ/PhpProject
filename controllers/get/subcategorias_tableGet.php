@@ -1,9 +1,10 @@
 <?php
     include_once( MODELS_DIR . 'subcategoria.php');
+    include_once( MODELS_DIR . 'categoria.php');
     $categorias = null;
     if(isset($_GET['search']) and $_GET['search'] !='')
     {
-        $categoria = getCategoriaByUrl($_GET['url']);
+        $categoria = Categoria::getCategoriaByUrl($_GET['url']);
         $id_categoria = $categoria->getIdCategoria();
         $subcategorias = Subcategoria::SearchSubCategoria($_GET['search'],$id_categoria);
     }
