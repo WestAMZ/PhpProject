@@ -42,7 +42,7 @@ else
                              i.adjunto
                       FROM usuario u INNER JOIN insidencia i ON u.id_usuario = i.id_usuario
                       INNER JOIN empleado e on u.id_empleado = e.id_empleado
-                      INNER JOIN sitio s ON e.id_sitio = s.id_sitio WHERE s.id_sitio = '$id'and i.estado = true ORDER BY i.fecha DESC";
+                      INNER JOIN sitio s ON e.id_sitio = s.id_sitio WHERE s.id_sitio = '$id'and i.estado = true ORDER BY i.id_insidencia DESC";
 
          $result = Connection::getConnection()->query($query);
         if($result->num_rows > 0)

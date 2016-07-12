@@ -128,7 +128,7 @@
 	                         CONCAT(e.nombre1, ' ', e.apellido2) AS 'Usuario'
                       FROM usuario u INNER JOIN insidencia i ON u.id_usuario = i.id_usuario
                       INNER JOIN empleado e on u.id_empleado = e.id_empleado
-                      INNER JOIN sitio s ON e.id_sitio = s.id_sitio WHERE s.id_sitio = '$id' ORDER BY i.fecha DESC";
+                      INNER JOIN sitio s ON e.id_sitio = s.id_sitio WHERE s.id_sitio = '$id' ORDER BY i.fecha ASC";
 
             $result = Connection::getConnection()->query($query);
             $row = $result->fetch_assoc();

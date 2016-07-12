@@ -28,7 +28,7 @@
 
 
 
-                $insidencia = new Insidencia(null,null,$_GET['descripcion'],0,1,$_SESSION['id_usuario'],$nombre);
+                $insidencia = new Insidencia(null,null,$_GET['descripcion'],0,0,$_SESSION['id_usuario'],$nombre, $_GET['titulo']);
                 if($insidencia->saveInsidencia())
                 {
                     echo ('1');
