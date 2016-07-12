@@ -75,7 +75,8 @@ $(document).ready(function()
     $('#insidencias').on('click','.activar',function()
     {
         reanudarinsidencia($(this).attr('name'));
-        loadInsidencias($('#insidencias'),null,null,null);
+        window.location.reload();
+        //loadInsidencias($('#insidencias'),null,null,null);
     });
 
 
