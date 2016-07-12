@@ -52,7 +52,7 @@ else
 
 ?>
 
-        <tr class="seguimiento">
+        <tr id="<?php echo($row['id_insidencia'])?>" class="seguimiento">
             <td>
                 <?php echo($row['id_insidencia'])?>
             </td>

@@ -31,7 +31,7 @@
                             <th data-field="usuario">Usuario</th>
                         </tr>
                     </thead>
-                    <tbody id="table">
+                    <tbody id="table1">
                         <?php include( GET_DIR . 'insidenciatableresueltaGet.php')?>
                     </tbody>
                 </table>
@@ -44,7 +44,7 @@
                 <input id="searchtxt" type="text" class="validate center" placeholder="Buscar incidencia">
             </div>
             <div class="row">
-                <table id="table2" class="col s12 m12 centered bordered scroll-y">
+                <table id="seguimientos2" class="col s12 m12 centered bordered scroll-y">
                     <thead>
                         <tr>
                             <th data-field="id">No. Incidencia</th>
@@ -55,7 +55,7 @@
                             <th data-field="usuario">Usuario</th>
                         </tr>
                     </thead>
-                    <tbody id="table">
+                    <tbody id="table2">
                         <?php include( GET_DIR . 'incidenciatablenoresueltaGet.php')?>
                     </tbody>
                 </table>
@@ -63,6 +63,7 @@
         </form>
     </div>
 </div>
+
 </div>
 
 <script src="<?php echo(AJAX_DIR)?>seguimientositio.js">

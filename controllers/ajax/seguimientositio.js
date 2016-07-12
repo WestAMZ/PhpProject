@@ -1,17 +1,24 @@
-$(document).ready(function () {
+$(document).ready(function ()
+{
 
      $('#seguimientos').on('click','.seguimiento',function()
     {
-        $('#table .selected').removeClass('selected');
+        $('#table1 .selected').removeClass('selected');
         $(this).toggleClass('selected');
-
     });
 
     $(document).ready(function () {
         $('ul.tabs').tabs();
     });
 
+     $('#seguimientos2').on('click','.seguimiento2',function()
+    {
+        $('#table2 .selected').removeClass('selected');
+        $(this).toggleClass('selected');
+    });
+
 });
+
 
 function searchSitios(search, table) {
     httpL = Connect();
@@ -29,5 +36,3 @@ function searchSitios(search, table) {
     httpL.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     httpL.send(null);
 }
-
-function
