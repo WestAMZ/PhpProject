@@ -6,8 +6,8 @@
         <?php
         App::getLeftMain();
         App::getRightMain();
-       // App::getInsidencia();
-          App::getNuevaInsidencia();
+        App::getInsidencia();
+         // App::getNuevaInsidencia();
         App::getModal();
         App::getModalModificarComentario();
        // App::getModalModificarInsidencia();
