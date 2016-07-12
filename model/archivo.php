@@ -178,5 +178,18 @@
             Connection :: close();
             return $archivos;
         }
+
+        static function cambiarEstado($id,$estado)
+        {
+            $flag = false;
+            Connection::connect();
+            $query = "UPDATE archivo SET estado = '$estado' WHERE id_archivo = '$id' ";
+            if(Connection::getConnection()->query($query))
+            {
+                $flag = true;
+            }
+            Connection::close();
+            return $flag;
+        }
 }
 ?>
