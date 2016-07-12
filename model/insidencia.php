@@ -194,7 +194,7 @@
             return $uploadOk;
         }
 
-        function cambiarEstado($id,$estado)
+        static function cambiarEstado($id,$estado)
         {
             Connection::connect();
             $query = "UPDATE `insidencia` SET `estado`= '$estado' WHERE id_insidencia = '$id'";

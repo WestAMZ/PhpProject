@@ -59,7 +59,7 @@ $(document).ready(function()
     $('#insidencias').on('click','.finalizar',function()
     {
         finalizarinsidencia($(this).attr('name'));
-        window.location.reload();
+     //   window.location.reload();
       //  loadInsidencias($('#insidencias'),null,null,null);
 
     });
@@ -75,7 +75,7 @@ $(document).ready(function()
     $('#insidencias').on('click','.activar',function()
     {
         reanudarinsidencia($(this).attr('name'));
-        window.location.reload();
+      //  window.location.reload();
         //loadInsidencias($('#insidencias'),null,null,null);
     });
 
