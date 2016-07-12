@@ -8,7 +8,10 @@
         foreach( $empleados as &$empleado)
         {
 ?>
-            <tr class="empleado" onclick="select()">
+            <tr class="empleado" onclick="" id_usuario ="<?php
+                                                            $usuario = Usuario::getUsuarioByEmpleado($empleado->getId_Empleado());
+                                                            echo($usuario->getIdUsuario());
+                                                         ?>">
                 <td><?php echo($empleado->getId_Empleado())?></td>
                 <td><?php echo($empleado->getCedula())?></td><!-correo-->
                 <td><?php echo($empleado->getAllName())?></td>
