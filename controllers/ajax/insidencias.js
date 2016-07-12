@@ -49,20 +49,15 @@ $(document).ready(function()
 {
     $('.tooltipped').tooltip({delay: 50});
 
-     $('.finalizar').click(
+     $('.cambiar_estado').click(
          function()
          {
-             var id_insidencia =  $(this).attr('name');
+             var estado = ($(this).attr('estado')==0)?1:0;
+
+             cambiarEstado($(this).attr('name'),estado);
+             window.location.reload();
          }
      );
-
-    $('#insidencias').on('click','.finalizar',function()
-    {
-        finalizarinsidencia($(this).attr('name'));
-     //   window.location.reload();
-      //  loadInsidencias($('#insidencias'),null,null,null);
-
-    });
 
     $('#insidencias').on('click','.editar-insidencia',function()
     {
@@ -75,7 +70,7 @@ $(document).ready(function()
     $('#insidencias').on('click','.activar',function()
     {
         reanudarinsidencia($(this).attr('name'));
-      //  window.location.reload();
+        //window.location.reload();
         //loadInsidencias($('#insidencias'),null,null,null);
     });
 
@@ -181,7 +176,7 @@ function loadInsidencias(div,result,modal,message_area_modal)
     http.send(null);
 }
 
-function finalizarinsidencia(id,result,modal,message_area_modal)
+function cambiarEstado(id,estado,result,modal,message_area_modal)
 {
 
     http = Connect();
@@ -212,7 +207,7 @@ function finalizarinsidencia(id,result,modal,message_area_modal)
             //result.html(text);
         }
     }
-    http.open('POST','?post=insidencia&mod=2&id='+id+'&estado=0');
+    http.open('POST','?post=insidencia&mod=2&id='+id+'&estado='+estado);
     http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     http.send(null);
 }
