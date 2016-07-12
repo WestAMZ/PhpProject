@@ -17,10 +17,19 @@ $(document).ready(function ()
         $(this).toggleClass('selected');
     });
 
+    $('#searchtxt2').keypress(
+        function(e)
+        {
+            alert('nada');
+            var pressed = (e.key.toString().length == 1)? e.key :'';
+            var search = $(this).val()+ pressed;
+            searchnoresuelta(search,$('#table2'));
+        });
+
 });
 
 
-function searchSitios(search, table) {
+function searchnoresuelta(search, table) {
     httpL = Connect();
     httpL.onreadystatechange = function () {
         if (httpL.readyState == 4 && httpL.status == 200) {
@@ -32,7 +41,7 @@ function searchSitios(search, table) {
             table.html(text);
         }
     }
-    httpL.open('GET', '?get=seguimientositios&search=' + search);
+    httpL.open('GET', '?get=incidenciatablenoresuelta&search=' + search);
     httpL.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     httpL.send(null);
 }

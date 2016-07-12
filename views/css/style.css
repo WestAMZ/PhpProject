@@ -387,6 +387,21 @@ form
 {
   width: 40% !important;
 }
+#searchtxt2
+{
+    width: 20% !important;
+    background-color: white !important;
+    background-image: url('searchicon.png') !important;
+    background-position: 10px 10px !important;
+    background-repeat: no-repeat !important;
+    -webkit-transition: width 0.4s ease-in-out !important;
+    transition: width 0.4s ease-in-out !important;
+
+}
+#searchtxt2:focus
+{
+  width: 40% !important;
+}
 .addcursor
 {
     cursor: pointer !importan;
