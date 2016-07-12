@@ -50,7 +50,7 @@ else
 
 ?>
 
-        <tr id="<?php echo($row['id_insidencia'])?>" class="insidencia">
+        <tr id="<?php echo($row['id_insidencia'])?>" class="seguimiento2">
             <td>
                 <?php echo($row['id_insidencia'])?>
             </td>
