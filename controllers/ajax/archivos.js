@@ -97,3 +97,43 @@ function editarArchivo(archivo,data,modal,message_area_modal)
                     }
     });
 }
+
+
+unction cambiarEstado(id,estado)
+{
+    data = '&mod=2&'+'id='+id+'&estado='+estado;
+
+    $.ajax(
+    {
+        url: '?post=archivo'+data,
+        type: 'POST',
+        data: null,
+        dataType: "html",
+        cache: false,
+        contentType: false,
+        processData: false,
+        complete: function(res)
+                    {
+
+                        try
+                        {
+                            if(res.responseText==1)
+                            {
+                                $('#message').html('Se ha cambiado el estado del archivo');
+                                $('#myModal').openModal();
+                                searchCategoria("",$('#table'));
+                            }
+                            else
+                            {
+                                $('#message').html('Ha ocurrido un error');
+                                $('#myModal').openModal();
+                            }
+                        }
+                        catch (e)
+                        {
+                            $('#message').html(res.responseText);
+                                $('#myModal').openModal();
+                        }
+                    }
+    });
+}

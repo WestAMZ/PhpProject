@@ -231,7 +231,7 @@ function cambiarEstado(id,estado)
                             }
                             else
                             {
-                                $('#message').html('Se ha ocurrido un error');
+                                $('#message').html('Ha ocurrido un error');
                                 $('#myModal').openModal();
                             }
                         }

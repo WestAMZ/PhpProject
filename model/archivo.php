@@ -148,7 +148,7 @@
         }
         function getUrl()
         {
-            $url= Subcategoria::getFullUrlById($this->id_archivo);
+            $url= Subcategoria::getFullUrlById($this->id_subcategoria);
             $url = DOCS_DIR . $url . '/'. $this->nombre;
             return $url;
         }
