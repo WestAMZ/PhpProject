@@ -152,5 +152,31 @@
             $url = DOCS_DIR . $url . '/'. $this->nombre;
             return $url;
         }
-    }
+
+        static function searchArchivos($search,$id_subcategoria)
+        {
+            Connection :: connect();
+            $query = "SELECT id_archivo,fecha_subida, descripcion, nombre, id_subcategoria, id_usuario,estado FROM archivo WHERE  descripcion LIKE '%$search%' OR nombre LIKE '%$search%' ";
+            $result = Connection :: getConnection()->query($query);
+
+            $archivos = array();
+            while($row = $result->fetch_assoc())
+            {
+                $archivo = new Archivo();
+                $archivo->setIdArchivo($row['id_archivo']);
+                $archivo->setFechaSubida($row['fecha_subida']);
+                $archivo->setDescripcion($row['descripcion']);
+                $archivo->setNombre($row['nombre']);
+                $archivo->setIdSubcategoria($row['id_subcategoria']);
+                $archivo->setIdUsuario($row['id_usuario']);
+                $archivo->setEstado($row['estado']);
+                if($archivo->setIdSubcategoria($row['id_subcategoria']) == $id_subcategoria)
+                {
+                    array_push($archivos, $archivo);
+                }
+            }
+            Connection :: close();
+            return $archivos;
+        }
+}
 ?>

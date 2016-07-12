@@ -4,7 +4,7 @@
     $archivos = null;
     if(isset($_GET['search']) and $_GET['search'] !='')
     {
-        $archivos = Archivo::SearchCategoria($_GET['search']);
+        $archivos = Archivo::SearchArchivos($_GET['search'],$_GET['id']);
     }
     else
     {

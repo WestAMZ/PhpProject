@@ -24,6 +24,16 @@ $(document).ready(function()
 
     });
 
+    $('#searchtxt').keypress(
+        function(e)
+        {
+            //condicion para linpiar de caracteres especiales (no alfa nunmericos)
+            var pressed = (e.key.toString().length == 1)? e.key :'';
+            var search = $(this).val()+ pressed;
+            var id = $('[name="id_subcategoria"]').val();
+            searchArchivos(search,id,$('#table'));
+        });
+
 });
 
 function agregarArchivo(archivo,data,modal,message_area_modal)
@@ -99,7 +109,7 @@ function editarArchivo(archivo,data,modal,message_area_modal)
 }
 
 
-unction cambiarEstado(id,estado)
+function cambiarEstado(id,estado)
 {
     data = '&mod=2&'+'id='+id+'&estado='+estado;
 
@@ -121,7 +131,7 @@ unction cambiarEstado(id,estado)
                             {
                                 $('#message').html('Se ha cambiado el estado del archivo');
                                 $('#myModal').openModal();
-                                searchCategoria("",$('#table'));
+                                searchArchivos("",$('[name="id_subcategoria"]').val(),$('#table'));
                             }
                             else
                             {
@@ -133,6 +143,39 @@ unction cambiarEstado(id,estado)
                         {
                             $('#message').html(res.responseText);
                                 $('#myModal').openModal();
+                        }
+                    }
+    });
+}
+
+
+function searchArchivos(search,id,table)
+{
+    $.ajax(
+    {
+        url: '?get=archivos_table&search='+search+'&id='+id,
+        type: 'POST',
+        data: null,
+        dataType: "html",
+        cache: false,
+        contentType: false,
+        processData: false,
+        beforeSend:function()
+                    {
+                        text = '<div class="alert alert-dismissible alert-info center s12 m12">' +
+                        '<button type="button" class="close" data-dismiss="alert">&times;</button>' +
+                        '<img src="views/img/load2.gif"></img> Cargando...</div>';
+                        table.html(text);
+                    },
+        complete: function(res)
+                    {
+                        try
+                        {
+                            table.html(res.responseText);
+                        }
+                        catch (e)
+                        {
+                            table.html(res.responseText);
                         }
                     }
     });
