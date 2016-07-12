@@ -203,7 +203,7 @@
         static function getEmpleadosEspeciales()
         {
             Connection :: connect();
-             $query = "SELECT e.`id_empleado`,e.`nombre1`,e.`nombre2`,e.`apellido1`,e.`apellido2`,e.`cedula`,e.`telefono`,e.`firma`,e.`id_puesto`,e.`id_sitio`,e.`id_jefe`,e.`inss`,e.`fecha_ingreso`,e.`estado`,e.`documentos` FROM empleado e INNER JOIN usuario u on e.id_empleado = u.id_usuario where u.role = 5";
+             $query = "SELECT e.`id_empleado`,e.`nombre1`,e.`nombre2`,e.`apellido1`,e.`apellido2`,e.`cedula`,e.`telefono`,e.`firma`,e.`id_puesto`,e.`id_sitio`,e.`id_jefe`,e.`inss`,e.`fecha_ingreso`,e.`estado`,e.`documentos` FROM empleado e INNER JOIN usuario u on e.id_empleado = u.id_empleado where u.role = 5";
              $result = Connection::getConnection()->query($query);
              $empleados = array();
              while( $row = $result ->fetch_assoc())

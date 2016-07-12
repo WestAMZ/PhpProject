@@ -6,14 +6,8 @@ class Acceso
     var $id_usuario;
     var $permiso;
 
-    public function __construct(){}
-    function __contruct($id_acceso, $id_subcategoria, $id_usuario, $permiso)
-{
-    $this->id_acceso = $id_acceso;
-    $this->id_subcategoria = $id_subcategoria;
-    $this->id_usuario = $id_usuario;
-    $this->permiso = $permiso;
-}
+function __construct(){}
+
 function setIdAcceso($id_acceso)
 {
     $this->id_acceso = $id_acceso;
