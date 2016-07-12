@@ -187,5 +187,26 @@ class Usuario
         return $usuarios;
     }
 
+    static function getUsuarioByEmpleado($id)
+    {
+        Connection::connect();
+            $query = "SELECT `id_usuario` as id_usuario,`correo` as correo,`password` as password,`id_empleado` as id_empleado,`role` as role,`estado` as estado,`foto` as foto FROM `usuario` WHERE `id_empleado` = '$id'";
+
+            $result = Connection::getConnection()->query($query);
+            $row=$result->fetch_assoc();
+            $usuario =  new Usuario();
+
+            $usuario->setIdUsuario($row['id_usuario']);
+            $usuario->setCorreo($row['correo']);
+            $usuario->setContrasena($row['password']);
+            $usuario->setFoto($row['foto']);
+            $usuario->setRole($row['role']);
+            $usuario->setEstado($row['estado']);
+            $usuario->setIdEmpleado($row['id_empleado']);
+
+        //Usuario($row['id_usuario'],$row['$correo'],$row['password'],$row['foto'],$row['role'],$row['estado'],$row['id_empleado']);
+            Connection::close();
+            return $usuario;
+    }
 }
 ?>

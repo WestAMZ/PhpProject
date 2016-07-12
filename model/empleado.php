@@ -200,6 +200,37 @@
             return $empleados;
         }
 
+        static function getEmpleadosEspeciales()
+        {
+            Connection :: connect();
+             $query = "SELECT e.`id_empleado`,e.`nombre1`,e.`nombre2`,e.`apellido1`,e.`apellido2`,e.`cedula`,e.`telefono`,e.`firma`,e.`id_puesto`,e.`id_sitio`,e.`id_jefe`,e.`inss`,e.`fecha_ingreso`,e.`estado`,e.`documentos` FROM empleado e INNER JOIN usuario u on e.id_empleado = u.id_usuario where u.role = 5";
+             $result = Connection::getConnection()->query($query);
+             $empleados = array();
+             while( $row = $result ->fetch_assoc())
+             {
+                //$id_empleado,$nombre1,$nombre2,$apellido1,$apellido2,$cedula,$telefono,$firma,$id_puesto,$id_sitio,$id_jefe,$inss,$fecha_ingreso,$estado
+                 $empleado = new Empleado();
+                 $empleado->setId_Empleado($row['id_empleado']);
+                 $empleado->setNombre1($row['nombre1']);
+                 $empleado->setNombre2($row['nombre2']);
+                 $empleado->setApellido1($row['apellido1']);
+                 $empleado->setApellido2($row['apellido2']);
+                 $empleado->setCedula($row['cedula']);
+                 $empleado->setTelefono($row['telefono']);
+                 $empleado->setFirma($row['firma']);
+                 $empleado->setId_Puesto($row['id_puesto']);
+                 $empleado->setId_Sitio($row['id_sitio']);
+                 $empleado->setId_Jefe($row['id_jefe']);
+                 $empleado->setInss($row['inss']);
+                 $empleado->setFecha_Ingreso($row['fecha_ingreso']);
+                 $empleado->setEstado($row['estado']);
+                 $empleado->setDocumentos($row['documentos']);
+                array_push($empleados,$empleado);
+             }
+            Connection ::close();
+            return $empleados;
+        }
+
         function saveEmpleado($correo,$role,$foto,$password)
         {
             $added = false;
